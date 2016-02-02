@@ -9,37 +9,39 @@
     <meta name="Chenjin Hou" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Login</title>
+    <title>Profile</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
 </head>
 
 <body>
 <!--================== NAVBAR================================ -->
-<nav class="navbar navbar-inverse navbar-fix-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-list-alt"></span> Form Maker</a>
+            <a class="navbar-brand" href="home.html"><span class="glyphicon glyphicon-list-alt"></span> Form Maker</a>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="myNavbar">
+        <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="register.html"><span class="glyphicon glyphicon-user"> Register</span></a></li>
                 <li><a href="login.html"><span class="glyphicon glyphicon-log-in"> Login</span></a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+            <!--<form class="navbar-form navbar-right">-->
+            <!--<input type="text" class="form-control" placeholder="Search...">-->
+            <!--</form>-->
+        </div>
+    </div>
 </nav>
 
 <!--===========Left Navbar==========================-->
@@ -53,8 +55,9 @@
                 <li><a href="forms.html">Forms</a></li>
             </ul>
         </div>
-        <div class="col-sm-9 col-md-10">
-            <h1>Login</h1>
+        <!--==========content=================-->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1>Profile</h1>
             <!--=====Form===================-->
             <form class="form-horizontal">
                 <div class="form-group">
