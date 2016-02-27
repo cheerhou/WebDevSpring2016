@@ -5,7 +5,7 @@
 
     function Config($routeProvider) {
         $routeProvider
-            .when("/", {
+            .when("/home", {
                 templateUrl: "views/home/home.view.html",
                 controller: "HomeController"
             })
@@ -13,7 +13,7 @@
                 templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController"
             })
-            .when("/profile:id", {
+            .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
                 controller: "ProfileController"
             })
@@ -33,8 +33,8 @@
                 templateUrl: "views/forms/fields.view.html",
                 controller: "FieldsController"
             })
-            .otherwise("/", {
-                redirectTo: "/"
+            .otherwise("/home", {
+                redirectTo: "/home"
             })
 
     }
