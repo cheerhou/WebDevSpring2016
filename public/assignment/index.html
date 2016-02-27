@@ -8,25 +8,42 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <!--angular CDN-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
 
     <!-- Custom styles for this template -->
-    <link href="../assignment/css/dashboard.css" rel="stylesheet">
-
-    <title>Title</title>
+    <!--<link href="css/dashboard.css" rel="stylesheet">-->
 
     <script src="app.js"></script>
-    <script src="onfig.js"></script>
+    <script src="config.js"></script>
+    <script src="views/admin/admin.controller.js"></script>
+    <script src="views/forms/fields.controller.js"></script>
+    <script src="views/forms/forms.controller.js"></script>
+    <script src="views/header/header.controller.js"></script>
+    <script src="views/home/home.controller.js"></script>
+    <script src="views/users/login.controller.js"></script>
+    <script src="views/users/profile.controller.js"></script>
+    <script src="views/users/register.controller.js"></script>
+
+    <title>assignment index page</title>
 </head>
 
 <body>
-<h1>Assignment index page</h1>
-<div ng-controller="IndexController"
-     class="table-responsive">
+<!--header-->
+<nav ng-include="'views/header/header.view.html'"></nav>
 
-    <table>
-
-    </table>
+<div class="container-fluid">
+    <div class="row">
+        <!--sidebar-->
+        <div ng-include="'views/sidebar/sidebar.view.html'"></div>
+        <!--content-->
+        <div ng-view></div>
+    </div>
 </div>
+
+
+<!--<div ng-controller="MainController">-->
+<!--</div>-->
+
 
 </body>
 </html>
