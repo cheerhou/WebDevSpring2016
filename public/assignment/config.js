@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("FormBuilderApp", ["ngRoute"])
+        .module("FormBuilderApp")
         .config(Config);
 
     function Config($routeProvider) {
