@@ -29,12 +29,12 @@
             ],
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
-            //findUserByCredentials: findUserByCredentials,
+            findUserByCredentials: findUserByCredentials,
             findUserByUsername: findUserByUsername,
-            //findAllUsers: findAllUsers,
+            findAllUsers: findAllUsers,
             createUser: createUser,
-            //deleteUserById: deleteUserById,
-            //updateUser: updateUser
+            deleteUserById: deleteUserById,
+            updateUser: updateUser
         };
 
         return model;
@@ -58,9 +58,43 @@
             return user;
         }
 
-        function findUserByUsername (username) {
+        function findUserByUsername(username) {
             for (var u in model.users) {
                 if (model.users[u].username === username) {
+                    return model.users[u];
+                }
+            }
+            return null;
+        }
+
+        function findUserByCredentials(username, password) {
+            for (var u in model.users) {
+                if (model.users[u].username === username && model.users[u].password === password)
+                    return model.users[u];
+            }
+            return null;
+        }
+
+        function findAllUsers() {
+            return model.users;
+        }
+
+        function deleteUserById(userId) {
+            for (var u in model.users) {
+                if (model.users[u]._id === userId) {
+                    model.users.splice(u, 1);
+                }
+            }
+        }
+
+        function updateUser(userId, user) {
+            for (var u in model.users) {
+                if (model.users[u]._id === userId) {
+                    model.users[u].username = user.username;
+                    model.users[u].firstName = user.firstName;
+                    model.users[u].lastName = user.lastName;
+                    model.users[u].password = user.password;
+
                     return model.users[u];
                 }
             }
