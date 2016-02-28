@@ -27,18 +27,44 @@
                     "username": "ed", "password": "ed", "roles": ["student"]
                 }
             ],
-            createUser: createUser,
-            findUserByUsername: findUserByUsername,
-            findUserByCredentials: findUserByCredentials,
-            updateUser: updateUser,
             setCurrentUser: setCurrentUser,
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+            //findUserByCredentials: findUserByCredentials,
+            findUserByUsername: findUserByUsername,
+            //findAllUsers: findAllUsers,
+            createUser: createUser,
+            //deleteUserById: deleteUserById,
+            //updateUser: updateUser
         };
+
         return model;
 
         function setCurrentUser(user) {
             $rootScope.currentUser = user;
 
+        }
+
+        function getCurrentUser() {
+            return $rootScope.currentUser;
+        }
+
+        function createUser(user) {
+            var user = {
+                _id: (new Date).getTime(),
+                username: user.username,
+                password: user.password
+            }
+            model.users.push(user);
+            return user;
+        }
+
+        function findUserByUsername (username) {
+            for (var u in model.users) {
+                if (model.users[u].username === username) {
+                    return model.users[u];
+                }
+            }
+            return null;
         }
     }
 })();
