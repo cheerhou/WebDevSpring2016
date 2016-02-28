@@ -11,7 +11,7 @@
             UserService.setCurrentUser(null);
             $location.url("/home");
 
-            console.log("logont by ng-click");
+            console.log("logout by ng-click");
         }
     }
 

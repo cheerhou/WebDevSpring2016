@@ -5,36 +5,36 @@
 
     function RegisterController($scope, $rootScope, $location, UserService) {
         $scope.register = register;
-        $scope.message = null;
+        $scope.error = null;
 
         function register(user) {
-            $scope.message = null;
+            $scope.error = null;
             if (user == null) {
-                $scope.message = "Please fill in the required fields";
+                $scope.error = "Please fill in the required fields";
                 return;
             }
             if (!user.username) {
-                $scope.message = "Please provide a username";
+                $scope.error = "Please provide a username";
                 return;
             }
             if (!user.password || !user.password2) {
-                $scope.message = "Please provide a password";
+                $scope.error = "Please provide a password";
                 return;
             }
             if (user.password != user.password2) {
-                $scope.message = "Passwords must match";
+                $scope.error = "Passwords must match";
                 return;
             }
             var user = UserService.findUserByUsername(user.username);
             if (user != null) {
-                $scope.message = "User already exists";
+                $scope.error = "User already exists";
                 return;
             }
             var newUser = UserService.createUser($scope.user);
             UserService.setCurrentUser(newUser);
             $location.url("/profile/" + newUser._id);
 
-            console.log(UserService.findAllUsers());
+            console.log("after register" + UserService.findAllUsers());
         }
     }
 

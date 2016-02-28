@@ -22,10 +22,10 @@
                 $scope.message = "User updated successfully";
                 UserService.setCurrentUser($scope.currentUser);
             } else {
-                $scope.message = "Unable to update the user";
+                $scope.error = "Unable to update the user";
             }
         }
 
-        console.log(UserService.findAllUsers());
+        console.log("after update" + UserService.findAllUsers());
     }
 })();
