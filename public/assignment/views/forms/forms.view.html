@@ -1,49 +1,46 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="FormBuilderApp">
-<head>
-    <meta charset="utf-8">
-    <title>Forms</title>
-</head>
-
-<body>
-<!--==========content=================-->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Forms</h1>
-    <div>
-        <ul class="nav nav-tabs">
-            <li><a href="#/forms">Forms</a></li>
-            <li><a href="#/fileds">Fields</a></li>
-        </ul>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Form Name</th>
-                <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><input type="text" placeholder="name"></td>
-                <td><a href="#"><span class="glyphicon glyphicon-plus"></span></a>
-                    <a href="#"><span class="glyphicon glyphicon-ok"></span></a></td>
-            </tr>
-            <tr>
-                <td><a href="#">Registration Form</a></td>
-                <td><a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                    <a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
-            </tr>
-            <tr>
-                <td><a href="#">Contact List</a></td>
-                <td><a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                    <a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
-            </tr>
-            <tr>
-                <td><a href="#">To Do List</a></td>
-                <td><a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                    <a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+
+    <div ng-show="error" class="alert alert-danger" role="alert">{{error}}</div>
+
+
+    <ul class="nav nav-tabs">
+        <li ng-class="{'active' : $location.url() == '/forms'}"><a href="#/forms">Forms</a></li>
+        <li ng-class="{'active' : $location.url() == '/fields'}"><a href="#/fields">Fields</a></li>
+    </ul>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span> Form Name</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span> Action</th>
+        </tr>
+        <tr>
+            <th><input ng-model="form.title" class="form-control"/></th>
+            <th>
+                <button ng-click="addForm(form)" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <button ng-click="updateForm(form)" class="btn btn-success">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="form in forms">
+            <td>
+                <a href="">{{form.title}}</a>
+            </td>
+            <td>
+                <button ng-click="deleteForm($index)" class="btn btn-danger"><span
+                        class="glyphicon glyphicon-remove"></span></button>
+                <button ng-click="selectForm($index)" class="btn btn-info"><span
+                        class="glyphicon glyphicon-pencil"></span></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
-</body>

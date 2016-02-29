@@ -29,7 +29,7 @@
                 templateUrl: "views/forms/forms.view.html",
                 controller: "FormsController"
             })
-            .when("/fileds", {
+            .when("/fields", {
                 templateUrl: "views/forms/fields.view.html",
                 controller: "FieldsController"
             })

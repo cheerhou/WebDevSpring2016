@@ -7,13 +7,12 @@
         $scope.error = null;
         $scope.message = null;
         $scope.id = $routeParams.id;
-
+        $scope.update = update;
         $scope.currentUser = UserService.getCurrentUser();
+
         if (!$scope.currentUser) {
             $location.url("/home");
         }
-
-        $scope.update = update;
 
         function update(user) {
             UserService.updateUser($routeParams.id, user)
