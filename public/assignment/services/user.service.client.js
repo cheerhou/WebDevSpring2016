@@ -20,7 +20,7 @@
                     "lastName": "Hope",
                     "username": "bob",
                     "password": "bob",
-                    "roles": ["admin"]
+                    "roles": ["manager"]
                 },
                 {
                     "_id": 345,
@@ -36,7 +36,7 @@
                     "lastName": "Craig",
                     "username": "dan",
                     "password": "dan",
-                    "roles": ["faculty", "admin"]
+                    "roles": ["faculty", "manager"]
                 },
                 {
                     "_id": 567,

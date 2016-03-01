@@ -1,17 +1,25 @@
 (function () {
     angular
-        .module("FormBuilderApp")
+        .module("ResManageApp")
         .config(Config);
 
     function Config($routeProvider) {
         $routeProvider
-            .when("/home", {
-                templateUrl: "views/home/home.view.html",
-                controller: "HomeController"
+            .when("/menu", {
+                templateUrl: "views/menu/menu.view.html",
+                controller: "MenuController"
+            })
+            .when("/order", {
+                templateUrl: "views/order/order.view.html",
+                controller: "OrderController"
+            })
+            .when("/reservation", {
+                templateUrl: "views/reservation/reservation.view.html",
+                controller: "ReservationController"
             })
             .when("/manager", {
                 templateUrl: "views/manager/manager.view.html",
-                controller: "AdminController"
+                controller: "ManagerController"
             })
             .when("/profile/:id", {
                 templateUrl: "views/users/profile.view.html",
@@ -25,16 +33,8 @@
                 templateUrl: "views/users/register.view.html",
                 controller: "RegisterController"
             })
-            .when("/forms", {
-                templateUrl: "views/forms/forms.view.html",
-                controller: "FormsController"
-            })
-            .when("/fields", {
-                templateUrl: "views/forms/fields.view.html",
-                controller: "FieldsController"
-            })
-            .otherwise("/home", {
-                redirectTo: "/home"
+            .otherwise("/menu", {
+                redirectTo: "/menu"
             })
 
     }
