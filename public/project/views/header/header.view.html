@@ -1,0 +1,38 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/home"><span class="glyphicon glyphicon-list-alt"></span> Form Maker</a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-hide="currentUser"
+                    ng-class="{'active': $location.url()=='/register'}">
+                    <a href="#/register">
+                        <span class="glyphicon glyphicon-user"> Register</span></a></li>
+                <li ng-hide="currentUser"
+                    ng-class="ng-hide {'active': $location.url()=='/login'}">
+                    <a href="#/login">
+                        <span class="glyphicon glyphicon-log-in"> Login</span></a></li>
+                <li ng-show="currentUser">
+                    <a ng-click="logout()"><span class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+                <li ng-show="currentUser"
+                    ng-class="{'active': $location.url()=='/profile'}">
+                    <a href="#/profile/{{currentUser._id}}">
+                        <span class="glyphicon glyphicon-user"> {{currentUser.username}}</span></a></li>
+                <li ng-show="currentUser.roles.indexOf('admin') >= 0"
+                    ng-class="{'active': $location.url()=='/admin'}">
+                    <a href="#/admin">
+                        <span class="glyphicon glyphicon-user"> Admin</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
