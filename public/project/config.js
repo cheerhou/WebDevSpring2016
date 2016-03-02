@@ -14,21 +14,24 @@
                 controller: "OrderController"
             })
             .when("/order/summary", {
-                templateUrl: "views/order/order.summary.view.html",
+                templateUrl: "views/order/order.summary.view.html"
             })
             .when("/order/detail", {
-                templateUrl: "views/order/order.detail.view.html",
+                templateUrl: "views/order/order.detail.view.html"
             })
             .when("/reservation", {
                 templateUrl: "views/reservation/reservation.view.html",
                 controller: "ReservationController"
             })
             .when("/reservation/detail", {
-                templateUrl: "views/reservation/reservation.detail.view.html",
+                templateUrl: "views/reservation/reservation.detail.view.html"
             })
-            .when("/manager", {
+            .when("/manage", {
                 templateUrl: "views/manager/manager.view.html",
                 controller: "ManagerController"
+            })
+            .when("/manage/tips", {
+                templateUrl: "views/manager/manage.tips.view.html"
             })
             .when("/profile/:id", {
                 templateUrl: "views/users/profile.view.html",

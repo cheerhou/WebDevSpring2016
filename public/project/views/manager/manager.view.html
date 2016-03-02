@@ -1,48 +1,61 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">Admin</h1>
-    <h2>Users</h2>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Username</th>
-            <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Password</th>
-            <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Role</th>
-            <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><input type="text" placeholder="username"></td>
-            <td><input type="password" placeholder="password"></td>
-            <td><input type="text" placeholder="role1, role2"></td>
-            <td><a href="#"><span class="glyphicon glyphicon-plus"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-ok"></span></a>
-            </td>
-        </tr>
-        <tr>
-            <td>alice</td>
-            <td></td>
-            <td>student</td>
-            <td><a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-            </td>
-        </tr>
-        <tr>
-            <td>bob</td>
-            <td></td>
-            <td>aculty | admin</td>
-            <td><a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-            </td>
-        </tr>
-        <tr>
-            <td>charlie</td>
-            <td></td>
-            <td></td>
-            <td><a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <h1 class="page-header">Manage Employee</h1>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Username</th>
+                <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> First Name</th>
+                <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Last Name</th>
+                <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Role</th>
+                <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Salary</th>
+                <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Actions</th>
+            </tr>
+            <tr>
+                <th><input type="text" placeholder="username"></th>
+                <th><input type="text" placeholder="first name"></th>
+                <th><input type="text" placeholder="last name"></th>
+                <th>
+                    <select class="form-control" id="role">
+                        <option>Waiter</option>
+                        <option>Receptionist</option>
+                        <option>Cook</option>
+                        <option>Deliveryman</option>
+                    </select>
+                </th>
+                <th><input type="text" placeholder="Salary" disabled></th>
+                <th>
+                    <button class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+                    <button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>cheerhou</td>
+                <td>Chenjin</td>
+                <td>Hou</td>
+                <td>Waiter</td>
+                <td><a href="#/manage/tips">$1000</a></td>
+                <td><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                    <button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
+                </td>
+            </tr>
+            <tr>
+                <td>alice</td>
+                <td>Alice</td>
+                <td>Chen</td>
+                <td>Receptionist</td>
+                <td><a href="#/manage/tips">$2000</a></td>
+                <td><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                    <button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
 </div>
