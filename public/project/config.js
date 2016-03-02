@@ -13,9 +13,18 @@
                 templateUrl: "views/order/order.view.html",
                 controller: "OrderController"
             })
+            .when("/order/summary", {
+                templateUrl: "views/order/order.summary.view.html",
+            })
+            .when("/order/detail", {
+                templateUrl: "views/order/order.detail.view.html",
+            })
             .when("/reservation", {
                 templateUrl: "views/reservation/reservation.view.html",
                 controller: "ReservationController"
+            })
+            .when("/reservation/detail", {
+                templateUrl: "views/reservation/reservation.detail.view.html",
             })
             .when("/manager", {
                 templateUrl: "views/manager/manager.view.html",
