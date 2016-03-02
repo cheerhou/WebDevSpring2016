@@ -9,8 +9,8 @@
                 templateUrl: "views/home/home.view.html",
                 controller: "HomeController"
             })
-            .when("/manager", {
-                templateUrl: "views/manager/manager.view.html",
+            .when("/admin", {
+                templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController"
             })
             .when("/profile/:id", {

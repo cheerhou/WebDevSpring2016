@@ -16,6 +16,7 @@
     <!--Controller JavaScript-->
     <script src="app.js"></script>
     <script src="config.js"></script>
+    <script src="views/main/main.controller.js"></script>
     <script src="views/header/header.controller.js"></script>
     <script src="views/menu/menu.controller.js"></script>
     <script src="views/order/order.controller.js"></script>
@@ -26,7 +27,7 @@
 
 </head>
 
-<body>
+<body ng-controller="MainController">
 <!--header-->
 <div ng-include="'views/header/header.view.html'"></div>
 
