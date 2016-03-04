@@ -18,7 +18,7 @@
                     <a href="#/register">
                         <span class="glyphicon glyphicon-user"> Register</span></a></li>
                 <li ng-hide="currentUser"
-                    ng-class="ng-hide {'active': $location.url()=='/login'}">
+                    ng-class="{'active': $location.url()=='/login'}">
                     <a href="#/login">
                         <span class="glyphicon glyphicon-log-in"> Login</span></a></li>
                 <li ng-show="currentUser">

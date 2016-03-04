@@ -32,7 +32,12 @@
                 $scope.error = "Please select a form.";
                 return;
             }
+            if(form.userId == null) {
+                form.userId = $scope.currentUser._id;
+            }
             FormService.updateFormById($scope.selectedFormId, form);
+            $scope.selectedFormId = null;
+            form.title = "";
         }
 
         function deleteForm(index) {
