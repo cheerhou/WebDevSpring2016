@@ -33,7 +33,10 @@
             .when("/manage/tips", {
                 templateUrl: "views/manager/manage.tips.view.html"
             })
-            .when("/profile/:id", {
+            .when("/manage/review", {
+                templateUrl: "views/manager/manager.review.view.html"
+            })
+            .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
                 controller: "ProfileController"
             })

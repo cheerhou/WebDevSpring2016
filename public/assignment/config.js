@@ -13,7 +13,7 @@
                 templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController"
             })
-            .when("/profile/:id", {
+            .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
                 controller: "ProfileController"
             })

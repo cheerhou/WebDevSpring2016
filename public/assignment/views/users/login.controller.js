@@ -12,7 +12,7 @@
             var aUser = UserService.findUserByCredentials(user.username, user.password);
             if(aUser != null) {
                 UserService.setCurrentUser(aUser);
-                $location.url("/profile/" + aUser._id);
+                $location.url("/profile");
             } else {
                 $scope.error = "Please verify your user name or password."
             }

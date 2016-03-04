@@ -29,9 +29,9 @@
         </thead>
 
         <tbody>
-        <tr ng-repeat="form in forms">
+        <tr ng-repeat="form in forms" ng-show="form.userId == currentUser._id">
             <td>
-                <a href="">{{form.title}}</a>
+                <a href="#">{{form.title}}</a>
             </td>
             <td>
                 <button ng-click="deleteForm($index)" class="btn btn-danger"><span

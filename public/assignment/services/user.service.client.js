@@ -20,7 +20,7 @@
                     "lastName": "Hope",
                     "username": "bob",
                     "password": "bob",
-                    "roles": ["manager"]
+                    "roles": ["admin"]
                 },
                 {
                     "_id": 345,
@@ -36,7 +36,7 @@
                     "lastName": "Craig",
                     "username": "dan",
                     "password": "dan",
-                    "roles": ["faculty", "manager"]
+                    "roles": ["faculty", "admin"]
                 },
                 {
                     "_id": 567,
@@ -72,7 +72,8 @@
             var user = {
                 _id: (new Date).getTime(),
                 username: user.username,
-                password: user.password
+                password: user.password,
+                email: user.email
             }
             model.users.push(user);
             return user;

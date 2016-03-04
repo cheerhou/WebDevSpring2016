@@ -32,7 +32,7 @@
             }
             var newUser = UserService.createUser($scope.user);
             UserService.setCurrentUser(newUser);
-            $location.url("/profile/" + newUser._id);
+            $location.url("/profile");
 
             console.log("after register" + UserService.findAllUsers());
         }
