@@ -40,7 +40,7 @@
                 templateUrl: "views/menu/menu.search.view.html",
                 controller: "MenuSearchController"
             })
-            .when("/search/:title", {
+            .when("/search?title=:title", {
                 templateUrl: "views/menu/menu.search.view.html",
                 controller: "MenuSearchController"
             })

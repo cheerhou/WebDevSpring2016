@@ -5,7 +5,7 @@
         <li ng-class="{'active' : $location.url() == '/order/summary'}"><a href="#/order/summary">Your Order</a></li>
         <li ng-class="{'active' : $location.url() == '/reservation/detail'}"><a href="#/reservation/detail">Your Reservation</a></li>
         <li ng-class="{'active' : $location.url() == '/manage/tips'}"><a href="#/manage/tips">Manage Tips</a></li>
-        <li ng-class="{'active' : $location.url() == '/search'}"><a href="#/search">Manage Menu</a></li>
+        <li ng-class="{'active' : $location.path() == '/search'}"><a href="#/search">Search Recipe</a></li>
         <li ng-class="{'active' : $location.url() == '/manage/review'}"><a href="#/manage/review">Review Daily Income</a></li>
 
     </ul>

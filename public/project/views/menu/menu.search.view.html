@@ -4,6 +4,7 @@
 
     <button ng-click="search(title)" class="btn btn-block btn-primary"> Search</button>
 
+    <h1>&nbsp;</h1>
     <h3 class="page-header">Search Results</h3>
 
     <div class="table-responsive">
@@ -15,14 +16,15 @@
                 <th></th>
             </tr>
             </thead>
+
             <tbody>
-            <tr ng-repeat="menu in data">
+            <tr ng-repeat="item in data">
                 <td>
-                    <a href="#/detail/{{menu.recipe_id}}">
-                        {{menu.title}}
+                    <a href="#/detail/{{item.recipe_id}}">
+                        {{item.title}}
                     </a>
                 </td>
-                <td><img class="img-thumbnail" height="100px" width="150px" ng-src="{{menu.image_url}}"/></td>
+                <td><img class="img-thumbnail" height="100px" width="150px" ng-src="{{item.image_url}}"/></td>
                 <td><button class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></button></td>
             </tr>
             </tbody>

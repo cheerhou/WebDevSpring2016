@@ -9,11 +9,12 @@
 
         if($scope.title) {
             search($scope.title);
+
+            console.log($scope.title);
         }
 
         function search(title) {
-            $location.url("/search/"+$scope.title);
-            console.log(title);
+            $location.url("/search?title="+$scope.title);
 
             MenuService.findMenuByTitle(
                 title,
