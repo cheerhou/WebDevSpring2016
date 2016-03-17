@@ -1,5 +1,4 @@
-{
-  "users": [
+[
     {
       "_id": 123,
       "firstName": "Alice",
@@ -35,5 +34,4 @@
       "username": "ed",
       "password": "ed"
     }
-  ]
-}
+]
