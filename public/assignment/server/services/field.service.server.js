@@ -37,9 +37,10 @@ module.exports = function(app, formModel, db) {
     }
 
     function createFieldInForm(req, res) {
-        var newForm = req.body;
-        var forms = formModel.createForm(newForm);
-        res.json(forms);
+        var formId = req.params.formId;
+        var field = req.body;
+        var form = formModel.createFieldInForm(formId, field);
+        res.json(form);
     }
 
     function updateFieldInForm(req, res) {
