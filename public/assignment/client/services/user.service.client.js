@@ -48,6 +48,7 @@
         }
 
         function updateUser(userId, user) {
+            //console.log("updateUser : " + userId + " " + user.username);
             return $http.put("/api/assignment/user/" + userId, user);
         }
     }

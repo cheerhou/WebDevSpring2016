@@ -1,5 +1,6 @@
 //use the mock data for testing
 var mockUsers = require("./user.mock.json");
+var uuid = require("node-uuid");
 
 module.exports = function(app) {
     var api = {
@@ -15,7 +16,14 @@ module.exports = function(app) {
     return api;
 
     function createUser(user) {
-        mockUsers.push(user);
+        //get an id to new created user
+        var newUser = {
+            _id: uuid.v4(),
+            username: user.username,
+            password: user.password,
+            email: user.email
+        };
+        mockUsers.push(newUser);
         return mockUsers;
     }
 
@@ -24,7 +32,6 @@ module.exports = function(app) {
     }
 
     function findUserById(userId) {
-        userId = parseInt(userId);
         //console.log("user id " + userId);
         for(var i in mockUsers) {
             if(mockUsers[i]._id === userId) {
@@ -35,20 +42,21 @@ module.exports = function(app) {
     }
 
     function updateUser(userId, newUser) {
-        userId = parseInt(userId);
         for(var i in mockUsers) {
             if (mockUsers[i]._id === userId) {
                 mockUsers[i].firstName = newUser.firstName;
                 mockUsers[i].lastName = newUser.lastName;
                 mockUsers[i].username = newUser.username;
                 mockUsers[i].password = newUser.password;
+                mockUsers[i].email = newUser.email;
+
+                console.log("in user model: " + newUser.firstName + " " + newUser.lastName);
             }
         }
         return mockUsers;
     }
 
     function deleteUser(userId) {
-        userId = parseInt(userId);
         for(var i in mockUsers) {
             if (mockUsers[i]._id === userId) {
                 mockUsers.splice(i, 1);

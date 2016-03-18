@@ -3,12 +3,12 @@
         .module("FormBuilderApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($scope, $rootScope, $location, UserService) {
+    function RegisterController($scope, $location, UserService) {
         $scope.register = register;
         $scope.error = null;
+        $scope.message = null;
 
         function register(user) {
-            $scope.error = null;
             if (user == null) {
                 $scope.error = "Please fill in the required fields";
                 return;
@@ -25,16 +25,33 @@
                 $scope.error = "Passwords must match";
                 return;
             }
-            var user = UserService.findUserByUsername(user.username);
-            if (user != null) {
-                $scope.error = "User already exists";
-                return;
-            }
-            var newUser = UserService.createUser($scope.user);
-            UserService.setCurrentUser(newUser);
-            $location.url("/profile");
 
-            console.log("after register" + UserService.findAllUsers());
+            UserService
+                .findUserByUsername(user.username)
+                .then(function(respond) {
+                    if(respond.data) {
+                        $scope.error = "User already exists!";
+                        return;
+                    } else {
+
+                        UserService
+                            .createUser(user)
+                            .then(function(respond) {
+                                if(respond.data) {
+                                    $scope.message = "You have Registered successfully.";
+                                    //the last user in the respond is the new created user
+                                    UserService.setCurrentUser(respond.data.pop());
+                                    var currentUser = UserService.getCurrentUser();
+                                    //console.log("current user : " + currentUser._id + " " + currentUser.username);
+
+                                    $location.url("/profile/" + currentUser._id);
+                                } else{
+                                    $scope.error = "Register failed!";
+                                }
+                            })
+                    }
+
+                });
         }
     }
 

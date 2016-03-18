@@ -18,17 +18,13 @@
                 .then(function(respond) {
                     if(respond.data) {
                         UserService.setCurrentUser(respond.data);
-                        $location.url("/profile");
+                        var currentUser = UserService.getCurrentUser();
+                        $location.url("/profile/" + currentUser._id);
+                    } else {
+                        $scope.error = "Please verify your user name or password."
                     }
                 });
 
-            //var aUser = UserService.findUserByCredentials(user.username, user.password);
-            //if(aUser != null) {
-            //    UserService.setCurrentUser(aUser);
-            //    $location.url("/profile");
-            //} else {
-            //    $scope.error = "Please verify your user name or password."
-            //}
         }
     }
 
