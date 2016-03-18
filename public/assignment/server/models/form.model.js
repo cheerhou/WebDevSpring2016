@@ -41,6 +41,7 @@ module.exports = function(app) {
                 mockForms[i].fields = newForm.fields;
             }
         }
+        return mockForms;
     }
 
     function deleteForm(formId) {
