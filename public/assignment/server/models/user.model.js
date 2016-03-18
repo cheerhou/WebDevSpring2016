@@ -25,6 +25,7 @@ module.exports = function(app) {
 
     function findUserById(userId) {
         userId = parseInt(userId);
+        //console.log("user id " + userId);
         for(var i in mockUsers) {
             if(mockUsers[i]._id === userId) {
                 return mockUsers[i];
@@ -43,6 +44,7 @@ module.exports = function(app) {
                 mockUsers[i].password = newUser.password;
             }
         }
+        return mockUsers;
     }
 
     function deleteUser(userId) {
@@ -52,6 +54,7 @@ module.exports = function(app) {
                 mockUsers.splice(i, 1);
             }
         }
+        return mockUsers;
     }
 
     function findUserByUsername(username) {

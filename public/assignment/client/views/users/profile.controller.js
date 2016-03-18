@@ -25,6 +25,6 @@
             }
         }
 
-        console.log("after update" + UserService.findAllUsers());
+        //console.log("after update" + UserService.findAllUsers());
     }
 })();

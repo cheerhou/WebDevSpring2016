@@ -8,7 +8,8 @@ module.exports = function(app) {
         findFormById: findFormById,
         updateForm: updateForm,
         deleteForm: deleteForm,
-        findFormByTitle: findFormByTitle
+        findFormByTitle: findFormByTitle,
+        findFormByUser: findFormByUser
 
     };
     return api;
@@ -23,7 +24,6 @@ module.exports = function(app) {
     }
 
     function findFormById(formId) {
-        formId = parseInt(formId);
         for(var i in mockForms) {
             if(mockForms[i]._id === formId) {
                 return mockForms[i];
@@ -50,6 +50,7 @@ module.exports = function(app) {
                 mockForms.splice(i, 1);
             }
         }
+        return mockForms;
     }
 
     function findFormByTitle(title) {
@@ -59,5 +60,16 @@ module.exports = function(app) {
             }
         }
         return null;
+    }
+
+    function findFormByUser(userId) {
+        var forms = [];
+        userId = parseInt(userId);
+        for(var i in mockForms) {
+            if (mockForms[i].userId === userId) {
+                forms.push(mockForms[i]);
+            }
+        }
+        return forms;
     }
 }
