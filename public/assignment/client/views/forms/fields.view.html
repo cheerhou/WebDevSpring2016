@@ -25,7 +25,7 @@
             </tr>
             </thead>
 
-            <tbody id="tbody-sortable" field-sortable>
+            <tbody id="tbody-sortable">
             <tr ng-repeat="field in fields">
                 <td ng-if="field.type==='TEXT'">
                     <label>{{field.label}}:</label><br>
@@ -61,14 +61,29 @@
                         <input type="radio" value={{option.value}}> {{option.label}}
                     </div>
                 </td>
-                <td><button class="btn btn-info" ng-click="editField(field)"><span class="glyphicon glyphicon-pencil"></span></button>
-                    <button class="btn btn-info" ng-click=""><span class="glyphicon glyphicon-plus"></span></button>
-                    <button class="btn btn-danger" ng-click="removeField(field)"><span class="glyphicon glyphicon-remove"></span></button>
-                    <button class="btn btn-info" ng-click="justifyRow()"><span class="glyphicon glyphicon-align-justify"></span></button>
+                <td>
+                    <button class="btn btn-info" ng-click="editField(field)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button class="btn btn-info" ng-click="">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                    <button class="btn btn-danger" ng-click="removeField(field)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <a type="button" class="btn btn-info">
+                        <span class="glyphicon glyphicon-align-justify"></span>
+                    </a>
                 </td>
             </tr>
             </tbody>
 
         </table>
+        <script>
+            $(function () {
+                $("#tbody-sortable").sortable();
+            });
+        </script>
     </div>
 </div>
+
