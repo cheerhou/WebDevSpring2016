@@ -36,8 +36,8 @@
                 .then(function(respond) {
                     if(respond.data) {
                         $scope.forms = respond.data;
-                        var newforms = respond.data;
 
+                        var newforms = respond.data;
                         FormService.setCurrentForm(newforms[newforms.length - 1]);
 
                         $scope.message = "Create form successfully.";

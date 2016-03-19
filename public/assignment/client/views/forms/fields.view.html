@@ -10,7 +10,7 @@
             <li ng-class="{'active' : $location.url() == '/fields'}"><a href="#/fields">Fields</a></li>
         </ul>
 
-        <table class="table table-striped">
+        <table class="table table-responsive">
             <thead ng-switch="fieldType">
             <tr>
                 <th>
@@ -23,58 +23,46 @@
                     </button>
                 </th>
             </tr>
-            <!--<tr ng-switch-when="Single Line Text Field">-->
-                <!--<th>-->
-                    <!--label: <input type="text" placeholder="field label">-->
-                <!--</th>-->
-                <!--<th>-->
-                    <!--<input type="text" >-->
-                <!--</th>-->
-            <!--</tr>-->
-            <!--<tr ng-switch-when="Multi Line Text Field">-->
-                <!--<th>-->
-                    <!--label: <input type="text" placeholder="field label">-->
-                <!--</th>-->
-                <!--<th>-->
-                    <!--<textarea></textarea>-->
-                <!--</th>-->
-            <!--</tr>-->
-            <!--<tr ng-switch-when="Date Field">-->
-                <!--<th>-->
-                    <!--label: <input type="text" placeholder="field label">-->
-                <!--</th>-->
-                <!--<th>-->
-                    <!--<input type="date">-->
-                <!--</th>-->
-            <!--</tr>-->
-            <!--<tr ng-switch-when="Dropdown Field">-->
-                <!--<th>-->
-                    <!--label: <input type="text" placeholder="field label">-->
-                <!--</th>-->
-                <!--<th>-->
-
-                <!--</th>-->
-            <!--</tr>-->
-            <!--<tr ng-switch-when="Checkboxes Field">-->
-                <!--<th>-->
-                    <!--label: <input type="text" placeholder="field label">-->
-                <!--</th>-->
-                <!--<th>-->
-
-                <!--</th>-->
-            <!--</tr>-->
-            <!--<tr ng-switch-when="Radio Buttons Field">-->
-                <!--<th>-->
-                    <!--label: <input type="text" placeholder="field label">-->
-                <!--</th>-->
-                <!--<th>-->
-
-                <!--</th>-->
-            <!--</tr>-->
-
             </thead>
 
             <tbody>
+            <tr ng-repeat="field in fields">
+                <td ng-if="field.type==='TEXT'">
+                    <label>{{field.label}}:</label><br>
+                    <input type=text placeholder={{field.placeholder}}>
+                </td>
+                <td ng-if="field.type==='EMAIL'">
+                    <label>{{field.label}}:</label><br>
+                    <input type=email placeholder={{field.placeholder}}>
+                </td>
+                <td ng-if="field.type==='TEXTAREA'">
+                    <label>{{field.label}}:</label><br>
+                    <input type=textarea placeholder={{field.placeholder}}>
+                </td>
+                <td ng-if="field.type==='DATE'">
+                    <label>{{field.label}}:</label><br>
+                    <input type=date placeholder={{field.placeholder}}>
+                </td>
+                <td ng-if="field.type==='CHECKBOXES'">
+                    <label>{{field.label}}:</label><br>
+                    <div class="form-group" ng-repeat="option in field.options">
+                        <input type="checkbox" value={{option.value}}> {{option.label}}
+                    </div>
+                </td>
+                <td ng-if="field.type==='OPTIONS'">
+                    <label>{{field.label}}:</label><br>
+                    <select>
+                        <option ng-repeat="option in field.options" value={{option.value}}>{{option.label}}</option>
+                    </select>
+                </td>
+                <td ng-if="field.type==='RADIOS'">
+                    <label>{{field.label}}:</label><br>
+                    <div class="form-group" ng-repeat="option in field.options">
+                        <input type="radio" value={{option.value}}> {{option.label}}
+                    </div>
+                </td>
+
+            </tr>
 
             </tbody>
 
