@@ -5,13 +5,21 @@
 
     function FormsController($scope, FormService, UserService) {
         $scope.error = null;
-        $scope.currentUser = UserService.getCurrentUser();
-        $scope.forms = FormService.findAllForms();
+        $scope.message = null;
         $scope.selectedFormId;
+
         $scope.addForm = addForm;
         $scope.updateForm = updateForm;
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;
+
+
+        $scope.currentUser = UserService.getCurrentUser();
+        FormService
+            .findAllForm()
+            .then(function(respond) {
+                $scope.forms = respond.data;
+            });
 
 
         function addForm(form) {
@@ -23,8 +31,17 @@
                 $scope.error = "Please login.";
                 return;
             }
-            var newForm = FormService.createFormForUser($scope.currentUser._id, form);
-            console.log("new from: " + newForm.title);
+            FormService
+                .createFormForUser($scope.currentUser._id, form)
+                .then(function(respond) {
+                    if(respond.data) {
+                        $scope.forms = respond.data;
+                        $scope.message = "Create form successfully.";
+                    } else {
+                        $scope.error = "Fail to create form."
+                    }
+                });
+
         }
 
         function updateForm(form) {
@@ -32,17 +49,33 @@
                 $scope.error = "Please select a form.";
                 return;
             }
-            if(form.userId == null) {
-                form.userId = $scope.currentUser._id;
-            }
-            FormService.updateFormById($scope.selectedFormId, form);
+
+            FormService
+                .updateFormById($scope.selectedFormId, form)
+                .then(function(respond) {
+                    if(respond.data) {
+                        $scope.message = "Update form successfully.";
+                    } else {
+                        $scope.error = "Fail to update form."
+                    }
+                });
+
+            //clear the header fields
             $scope.selectedFormId = null;
             form.title = "";
         }
 
         function deleteForm(index) {
             var fromId = $scope.forms[index]._id;
-            FormService.deleteFormById(fromId);
+            FormService
+                .deleteFormById(fromId)
+                .then(function(respond) {
+                    if(respond.data) {
+                        $scope.message = "Delete form successfully.";
+                    } else {
+                        $scope.error = "Fail to delete form."
+                    }
+                });
         }
 
         function selectForm(index) {

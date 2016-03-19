@@ -9,17 +9,17 @@
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
             updateFormById: updateFormById,
-            findAllForms: findAllForms
+            findAllForm: findAllForm
         };
 
         return api;
 
-        function findAllForms() {
-
+        function findAllForm() {
+            return $http.get("/api/assignment/form");
         }
 
         function createFormForUser(userId, form) {
-            return $http.post("api/assignment/user/" + userId +"/form", form);
+            return $http.post("/api/assignment/user/" + userId +"/form", form);
         }
 
         function findAllFormsForUser(userId) {

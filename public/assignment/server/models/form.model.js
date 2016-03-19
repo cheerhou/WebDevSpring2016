@@ -1,11 +1,12 @@
 //use the mock data for testing
 var mockForms = require("./form.mock.json");
+var uuid = require("node-uuid");
 
 module.exports = function(app) {
     var api = {
-        createForm: createForm,
+        createFormForUser: createFormForUser,
         createFieldInForm: createFieldInForm,
-        findAllForm: findAllForm,
+        findAllForms: findAllForms,
         findFormById: findFormById,
         updateForm: updateForm,
         deleteForm: deleteForm,
@@ -15,7 +16,9 @@ module.exports = function(app) {
     };
     return api;
 
-    function createForm(form) {
+    function createFormForUser(userId, form) {
+        form._id = uuid.v4();
+        form.userId = userId;
         mockForms.push(form);
         return mockForms;
     }
@@ -26,7 +29,7 @@ module.exports = function(app) {
         return form;
     }
 
-    function findAllForm() {
+    function findAllForms() {
         return mockForms;
     }
 
