@@ -36,15 +36,24 @@
                 .then(function(respond) {
                     if(respond.data) {
                         $scope.forms = respond.data;
-                        var forms = respond.data;
+                        var newforms = respond.data;
+
+                        FormService.setCurrentForm(newforms[newforms.length - 1]);
+
                         $scope.message = "Create form successfully.";
 
                         //clear the header fields
                         form.title = "";
+
+                        //test
+                        var currentForm = FormService.getCurrentForm();
+                        console.log("currentForm : " + currentForm._id + " " + currentForm.title);
                     } else {
                         $scope.error = "Fail to create form."
                     }
                 });
+
+
         }
 
         function updateForm(form) {
@@ -91,7 +100,7 @@
 
             //test
             var currentForm = FormService.getCurrentForm();
-            console.log("currentForm : " + currentForm._id);
+            console.log("currentForm : " + currentForm._id + " " + currentForm.title);
         }
     }
 
