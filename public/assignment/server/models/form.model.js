@@ -25,6 +25,7 @@ module.exports = function(app) {
 
     function createFieldInForm(formId, field) {
         var form = findFormById(formId);
+        field._id = uuid.v4();
         form.fields.push(field);
         return form;
     }

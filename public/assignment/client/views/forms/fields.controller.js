@@ -6,9 +6,12 @@
     function FieldsController($scope, FormService, FieldService) {
         var currentForm = FormService.getCurrentForm();
         $scope.addField = addField;
+        $scope.removeField = removeField;
+        $scope.editField = editField;
         $scope.message = null;
         $scope.error = null;
 
+        //show existing fields in the form
         FieldService
             .getFieldsForForm(currentForm._id)
             .then(function(respond) {
@@ -16,6 +19,7 @@
                     $scope.fields = respond.data;
                 }
             });
+
 
         $scope.options = [
             "Single Line Text Field",
@@ -84,6 +88,7 @@
                         .createFieldForForm(currentForm._id, singleLineTextField)
                         .then(function(respond) {
                             if(respond.data) {
+                                $scope.fields = respond.data.fields;
                                 FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Single Line Text Field successfully.";
                             }
@@ -95,6 +100,8 @@
                         .createFieldForForm(currentForm._id, multiLineTextField)
                         .then(function(respond) {
                             if(respond.data) {
+                                $scope.fields = respond.data.fields;
+                                FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Single Line Text Field successfully.";
                             }
                         });
@@ -104,6 +111,8 @@
                         .createFieldForForm(currentForm._id, dateField)
                         .then(function(respond) {
                             if(respond.data) {
+                                $scope.fields = respond.data.fields;
+                                FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Single Line Text Field successfully.";
                             }
                         });
@@ -113,6 +122,8 @@
                         .createFieldForForm(currentForm._id, dropdownField)
                         .then(function(respond) {
                             if(respond.data) {
+                                $scope.fields = respond.data.fields;
+                                FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Single Line Text Field successfully.";
                             }
                         });
@@ -122,6 +133,8 @@
                         .createFieldForForm(currentForm._id, checkboxesField)
                         .then(function(respond) {
                             if(respond.data) {
+                                $scope.fields = respond.data.fields;
+                                FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Single Line Text Field successfully.";
                             }
                         });
@@ -131,12 +144,31 @@
                         .createFieldForForm(currentForm._id, radioButtonsField)
                         .then(function(respond) {
                             if(respond.data) {
+                                $scope.fields = respond.data.fields;
+                                FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Single Line Text Field successfully.";
                             }
                         });
                     break;
             }
         }
-    }
 
+        function removeField(field) {
+            FieldService
+                .deleteFieldFromForm(currentForm._id, field._id)
+                .then(function(respond) {
+                    if(respond.data) {
+                        $scope.fields = respond.data.fields;
+                        $scope.message = "Remove field successfully.";
+                    }
+                });
+        }
+
+        function editField(field) {
+
+        }
+
+
+
+    }
 })();
