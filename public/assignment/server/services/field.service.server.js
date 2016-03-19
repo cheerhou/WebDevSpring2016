@@ -47,15 +47,17 @@ module.exports = function(app, formModel, db) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         var newField = req.body;
+
         var form = formModel.findFormById(formId);
         var fields = form.fields;
         for(var i in fields) {
             if(fields[i]._id === fieldId) {
-                fields.label = newField.label;
-                fields.type = newField.type;
-                fields.placeholder = newField.placeholder;
+                fields[i].label = newField.label;
+                fields[i].placeholder = newField.placeholder;
             }
         }
         res.json(form);
+
+        console.log("from serverside:" + formId + "   " + fieldId + "   " + newField.label + "  " + newField.placeholder);
     }
 }

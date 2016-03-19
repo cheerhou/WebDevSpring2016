@@ -3,6 +3,7 @@
 
     <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
     <div ng-show="error" class="alert alert-danger" role="alert">{{error}}</div>
+    <!--<uib-alert type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>-->
 
     <div>
         <ul class="nav nav-tabs">
@@ -62,7 +63,9 @@
                     </div>
                 </td>
                 <td>
-                    <button class="btn btn-info" ng-click="editField(field)">
+                    <button class="btn btn-info"
+                            uib-popover-template="dynamicPopover.templateUrl"
+                            popover-title={{field.type}}>
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
                     <button class="btn btn-info" ng-click="">
@@ -84,6 +87,21 @@
                 $("#tbody-sortable").sortable();
             });
         </script>
+
+        <script type="text/ng-template" id="myPopoverTemplate.html">
+            <div class="form-group">
+                <label>Lable:</label>
+                <input type="text" ng-model="field.label" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Placeholder:</label>
+                <input type="text" ng-model="field.placeholder" class="form-control">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="updateField(field)">Ok</button>
+            </div>
+        </script>
+
     </div>
 </div>
 

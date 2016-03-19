@@ -1,4 +1,4 @@
 (function(){
     angular
-        .module("FormBuilderApp", ["ngRoute", "fieldSortable"]);
+        .module("FormBuilderApp", ["ngRoute", "ui.bootstrap"]);
 }) ();
