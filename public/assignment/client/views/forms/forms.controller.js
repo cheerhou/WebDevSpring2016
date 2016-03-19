@@ -6,7 +6,7 @@
     function FormsController($scope, FormService, UserService) {
         $scope.error = null;
         $scope.message = null;
-        $scope.selectedFormId;
+        $scope.selectedFormId = null;
 
         $scope.addForm = addForm;
         $scope.updateForm = updateForm;
@@ -37,6 +37,9 @@
                     if(respond.data) {
                         $scope.forms = respond.data;
                         $scope.message = "Create form successfully.";
+
+                        //clear the header fields
+                        form.title = "";
                     } else {
                         $scope.error = "Fail to create form."
                     }
@@ -54,23 +57,26 @@
                 .updateFormById($scope.selectedFormId, form)
                 .then(function(respond) {
                     if(respond.data) {
+                        $scope.forms = respond.data;
                         $scope.message = "Update form successfully.";
+                        //clear the header fields
+                        $scope.selectedFormId = null;
+                        form.title = "";
                     } else {
                         $scope.error = "Fail to update form."
                     }
                 });
 
-            //clear the header fields
-            $scope.selectedFormId = null;
-            form.title = "";
+
         }
 
-        function deleteForm(index) {
-            var fromId = $scope.forms[index]._id;
+        function deleteForm(form) {
+            var fromId = form._id;
             FormService
                 .deleteFormById(fromId)
                 .then(function(respond) {
                     if(respond.data) {
+                        $scope.forms = respond.data;
                         $scope.message = "Delete form successfully.";
                     } else {
                         $scope.error = "Fail to delete form."
@@ -78,13 +84,9 @@
                 });
         }
 
-        function selectForm(index) {
-            $scope.form = {
-                _id:$scope.forms[index]._id,
-                title:$scope.forms[index].title
-            };
-            $scope.selectedFormId = $scope.form._id;
-            console.log("selectedFormId: " +  $scope.selectedFormId);
+        function selectForm(form) {
+            $scope.selectedFormId = form._id;
+            $scope.form = form;
         }
     }
 

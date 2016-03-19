@@ -43,7 +43,6 @@ module.exports = function(app) {
     }
 
     function updateForm(formId, newForm) {
-        formId = parseInt(formId);
         for(var i in mockForms) {
             if (mockForms[i]._id === formId) {
                 mockForms[i].title = newForm.title;
@@ -55,7 +54,6 @@ module.exports = function(app) {
     }
 
     function deleteForm(formId) {
-        formId = parseInt(formId);
         for(var i in mockForms) {
             if (mockForms[i]._id === formId) {
                 mockForms.splice(i, 1);
@@ -75,7 +73,6 @@ module.exports = function(app) {
 
     function findFormByUser(userId) {
         var forms = [];
-        userId = parseInt(userId);
         for(var i in mockForms) {
             if (mockForms[i].userId === userId) {
                 forms.push(mockForms[i]);
