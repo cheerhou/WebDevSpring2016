@@ -3,16 +3,26 @@
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
-    function FormService($http) {
+    function FormService($rootScope, $http) {
         var api = {
             createFormForUser: createFormForUser,
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
             updateFormById: updateFormById,
-            findAllForm: findAllForm
+            findAllForm: findAllForm,
+            setCurrentForm: setCurrentForm,
+            getCurrentForm: getCurrentForm
         };
 
         return api;
+
+        function setCurrentForm(form) {
+            $rootScope.currentForm = form;
+        }
+
+        function getCurrentForm() {
+            return $rootScope.currentForm;
+        }
 
         function findAllForm() {
             return $http.get("/api/assignment/form");

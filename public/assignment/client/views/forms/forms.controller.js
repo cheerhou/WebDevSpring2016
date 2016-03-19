@@ -36,6 +36,7 @@
                 .then(function(respond) {
                     if(respond.data) {
                         $scope.forms = respond.data;
+                        var forms = respond.data;
                         $scope.message = "Create form successfully.";
 
                         //clear the header fields
@@ -44,7 +45,6 @@
                         $scope.error = "Fail to create form."
                     }
                 });
-
         }
 
         function updateForm(form) {
@@ -87,6 +87,11 @@
         function selectForm(form) {
             $scope.selectedFormId = form._id;
             $scope.form = form;
+            FormService.setCurrentForm(form);
+
+            //test
+            var currentForm = FormService.getCurrentForm();
+            console.log("currentForm : " + currentForm._id);
         }
     }
 
