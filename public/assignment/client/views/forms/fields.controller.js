@@ -3,19 +3,20 @@
         .module("FormBuilderApp")
         .controller("FieldsController", FieldsController);
 
+
     function FieldsController($scope, FormService, FieldService) {
         var currentForm = FormService.getCurrentForm();
         $scope.addField = addField;
         $scope.removeField = removeField;
         $scope.updateField = updateField;
 
-
         $scope.message = null;
         $scope.error = null;
 
         $scope.dynamicPopover = {
-            templateUrl: 'myPopoverTemplate.html'
+            templateUrl: 'myPopoverTemplate'
         };
+
 
         //show existing fields in the form
         FieldService
@@ -23,9 +24,23 @@
             .then(function (respond) {
                 if (respond.data) {
                     $scope.fields = respond.data;
+                    //$scope.userOptions.text= getOptionStrings();
+                    var str = getOptionStrings();
+                    console.log("olf str: " + str);
                 }
             });
 
+        function getOptionStrings() {
+            var str = "";
+            var fields = $scope.fields;
+            for (var i in fields) {
+                var options = fields[i].options;
+                for (var j in options) {
+                    str = str + options[j].label + ":" + options[j].value + "\n"
+                }
+            }
+            return str;
+        }
 
         $scope.options = [
             "Single Line Text Field",
@@ -172,8 +187,14 @@
         }
 
         function updateField(field) {
+            if (field.options) {
+                var str = $scope.userOptions.text;
+                console.log("userOptions str: " + str);
+                //field.options = userOptionToFieldOptions($scope.userOptions);
+            }
+
             FieldService
-                .updateField(currentForm._id, field._id, field)
+                .updateFieldInForm(currentForm._id, field._id, field)
                 .then(function (respond) {
                     if (respond.data) {
                         $scope.fields = respond.data.fields;
@@ -185,6 +206,17 @@
                 });
         }
 
+
+        function userOptionToFieldOptions(userOptions) {
+            var optionsObj = null;
+            var options = userOptions.split('\n');
+            for (var i in options) {
+                var userOption = options[i].split(':');
+                console.log("userOption : " + userOption);
+                optionsObj.push({label: userOption[0], value: userOption[1]});
+            }
+            return optionsObj;
+        }
 
 
     }

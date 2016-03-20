@@ -38,7 +38,7 @@
                 </td>
                 <td ng-if="field.type==='TEXTAREA'">
                     <label>{{field.label}}:</label><br>
-                    <input type=textarea placeholder={{field.placeholder}}>
+                    <textarea placeholder={{field.placeholder}}></textarea>
                 </td>
                 <td ng-if="field.type==='DATE'">
                     <label>{{field.label}}:</label><br>
@@ -88,19 +88,38 @@
             });
         </script>
 
-        <script type="text/ng-template" id="myPopoverTemplate.html">
+        <script type="text/ng-template" id="myPopoverTemplate">
             <div class="form-group">
                 <label>Lable:</label>
                 <input type="text" ng-model="field.label" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-show="field.type==='TEXT'||field.type==='TEXTAREA'">
                 <label>Placeholder:</label>
                 <input type="text" ng-model="field.placeholder" class="form-control">
             </div>
+            <div class="form-group" ng-show="field.type==='CHECKBOXES'||field.type==='OPTIONS'||field.type==='RADIOS'">
+                <label>Options:</label>
+                <textarea ng-model="userOptions.text"></textarea>
+            </div>
+
             <div class="form-group">
                 <button class="btn btn-primary" ng-click="updateField(field)">Ok</button>
             </div>
         </script>
+
+        <!--<script type="text/ng-template" id="selectionFieldTemplate">-->
+        <!--<div class="form-group">-->
+        <!--<label>Lable:</label>-->
+        <!--<input type="text" ng-model="field.label" class="form-control">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <!--<label>Options:</label>-->
+        <!--<input type="text" ng-model="field.placeholder" class="form-control">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <!--<button class="btn btn-primary" ng-click="updateTextField(field)">Ok</button>-->
+        <!--</div>-->
+        <!--</script>-->
 
     </div>
 </div>

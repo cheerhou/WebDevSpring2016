@@ -1,4 +1,4 @@
-module.exports = function(app, formModel, db) {
+module.exports = function (app, formModel, db) {
     app.get("/api/assignment/form/:formId/field", findFieldsByFormId);
     app.get("/api/assignment/form/:formId/field/:fieldId", findFieldInForm);
     app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldFromForm);
@@ -16,8 +16,8 @@ module.exports = function(app, formModel, db) {
         var fieldId = req.params.fieldId;
         var form = formModel.findFormById(formId);
         var fields = form.fields;
-        for(var i in fields) {
-            if(fields[i]._id === fieldId) {
+        for (var i in fields) {
+            if (fields[i]._id === fieldId) {
                 res.json(fields[i]);
             }
         }
@@ -28,8 +28,8 @@ module.exports = function(app, formModel, db) {
         var fieldId = req.params.fieldId;
         var form = formModel.findFormById(formId);
         var fields = form.fields;
-        for(var i in fields) {
-            if(fields[i]._id === fieldId) {
+        for (var i in fields) {
+            if (fields[i]._id === fieldId) {
                 fields.splice(i, 1);
             }
         }
@@ -43,6 +43,7 @@ module.exports = function(app, formModel, db) {
         res.json(form);
     }
 
+
     function updateFieldInForm(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
@@ -50,14 +51,27 @@ module.exports = function(app, formModel, db) {
 
         var form = formModel.findFormById(formId);
         var fields = form.fields;
-        for(var i in fields) {
-            if(fields[i]._id === fieldId) {
-                fields[i].label = newField.label;
-                fields[i].placeholder = newField.placeholder;
-            }
-        }
-        res.json(form);
 
-        console.log("from serverside:" + formId + "   " + fieldId + "   " + newField.label + "  " + newField.placeholder);
+        //no options is text field
+        if (!fields.options) {
+            for (var i in fields) {
+                if (fields[i]._id === fieldId) {
+                    fields[i].label = newField.label;
+                    fields[i].placeholder = newField.placeholder;
+                }
+            }
+            res.json(form);
+            console.log("from serverside:" + formId + "   " + fieldId + "   " + newField.label + "  " + newField.placeholder);
+
+        } else {
+            for (var i in fields) {
+                fields[i].options = newField.options;
+            }
+            res.json(form);
+            console.log("from serverside: new options" + newField.options.toSource());
+
+        }
+
+
     }
 }
