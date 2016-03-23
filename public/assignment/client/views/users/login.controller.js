@@ -19,7 +19,7 @@
                     if(respond.data) {
                         UserService.setCurrentUser(respond.data);
                         var currentUser = UserService.getCurrentUser();
-                        $location.url("/profile/" + currentUser._id);
+                        $location.url("/profile?id=" + currentUser._id);
                     } else {
                         $scope.error = "Please verify your user name or password."
                     }

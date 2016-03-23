@@ -6,8 +6,8 @@
 
 
     <ul class="nav nav-tabs">
-        <li ng-class="{'active' : $location.url() == '/forms'}"><a href="#/forms">Forms</a></li>
-        <li ng-class="{'active' : $location.url() == '/fields'}"><a href="#/fields">Fields</a></li>
+        <li ng-class="{'active' : $location.path() == '/forms'}"><a href="#/forms">Forms</a></li>
+        <li ng-class="{'active' : $location.path() == '/fields'}"><a href="#/fields">Fields</a></li>
     </ul>
 
     <table class="table table-striped">
@@ -32,13 +32,13 @@
         <tbody>
         <tr ng-repeat="form in forms" ng-show="form.userId == currentUser._id">
             <td>
-                <a href="#">{{form.title}}</a>
+                <a href="#/fields" type="button" ng-click="selectForm(form)">{{form.title}}</a>
             </td>
             <td>
-                <button ng-click="deleteForm(form)" class="btn btn-danger"><span
-                        class="glyphicon glyphicon-remove"></span></button>
                 <button ng-click="selectForm(form)" class="btn btn-info"><span
                         class="glyphicon glyphicon-pencil"></span></button>
+                <button ng-click="deleteForm(form)" class="btn btn-danger"><span
+                        class="glyphicon glyphicon-remove"></span></button>
             </td>
         </tr>
         </tbody>

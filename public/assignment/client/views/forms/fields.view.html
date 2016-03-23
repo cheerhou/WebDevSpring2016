@@ -7,8 +7,8 @@
 
     <div>
         <ul class="nav nav-tabs">
-            <li ng-class="{'active' : $location.url() == '/forms'}"><a href="#/forms">Forms</a></li>
-            <li ng-class="{'active' : $location.url() == '/fields'}"><a href="#/fields">Fields</a></li>
+            <li ng-class="{'active' : $location.path() == '/forms'}"><a href="#/forms">Forms</a></li>
+            <li ng-class="{'active' : $location.path() == '/fields'}"><a href="#/fields">Fields</a></li>
         </ul>
 
         <table class="table table-responsive">

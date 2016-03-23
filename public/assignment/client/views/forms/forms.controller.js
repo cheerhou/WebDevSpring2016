@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .controller("FormsController", FormsController);
 
-    function FormsController($scope, FormService, UserService) {
+    function FormsController($scope, $location, FormService, UserService) {
         $scope.error = null;
         $scope.message = null;
         $scope.selectedFormId = null;
@@ -102,6 +102,11 @@
             var currentForm = FormService.getCurrentForm();
             console.log("currentForm : " + currentForm._id + " " + currentForm.title);
         }
+
+        //function selectFormAndShowFileds(form) {
+        //    selectForm(form);
+        //    $location.url("/fields");
+        //}
     }
 
 }) ();

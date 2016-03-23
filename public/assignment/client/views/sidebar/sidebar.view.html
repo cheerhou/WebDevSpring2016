@@ -5,7 +5,7 @@
             <a href="#/home">Home</a>
         </li>
         <li ng-show="currentUser"
-            ng-class="{'active' : $location.url() == '/profile'}">
+            ng-class="{'active' : $location.path() == '/profile'}">
             <a href="#/profile">Profile</a>
         </li>
         <li ng-show="currentUser.roles.indexOf('admin') >= 0"
@@ -13,7 +13,7 @@
             <a href="#/admin">Admin</a>
         </li>
         <li ng-show="currentUser"
-            ng-class="{'active' : $location.url() == '/forms'}">
+            ng-class="{'active' : $location.url() == '/forms' || $location.url() == '/fields'}">
             <a href="#/forms">Forms</a>
         </li>
     </ul>
