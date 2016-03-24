@@ -27,8 +27,7 @@
                 .then(function (respond) {
                     if (respond.data) {
                         $scope.fields = respond.data;
-
-                        $scope.newOptions = OptionsToString();
+                        updateTextarea($scope.fields);
                     }
                 });
         } else{
@@ -37,17 +36,8 @@
         }
 
 
-        function OptionsToString() {
-            var str = "";
-            var fields = $scope.fields;
-            for (var i in fields) {
-                var options = fields[i].options;
-                for (var j in options) {
-                    str = str + options[j].label + ":" + options[j].value + "\n"
-                }
-            }
-            return str;
-        }
+
+
 
         $scope.options = [
             "Single Line Text Field",
@@ -117,7 +107,6 @@
                         .then(function (respond) {
                             if (respond.data) {
                                 $scope.fields = respond.data.fields;
-                                $scope.newOptions = OptionsToString();
 
                                 FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Single Line Text Field successfully.";
@@ -126,65 +115,66 @@
                         });
 
                     break;
+
                 case "Multi Line Text Field":
                     FieldService
                         .createFieldInForm(currentForm._id, multiLineTextField)
                         .then(function (respond) {
                             if (respond.data) {
                                 $scope.fields = respond.data.fields;
-                                $scope.newOptions = OptionsToString();
 
                                 FormService.setCurrentForm(respond.data);
-                                $scope.message = "Add Multi Line Text Field successfully.";
                             }
                         });
                     break;
+
                 case "Date Field":
                     FieldService
                         .createFieldInForm(currentForm._id, dateField)
                         .then(function (respond) {
                             if (respond.data) {
                                 $scope.fields = respond.data.fields;
-                                $scope.newOptions = OptionsToString();
 
                                 FormService.setCurrentForm(respond.data);
-                                $scope.message = "Add Date Field successfully.";
                             }
                         });
                     break;
+
                 case "Dropdown Field":
                     FieldService
                         .createFieldInForm(currentForm._id, dropdownField)
                         .then(function (respond) {
                             if (respond.data) {
                                 $scope.fields = respond.data.fields;
-                                $scope.newOptions = OptionsToString();
+                                updateTextarea($scope.fields);
 
                                 FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Dropdown Field successfully.";
                             }
                         });
                     break;
+
                 case "Checkboxes Field":
                     FieldService
                         .createFieldInForm(currentForm._id, checkboxesField)
                         .then(function (respond) {
                             if (respond.data) {
                                 $scope.fields = respond.data.fields;
-                                $scope.newOptions = OptionsToString();
+                                updateTextarea($scope.fields);
 
                                 FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Checkboxes Field successfully.";
                             }
                         });
                     break;
+
                 case "Radio Buttons Field":
                     FieldService
                         .createFieldInForm(currentForm._id, radioButtonsField)
                         .then(function (respond) {
                             if (respond.data) {
                                 $scope.fields = respond.data.fields;
-                                $scope.newOptions = OptionsToString();
+                                updateTextarea($scope.fields);
 
                                 FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Radio Buttons Field successfully.";
@@ -192,6 +182,7 @@
                         });
                     break;
             }
+
 
         }
 
@@ -217,7 +208,8 @@
                 .then(function (respond) {
                     if (respond.data) {
                         $scope.fields = respond.data.fields;
-                        $scope.newOptions = OptionsToString();
+                        updateTextarea($scope.fields);
+
                         $scope.message = "Update field successfully.";
 
                         //test
@@ -239,6 +231,26 @@
             }
             return optionsArr;
         }
+
+        function updateTextarea(fields) {
+            for(var i in fields) {
+                var options = fields[i].options;
+                if(options) {
+                    $scope.newOptions = OptionsToString(options)
+                    console.log("updateTextarea");
+                }
+            }
+
+        }
+
+        function OptionsToString(options) {
+            var str = ""
+            for (var j in options) {
+                str = str + options[j].label + ":" + options[j].value + "\n"
+            }
+            return str;
+        }
+
 
 
     }

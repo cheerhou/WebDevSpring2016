@@ -44,7 +44,7 @@
                                     var currentUser = UserService.getCurrentUser();
                                     //console.log("current user : " + currentUser._id + " " + currentUser.username);
 
-                                    $location.url("/profile/" + currentUser._id);
+                                    $location.url("/profile?id=" + currentUser._id);
                                 } else{
                                     $scope.error = "Register failed!";
                                 }
