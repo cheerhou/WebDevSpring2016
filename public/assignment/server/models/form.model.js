@@ -19,6 +19,7 @@ module.exports = function(app) {
     function createFormForUser(userId, form) {
         form._id = uuid.v4();
         form.userId = userId;
+        form.fields = [];
         mockForms.push(form);
         return mockForms;
     }

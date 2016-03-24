@@ -21,15 +21,20 @@
 
 
         //show existing fields in the form
-        FieldService
-            .getFieldsForForm(currentForm._id)
-            .then(function (respond) {
-                if (respond.data) {
-                    $scope.fields = respond.data;
+        if(currentForm) {
+            FieldService
+                .getFieldsForForm(currentForm._id)
+                .then(function (respond) {
+                    if (respond.data) {
+                        $scope.fields = respond.data;
 
-                    $scope.newOptions = OptionsToString();
-                }
-            });
+                        $scope.newOptions = OptionsToString();
+                    }
+                });
+        } else{
+            $scope.error = "Please select a form.";
+            return;
+        }
 
 
         function OptionsToString() {
@@ -108,10 +113,12 @@
             switch (fieldType) {
                 case "Single Line Text Field":
                     FieldService
-                        .createFieldForForm(currentForm._id, singleLineTextField)
+                        .createFieldInForm(currentForm._id, singleLineTextField)
                         .then(function (respond) {
                             if (respond.data) {
                                 $scope.fields = respond.data.fields;
+                                $scope.newOptions = OptionsToString();
+
                                 FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Single Line Text Field successfully.";
                                 //addMsg("Add Single Line Text Field successfully.");
@@ -121,10 +128,12 @@
                     break;
                 case "Multi Line Text Field":
                     FieldService
-                        .createFieldForForm(currentForm._id, multiLineTextField)
+                        .createFieldInForm(currentForm._id, multiLineTextField)
                         .then(function (respond) {
                             if (respond.data) {
                                 $scope.fields = respond.data.fields;
+                                $scope.newOptions = OptionsToString();
+
                                 FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Multi Line Text Field successfully.";
                             }
@@ -132,10 +141,12 @@
                     break;
                 case "Date Field":
                     FieldService
-                        .createFieldForForm(currentForm._id, dateField)
+                        .createFieldInForm(currentForm._id, dateField)
                         .then(function (respond) {
                             if (respond.data) {
                                 $scope.fields = respond.data.fields;
+                                $scope.newOptions = OptionsToString();
+
                                 FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Date Field successfully.";
                             }
@@ -143,10 +154,12 @@
                     break;
                 case "Dropdown Field":
                     FieldService
-                        .createFieldForForm(currentForm._id, dropdownField)
+                        .createFieldInForm(currentForm._id, dropdownField)
                         .then(function (respond) {
                             if (respond.data) {
                                 $scope.fields = respond.data.fields;
+                                $scope.newOptions = OptionsToString();
+
                                 FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Dropdown Field successfully.";
                             }
@@ -154,10 +167,12 @@
                     break;
                 case "Checkboxes Field":
                     FieldService
-                        .createFieldForForm(currentForm._id, checkboxesField)
+                        .createFieldInForm(currentForm._id, checkboxesField)
                         .then(function (respond) {
                             if (respond.data) {
                                 $scope.fields = respond.data.fields;
+                                $scope.newOptions = OptionsToString();
+
                                 FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Checkboxes Field successfully.";
                             }
@@ -165,16 +180,19 @@
                     break;
                 case "Radio Buttons Field":
                     FieldService
-                        .createFieldForForm(currentForm._id, radioButtonsField)
+                        .createFieldInForm(currentForm._id, radioButtonsField)
                         .then(function (respond) {
                             if (respond.data) {
                                 $scope.fields = respond.data.fields;
+                                $scope.newOptions = OptionsToString();
+
                                 FormService.setCurrentForm(respond.data);
                                 $scope.message = "Add Radio Buttons Field successfully.";
                             }
                         });
                     break;
             }
+
         }
 
         function removeField(field) {
@@ -199,6 +217,7 @@
                 .then(function (respond) {
                     if (respond.data) {
                         $scope.fields = respond.data.fields;
+                        $scope.newOptions = OptionsToString();
                         $scope.message = "Update field successfully.";
 
                         //test
@@ -210,13 +229,13 @@
 
         function ToFieldOptions(newOptions) {
             var optionsArr = [];
-            var options = newOptions.split('\n');
+            var options = newOptions.trim().split('\n');
 
             for (var i in options) {
                 var option = options[i].split(':');
                 console.log("new option : " + option[0] + ":" + option[1]);
 
-                optionsArr.push({label: option[0], value: option[1]});
+                optionsArr.push({label: option[0].trim(), value: option[1].trim()});
             }
             return optionsArr;
         }

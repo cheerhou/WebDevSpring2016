@@ -3,7 +3,6 @@
 
     <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
     <div ng-show="error" class="alert alert-danger" role="alert">{{error}}</div>
-    <!--<uib-alert type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>-->
 
     <div>
         <ul class="nav nav-tabs">
@@ -100,7 +99,7 @@
                 <input type="text" ng-model="field.placeholder" class="form-control">
             </div>
             <div class="form-group" ng-show="field.type==='CHECKBOXES'||field.type==='OPTIONS'||field.type==='RADIOS'">
-                <label>Options:</label>
+                <label>Options:</label><br>
                 <textarea ng-model="newOptions"></textarea>
             </div>
 
@@ -108,20 +107,6 @@
                 <button class="btn btn-primary" ng-click="updateField(field, newOptions)">Ok</button>
             </div>
         </script>
-
-        <!--<script type="text/ng-template" id="selectionFieldTemplate">-->
-        <!--<div class="form-group">-->
-        <!--<label>Lable:</label>-->
-        <!--<input type="text" ng-model="field.label" class="form-control">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-        <!--<label>Options:</label>-->
-        <!--<input type="text" ng-model="field.placeholder" class="form-control">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-        <!--<button class="btn btn-primary" ng-click="updateTextField(field)">Ok</button>-->
-        <!--</div>-->
-        <!--</script>-->
 
     </div>
 </div>

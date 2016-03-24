@@ -5,7 +5,7 @@
 
     function FieldService($http) {
         var api = {
-            createFieldForForm: createFieldForForm,
+            createFieldInForm: createFieldInForm,
             getFieldsForForm: getFieldsForForm,
             getFieldForForm: getFieldForForm,
             deleteFieldFromForm: deleteFieldFromForm,
@@ -14,7 +14,7 @@
 
         return api;
 
-        function createFieldForForm(formId, field) {
+        function createFieldInForm(formId, field) {
             return $http.post("/api/assignment/form/" + formId + "/field", field);
         }
 

@@ -15,11 +15,16 @@
 
 
         $scope.currentUser = UserService.getCurrentUser();
-        FormService
-            .findAllForm()
-            .then(function(respond) {
-                $scope.forms = respond.data;
-            });
+        if($scope.currentUser) {
+            FormService
+                .findAllForm()
+                .then(function(respond) {
+                    $scope.forms = respond.data;
+                });
+        } else {
+            $scope.error = "Please log in.";
+        }
+
 
 
         function addForm(form) {
