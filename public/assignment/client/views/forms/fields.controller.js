@@ -6,6 +6,7 @@
 
     function FieldsController($scope, FormService, FieldService) {
         var currentForm = FormService.getCurrentForm();
+
         $scope.addField = addField;
         $scope.removeField = removeField;
         $scope.updateField = updateField;
@@ -18,19 +19,20 @@
         };
 
 
+
         //show existing fields in the form
         FieldService
             .getFieldsForForm(currentForm._id)
             .then(function (respond) {
                 if (respond.data) {
                     $scope.fields = respond.data;
-                    //$scope.userOptions.text= getOptionStrings();
-                    var str = getOptionStrings();
-                    console.log("olf str: " + str);
+
+                    $scope.newOptions = OptionsToString();
                 }
             });
 
-        function getOptionStrings() {
+
+        function OptionsToString() {
             var str = "";
             var fields = $scope.fields;
             for (var i in fields) {
@@ -186,11 +188,10 @@
                 });
         }
 
-        function updateField(field) {
-            if (field.options) {
-                var str = $scope.userOptions.text;
-                console.log("userOptions str: " + str);
-                //field.options = userOptionToFieldOptions($scope.userOptions);
+
+        function updateField(field, newOptions) {
+            if (newOptions) {
+                field.options = ToFieldOptions(newOptions);
             }
 
             FieldService
@@ -207,15 +208,17 @@
         }
 
 
-        function userOptionToFieldOptions(userOptions) {
-            var optionsObj = null;
-            var options = userOptions.split('\n');
+        function ToFieldOptions(newOptions) {
+            var optionsArr = [];
+            var options = newOptions.split('\n');
+
             for (var i in options) {
-                var userOption = options[i].split(':');
-                console.log("userOption : " + userOption);
-                optionsObj.push({label: userOption[0], value: userOption[1]});
+                var option = options[i].split(':');
+                console.log("new option : " + option[0] + ":" + option[1]);
+
+                optionsArr.push({label: option[0], value: option[1]});
             }
-            return optionsObj;
+            return optionsArr;
         }
 
 

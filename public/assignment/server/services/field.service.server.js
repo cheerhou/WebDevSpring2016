@@ -53,7 +53,7 @@ module.exports = function (app, formModel, db) {
         var fields = form.fields;
 
         //no options is text field
-        if (!fields.options) {
+        if (!newField.options) {
             for (var i in fields) {
                 if (fields[i]._id === fieldId) {
                     fields[i].label = newField.label;
@@ -63,12 +63,15 @@ module.exports = function (app, formModel, db) {
             res.json(form);
             console.log("from serverside:" + formId + "   " + fieldId + "   " + newField.label + "  " + newField.placeholder);
 
-        } else {
+        } else {//update fileds with options
             for (var i in fields) {
-                fields[i].options = newField.options;
+                if (fields[i]._id === fieldId) {
+                    fields[i].label = newField.label;
+                    fields[i].options = newField.options;
+                }
             }
             res.json(form);
-            console.log("from serverside: new options" + newField.options.toSource());
+            console.log("from serverside: new options" + newField.options.toString());
 
         }
 

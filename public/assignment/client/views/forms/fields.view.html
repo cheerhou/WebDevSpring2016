@@ -82,12 +82,14 @@
             </tbody>
 
         </table>
+
         <script>
             $(function () {
                 $("#tbody-sortable").sortable();
             });
         </script>
 
+        <!--dynamicPopover template-->
         <script type="text/ng-template" id="myPopoverTemplate">
             <div class="form-group">
                 <label>Lable:</label>
@@ -99,11 +101,11 @@
             </div>
             <div class="form-group" ng-show="field.type==='CHECKBOXES'||field.type==='OPTIONS'||field.type==='RADIOS'">
                 <label>Options:</label>
-                <textarea ng-model="userOptions.text"></textarea>
+                <textarea ng-model="newOptions"></textarea>
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary" ng-click="updateField(field)">Ok</button>
+                <button class="btn btn-primary" ng-click="updateField(field, newOptions)">Ok</button>
             </div>
         </script>
 
