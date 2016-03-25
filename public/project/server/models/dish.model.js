@@ -1,3 +1,7 @@
-/**
- * Created by cheerhou on 3/23/16.
- */
+module.exports = function(app) {
+    var api = {
+        //all the functions
+
+    };
+    return api;
+}

@@ -1,3 +1,6 @@
-/**
- * Created by cheerhou on 3/23/16.
- */
+module.exports = function(app, reservationModel, db) {
+    //All app.post get put delete here
+
+
+    //function below
+}
