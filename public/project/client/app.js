@@ -1,4 +1,4 @@
 (function(){
     angular
-        .module("ResManageApp", ["ngRoute"]);
+        .module("ResManageApp", ["ngRoute", "ui.bootstrap"]);
 }) ();
