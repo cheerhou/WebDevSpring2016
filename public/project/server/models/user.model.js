@@ -21,7 +21,8 @@ module.exports = function(app) {
             _id: uuid.v4(),
             username: user.username,
             password: user.password,
-            email: user.email
+            email: user.email,
+            role: user.role
         };
         mockUsers.push(newUser);
         return mockUsers;
