@@ -38,6 +38,7 @@ module.exports = function(app) {
             if (mockDishes[i]._id === dishId) {
                 mockDishes[i].name = newDish.name;
                 mockDishes[i].price = newDish.price;
+                mockDishes[i].rating = newDish.rating;
             }
         }
         return mockDishes;
