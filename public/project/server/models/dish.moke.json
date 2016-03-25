@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "000",
+    "name": "fire chicken",
+    "price": 12
+  },
+  {
+    "_id": "001",
+    "name": "beef sandwich",
+    "price": 20
+  },
+  {
+    "_id": "002",
+    "name": "tuna salad",
+    "price": 8
+  }
+]
