@@ -3,14 +3,22 @@
         .module("ResManageApp")
         .controller("MenuSearchController", MenuSearchController);
 
-    function MenuSearchController($scope, $location, MenuService) {
+    function MenuSearchController($scope, $location, $routeParams, MenuService) {
         $scope.error = null;
         $scope.message = null;
 
         $scope.search = search;
         $scope.addDishToMenu = addDishToMenu;
+        $scope.title = $routeParams.title;
+
+        if($scope.title) {
+            search($scope.title);
+        }
+
 
         function search(title) {
+            $location.url("/search?title=" + $scope.title);
+
             if (title) {
                 MenuService.findMenuByTitle(
                     title,
@@ -18,9 +26,6 @@
                         console.log(response);
                         $scope.data = response.recipes;
                     });
-
-                //make url
-                $location.url("/search?title=" + $scope.title);
             }
         }
 

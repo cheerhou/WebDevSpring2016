@@ -1,10 +1,10 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Search Menus</h1>
-    <input ng-model="title" class="form-control" placeholder="key words"/>
 
     <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
     <div ng-show="error"  class="alert alert-danger"  role="alert">{{error}}</div>
 
+    <input ng-model="title" class="form-control" placeholder="key words"/>
     <button ng-click="search(title)" class="btn btn-block btn-primary"> Search</button>
 
     <h1>&nbsp;</h1>
@@ -23,7 +23,7 @@
             <tbody>
             <tr ng-repeat="dish in data">
                 <td>
-                    <a href="#/dish/{{dish.recipe_id}}">
+                    <a href="#/detail/{{dish.recipe_id}}">
                         {{dish.title}}
                     </a>
                 </td>
