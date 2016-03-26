@@ -2,6 +2,9 @@
     <h1 class="page-header">Search Menus</h1>
     <input ng-model="title" class="form-control" placeholder="key words"/>
 
+    <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
+    <div ng-show="error"  class="alert alert-danger"  role="alert">{{error}}</div>
+
     <button ng-click="search(title)" class="btn btn-block btn-primary"> Search</button>
 
     <h1>&nbsp;</h1>
@@ -18,14 +21,14 @@
             </thead>
 
             <tbody>
-            <tr ng-repeat="item in data">
+            <tr ng-repeat="dish in data">
                 <td>
-                    <a href="#/detail/{{item.recipe_id}}">
-                        {{item.title}}
+                    <a href="#/dish/{{dish.recipe_id}}">
+                        {{dish.title}}
                     </a>
                 </td>
-                <td><img class="img-thumbnail" height="100px" width="150px" ng-src="{{item.image_url}}"/></td>
-                <td><button class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></button></td>
+                <td><img class="img-thumbnail" height="100px" width="150px" ng-src="{{dish.image_url}}"/></td>
+                <td><button class="btn btn-info" ng-click="addDishToMenu(dish)"><span class="glyphicon glyphicon-plus"></span></button></td>
             </tr>
             </tbody>
         </table>

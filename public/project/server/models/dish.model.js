@@ -1,6 +1,4 @@
 var mockDishes = require("./dish.mock.json");
-var uuid = require("node-uuid");
-
 
 module.exports = function(app) {
 
@@ -11,17 +9,12 @@ module.exports = function(app) {
         findDishByName: findDishByName,
         findAllDishes: findAllDishes
     };
+
     return api;
 
     function createDish(dish) {
-        var newDish = {
-            _id: uuid.v4(),
-            name: dish.name,
-            price: dish.price
-        };
-
-        mockDishes.push(newDish);
-        return mockDishes
+        mockDishes.push(dish);
+        return mockDishes;
     }
 
     function deleteDish(dishId) {

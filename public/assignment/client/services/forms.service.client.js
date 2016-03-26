@@ -13,7 +13,6 @@
             setCurrentForm: setCurrentForm,
             getCurrentForm: getCurrentForm
         };
-
         return api;
 
         function setCurrentForm(form) {

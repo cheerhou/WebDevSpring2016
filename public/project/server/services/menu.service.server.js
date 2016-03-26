@@ -1,6 +1,15 @@
-module.exports = function(app, menuModel, db) {
-    //All app.post get put delete here
+module.exports = function(app, dishModel, db) {
+    app.post("/api/project/menu/dish", createDish);
+    app.get("/api/project/menu", findAllDishes);
 
+    function createDish(req, res) {
+        var dish = req.body;
+        var menu = dishModel.createDish(dish);
+        res.json(menu);
+    }
 
-    //function below
+    function findAllDishes(req, res) {
+        var dishes = dishModel.findAllDishes();
+        res.json(dishes);
+    }
 }

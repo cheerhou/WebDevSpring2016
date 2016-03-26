@@ -9,13 +9,22 @@
         $scope.login = login;
 
         function login(user) {
-            var aUser = UserService.findUserByCredentials(user.username, user.password);
-            if(aUser != null) {
-                UserService.setCurrentUser(aUser);
-                $location.url("/profile/" + aUser._id);
-            } else {
-                $scope.error = "Please verify your user name or password."
+            if(!user) {
+                $scope.error = "No user exist!"
+                return;
             }
+            UserService
+                .findUserByCredentials({username: user.username, password: user.password})
+                .then(function(respond) {
+                    if(respond.data) {
+                        UserService.setCurrentUser(respond.data);
+                        var currentUser = UserService.getCurrentUser();
+                        $location.url("/profile?id=" + currentUser._id);
+                    } else {
+                        $scope.error = "Please verify your user name or password."
+                    }
+                });
+
         }
     }
 

@@ -27,29 +27,29 @@
         }
 
         function createUser(user) {
-            return $http.post("/api/resmanagersys/user", user);
+            return $http.post("/api/project/user", user);
         }
 
         function findUserByUsername(username) {
-            return $http.get("/api/resmanagersys/user?username=" + username);
+            return $http.get("/api/project/user?username=" + username);
 
         }
 
         function findUserByCredentials(credentials) {
-            return $http.post("/api/resmanagersys/user/login", credentials);
+            return $http.post("/api/project/user/login", credentials);
         }
 
         function findAllUsers() {
-            return $http.get("/api/resmanagersys/user");
+            return $http.get("/api/project/user");
         }
 
         function deleteUserById(userId) {
-            return $http.delete("/api/resmanagersys/user/" + userId);
+            return $http.delete("/api/project/user/" + userId);
         }
 
         function updateUser(userId, user) {
             //console.log("updateUser : " + userId + " " + user.username);
-            return $http.put("/api/resmanagersys/user/" + userId, user);
+            return $http.put("/api/project/user/" + userId, user);
         }
     }
 })();

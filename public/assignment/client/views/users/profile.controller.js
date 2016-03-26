@@ -7,9 +7,8 @@
         $scope.currentUser = UserService.getCurrentUser();
         $scope.error = null;
         $scope.message = null;
-        var userId = $routeParams.id;
-
         $scope.update = update;
+        var userId = $routeParams.id;
 
         if (!$scope.currentUser) {
             $location.url("/home");

@@ -1,16 +1,17 @@
-(function(){
+(function () {
     angular
         .module("ResManageApp")
         .factory("MenuService", MenuService);
 
     function MenuService($http) {
-
         var API_URL = "http://food2fork.com/api/";
         var API_KEY = "cc8d030ba4ca67ba101401778e70163e";
 
         var api = {
             findMenuByTitle: findMenuByTitle,
-            findRecipeById: findRecipeById
+            findRecipeById: findRecipeById,
+            addDishToMenu: addDishToMenu,
+            findAllDishes: findAllDishes
         };
         return api;
 
@@ -25,6 +26,13 @@
                 .success(callback);
         }
 
+        function addDishToMenu(dish) {
+            return $http.post("/api/project/menu/dish", dish);
+        }
+
+        function findAllDishes() {
+           return $http.get("/api/project/menu");
+        }
 
     }
 })();

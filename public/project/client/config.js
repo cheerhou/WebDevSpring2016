@@ -37,16 +37,12 @@
                 templateUrl: "views/manager/manager.review.view.html"
             })
             .when("/search", {
-                templateUrl: "views/menu/menu.search.view.html",
+                templateUrl: "views/search/search.view.html",
                 controller: "MenuSearchController"
             })
-            .when("/search?title=:title", {
-                templateUrl: "views/menu/menu.search.view.html",
-                controller: "MenuSearchController"
-            })
-            .when("/detail/:rId", {
-                templateUrl: "views/menu/menu.detail.view.html",
-                controller: "MenuDetailController"
+            .when("/dish/:id", {
+                templateUrl: "views/dish/dish.view.html",
+                controller: "DishController"
             })
             .when("/profile", {
                 templateUrl: "views/users/profile.view.html",

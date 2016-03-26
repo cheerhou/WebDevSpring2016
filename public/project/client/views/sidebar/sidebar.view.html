@@ -1,7 +1,7 @@
 <body>
 <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
-        <li ng-class="{'active' : $location.url() == '/profile'}"><a href="#/profile">Profile</a></li>
+        <li ng-class="{'active' : $location.path() == '/profile'}"><a href="#/profile">Profile</a></li>
         <li ng-class="{'active' : $location.url() == '/order/summary'}"><a href="#/order/summary">Your Order</a></li>
         <li ng-class="{'active' : $location.url() == '/reservation/detail'}"><a href="#/reservation/detail">Your Reservation</a></li>
         <li ng-class="{'active' : $location.url() == '/manage/tips'}"><a href="#/manage/tips">Manage Tips</a></li>
