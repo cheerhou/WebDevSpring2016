@@ -3,7 +3,7 @@ var uuid = require("node-uuid");
 
 module.exports = function(app) {
     var api = {
-        createRev: createRev,
+        createReservation: createReservation,
         deleteRev: deleteRev,
         updateRev: updateRev,
         findRevByUserId: findRevByUserId,
@@ -11,12 +11,14 @@ module.exports = function(app) {
     };
     return api;
 
-    function createRev(userId, rev) {
+    function createReservation(userId, rev) {
         var newRev = {
             _id: uuid.v4(),
             userId: userId,
+            revDate: rev.revDate,
             date: new Date(),
-            peopleNum: rev.peopleNum
+            peopleNum: rev.peopleNum,
+            note: rev.note
         };
         mockRevs.push(newRev);
         return mockRevs;

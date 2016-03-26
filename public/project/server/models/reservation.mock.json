@@ -1,3 +1,3 @@
 [
-  {"_id": "000", "userId": "123", "date": "03-13-2016", "peopleNum": 5}
+  {"_id": "000", "userId": "123", "userName": "Alice","revDate": "03-13-2016", "peopleNum": 5, "note": "close to the window"}
 ]

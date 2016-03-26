@@ -1,11 +1,11 @@
 module.exports = function(app, userModel, db) {
 
-    app.post("/api/resmanagersys/user", createUser);
-    app.get("/api/resmanagersys/user", findUser);
-    app.get('/api/resmanagersys/user/:id', findUserById);
-    app.post("/api/resmanagersys/user/login", findUserByCredentials);
-    app.put("/api/resmanagersys/user/:id", updateUser);
-    app.delete("/api/resmanagersys/user/:id", deleteUser);
+    app.post("/api/project/user", createUser);
+    app.get("/api/project/user", findUser);
+    app.get('/api/project/user/:id', findUserById);
+    app.post("/api/project/user/login", findUserByCredentials);
+    app.put("/api/project/user/:id", updateUser);
+    app.delete("/api/project/user/:id", deleteUser);
 
 
 
