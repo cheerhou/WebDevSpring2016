@@ -11,7 +11,7 @@
         $scope.addDishToMenu = addDishToMenu;
         $scope.title = $routeParams.title;
 
-        if($scope.title) {
+        if ($scope.title) {
             search($scope.title);
         }
 
@@ -19,14 +19,13 @@
         function search(title) {
             $location.url("/search?title=" + $scope.title);
 
-            if (title) {
-                MenuService.findMenuByTitle(
-                    title,
-                    function (response) {
-                        console.log(response);
-                        $scope.data = response.recipes;
-                    });
-            }
+            MenuService
+                .findMenuByTitle(title)
+                .then(function(respond) {
+                    if(respond.data) {
+                        $scope.dishes = respond.data;
+                    }
+                });
         }
 
 
@@ -40,8 +39,8 @@
 
             MenuService
                 .addDishToMenu(newDish)
-                .then(function(respond) {
-                    if(respond.data) {
+                .then(function (respond) {
+                    if (respond.data) {
                         $scope.message = "dish added successfully.";
                     } else {
                         $scope.error = "fail to add dish."

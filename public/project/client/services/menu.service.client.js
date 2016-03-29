@@ -4,9 +4,6 @@
         .factory("MenuService", MenuService);
 
     function MenuService($http) {
-        var API_URL = "http://food2fork.com/api/";
-        var API_KEY = "cc8d030ba4ca67ba101401778e70163e";
-
         var api = {
             findMenuByTitle: findMenuByTitle,
             findRecipeById: findRecipeById,
@@ -16,14 +13,12 @@
         return api;
 
 
-        function findMenuByTitle(title, callback) {
-            $http.get(API_URL + "search?" + "key=" + API_KEY + "&q=" + title)
-                .success(callback);
+        function findMenuByTitle(title) {
+            return $http.get("/api/project/search/" + title);
         }
 
-        function findRecipeById(rId, callback) {
-            $http.get(API_URL + "get?" + "key=" + API_KEY + "&rId=" + rId)
-                .success(callback);
+        function findRecipeById(rId) {
+            return $http.get("/api/project/search/recipe/" + rId);
         }
 
         function addDishToMenu(dish) {

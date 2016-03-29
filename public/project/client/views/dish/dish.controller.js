@@ -10,12 +10,17 @@
         $scope.message = null;
         $scope.addDishToMenu = addDishToMenu;
 
+
         //show dish detail
         MenuService
-            .findRecipeById(id,
-                function (respond) {
-                    $scope.recipe = respond.recipe;
-                });
+            .findRecipeById(id)
+            .then(function(respond) {
+                if(respond.data) {
+                    console.log(respond.data);
+                    $scope.recipe = respond.data.recipe;
+                }
+            });
+
 
         function addDishToMenu(dish) {
             var newDish = {

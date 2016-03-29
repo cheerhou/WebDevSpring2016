@@ -4,6 +4,9 @@ var bodyParser = require("body-parser");
 var multer = require("multer");
 var db;
 
+var request = require("request");
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
@@ -17,7 +20,7 @@ app.get('/hello', function(req, res){
 
 
 require("./public/assignment/server/app.js")(app, db);
-require("./public/project/server/app.js")(app, db);
+require("./public/project/server/app.js")(app, db, request);
 
 app.listen(port, ipaddress);
 
