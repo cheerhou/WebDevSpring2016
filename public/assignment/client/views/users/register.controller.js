@@ -4,9 +4,10 @@
         .controller("RegisterController", RegisterController);
 
     function RegisterController($scope, $location, UserService) {
-        $scope.register = register;
         $scope.error = null;
         $scope.message = null;
+        $scope.register = register;
+
 
         function register(user) {
             if (user == null) {
@@ -26,32 +27,26 @@
                 return;
             }
 
+
             UserService
-                .findUserByUsername(user.username)
-                .then(function(respond) {
-                    if(respond.data) {
-                        $scope.error = "User already exists!";
-                        return;
-                    } else {
+                .createUser(user)
+                .then(
+                    function (response) {
+                        if (response.data) {
+                            console.log("response.data " + response.data);
+                            $scope.message = "You have Registered successfully.";
 
-                        UserService
-                            .createUser(user)
-                            .then(function(respond) {
-                                if(respond.data) {
-                                    $scope.message = "You have Registered successfully.";
-                                    //the last user in the respond is the new created user
-                                    UserService.setCurrentUser(respond.data.pop());
-                                    var currentUser = UserService.getCurrentUser();
-                                    //console.log("current user : " + currentUser._id + " " + currentUser.username);
+                            var currentUser = response.data;
+                            UserService.setCurrentUser(currentUser);
+                            console.log("current user : " + currentUser._id + " " + currentUser.username);
 
-                                    $location.url("/profile?id=" + currentUser._id);
-                                } else{
-                                    $scope.error = "Register failed!";
-                                }
-                            })
+                            $location.url("/profile");
+                        } else {
+                            $scope.error = "Register failed!";
+                        }
                     }
+                );
 
-                });
         }
     }
 
