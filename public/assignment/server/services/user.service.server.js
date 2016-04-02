@@ -14,7 +14,7 @@ module.exports = function (app, userModel) {
         userModel.createUser(user)
             .then(
                 function (user) {
-                    console.log("server side " + user)
+                    req.session.currentUser = user;
                     res.json(user);
                 },
                 function (err) {
@@ -25,8 +25,6 @@ module.exports = function (app, userModel) {
 
     function findUser(req, res) {
         var username = req.param("username");
-        console.log("username " + username);
-
         if (!username) {
             userModel
                 .findAllUser()

@@ -27,15 +27,18 @@
                 return;
             }
 
+
             UserService
                 .createUser(user)
-                .then(
-                    function (respond) {
-                        if(respond.data) {
-                            vm.error = respond.data;
-                        }
+                .then(function (respond) {
+                    if (respond.data) {
+                        console.log(respond.data);
+                        var currentUser = respond.data;
+                        UserService.setCurrentUser(currentUser);
+                        vm.user = currentUser;
+                        $location.url("/profile?id=" + currentUser._id);
                     }
-                );
+                });
 
         }
     }
