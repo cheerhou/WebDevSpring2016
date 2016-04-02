@@ -11,6 +11,7 @@
         vm.update = update;
 
         function init () {
+            //get current user profile by userId
             UserService.getProfile()
                 .then (
                     function (response) {
