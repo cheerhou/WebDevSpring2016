@@ -5,13 +5,13 @@
 
     function profileController($scope, $location, $routeParams, UserService) {
         var vm = this;
-        var userId = $routeParams.username;
+        //var userId = $routeParams.id;
+        //console.log("userId " + userId);
 
         vm.update = update;
 
-
         function init () {
-            UserService.findUserByUsername(username)
+            UserService.getProfile()
                 .then (
                     function (response) {
                         vm.user = response.data;
@@ -27,42 +27,15 @@
             UserService.updateUser(user)
                 .then(
                     function (response) {
-                        $location.url("/profile");
+                        if(response.data) {
+                            vm.message = "update successfully"
+                        }
+
                     },
                     function (error) {
                         vm.error = error;
                     }
                 );
         }
-
-        //$scope.currentUser = UserService.getCurrentUser();
-        //$scope.error = null;
-        //$scope.message = null;
-        //$scope.update = update;
-
-        //
-        //if (!$scope.currentUser) {
-        //    $location.url("/home");
-        //}
-        //
-        //function update(user) {
-        //    if (user) {
-        //        console.log("user: " + userId + " " + user.username + " " + user.firstName);
-        //        UserService
-        //            .updateUser($routeParams.id, user)
-        //            .then(function (respond) {
-        //                if (respond.data) {
-        //                    $scope.message = "User updated successfully";
-        //                    UserService.setCurrentUser($scope.currentUser);
-        //                } else {
-        //                    $scope.error = "Fail to update.";
-        //                }
-        //            });
-        //
-        //
-        //    } else {
-        //        $scope.error = "Unable to update the user";
-        //    }
-        //}
     }
 })();

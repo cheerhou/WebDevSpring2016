@@ -32,11 +32,10 @@
                 .createUser(user)
                 .then(function (respond) {
                     if (respond.data) {
-                        console.log(respond.data);
                         var currentUser = respond.data;
+                        console.log("currentUser " + currentUser._id);
                         UserService.setCurrentUser(currentUser);
-                        vm.user = currentUser;
-                        $location.url("/profile?id=" + currentUser._id);
+                        $location.url("/profile");
                     }
                 });
 

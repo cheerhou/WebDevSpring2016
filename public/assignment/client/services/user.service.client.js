@@ -13,7 +13,8 @@
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
-            logout: logout
+            logout: logout,
+            getProfile: getProfile
         };
         return api;
 
@@ -33,8 +34,8 @@
 
         function findUserByUsername(username) {
             return $http.get("/api/assignment/user?username=" + username);
-
         }
+
 
         function findUserByCredentials(credentials) {
             return $http.post("/api/assignment/user/login", credentials);
@@ -50,11 +51,16 @@
 
         function updateUser(user) {
             //console.log("updateUser : " + userId + " " + user.username);
-            return $http.put("/api/assignment/user/" + userId, user);
+            return $http.put("/api/assignment/user/" + user._id, user);
         }
 
         function logout() {
             return $http.post("/api/assignment/logout");
         }
+
+        function getProfile() {
+            return $http.get("/api/assignment/profile/" + $rootScope.currentUser._id);
+        }
+
     }
 })();

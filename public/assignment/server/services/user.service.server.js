@@ -1,12 +1,12 @@
 module.exports = function (app, userModel) {
     app.post("/api/assignment/user", createUser);
-    app.get("/api/assignment/user", findUser);
-    app.get('/api/assignment/user/:id', findUserById);
+    app.get("/api/assignment/user/:username", findUser);
     app.post("/api/assignment/user/login", findUserByCredentials);
     app.put("/api/assignment/user/:id", updateUser);
     app.delete("/api/assignment/user/:id", deleteUser);
-    app.get("/api/assignment/loggedin", loggedin)
-    app.post("/api/assignment/logout", logout)
+    app.get("/api/assignment/loggedin", loggedin);
+    app.post("/api/assignment/logout", logout);
+    app.get("/api/assignment/profile/:id", findUserById);
 
 
     function createUser(req, res) {
@@ -24,7 +24,7 @@ module.exports = function (app, userModel) {
     }
 
     function findUser(req, res) {
-        var username = req.param("username");
+        var username = req.params.username;
         if (!username) {
             userModel
                 .findAllUser()
@@ -97,7 +97,7 @@ module.exports = function (app, userModel) {
     function updateUser(req, res) {
         var userId = req.params.id;
         var user = req.body;
-        //console.log("receive from client: userId-" + userId + " user-" + user.username);
+        console.log("receive from client: userId-" + userId + " user-" + user.username);
         userModel
             .updateUser(userId, user)
             .then(
@@ -132,5 +132,6 @@ module.exports = function (app, userModel) {
         req.session.destroy();
         res.send(200);
     }
+
 
 };
