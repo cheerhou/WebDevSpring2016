@@ -1,5 +1,4 @@
 module.exports = function (app, userModel) {
-
     app.post("/api/assignment/user", createUser);
     app.get("/api/assignment/user", findUser);
     app.get('/api/assignment/user/:id', findUserById);
@@ -12,16 +11,12 @@ module.exports = function (app, userModel) {
 
     function createUser(req, res) {
         var user = req.body;
-        userModel
-            .createUser(user)
+        userModel.createUser(user)
             .then(
-                //promise resolved
-                function (doc) {
-                    //set current user in session
-                    req.session.currentUser = doc;
-                    res.json(doc);
+                function (user) {
+                    console.log("server side " + user)
+                    res.json(user);
                 },
-                //promise rejected
                 function (err) {
                     res.status(400).send(err);
                 }

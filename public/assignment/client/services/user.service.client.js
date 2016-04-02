@@ -48,7 +48,7 @@
             return $http.delete("/api/assignment/user/" + userId);
         }
 
-        function updateUser(userId, user) {
+        function updateUser(user) {
             //console.log("updateUser : " + userId + " " + user.username);
             return $http.put("/api/assignment/user/" + userId, user);
         }

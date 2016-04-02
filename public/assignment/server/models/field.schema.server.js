@@ -1,9 +1,15 @@
-module.exports = function(mongoose) {
+module.exports = function (mongoose) {
 
-    var FildSchema = new mongoose.schema({
-        label: String,
-        type: {type: String, default: "TEXT"},
-        placeholder: String,
-        options: [{label:String, value:String}]
-    }, {collection: field});
-}
+    var FildSchema = mongoose.Schema(
+        {
+            label: String,
+            type: {type: String, default: "TEXT"},
+            placeholder: String,
+            options: [{label: String, value: String}]
+        },
+        {collection: 'field'}
+    );
+
+    return FildSchema;
+
+};

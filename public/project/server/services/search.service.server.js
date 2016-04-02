@@ -1,4 +1,5 @@
-module.exports = function(app, request) {
+var request = require("request");
+module.exports = function(app) {
 
     app.get("/api/project/search/:title", findRecipeByTitle);
     app.get("/api/project/search/recipe/:id", findRecipeById);

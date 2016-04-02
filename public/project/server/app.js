@@ -1,4 +1,4 @@
-module.exports = function (app, db, request) {
+module.exports = function (app, db) {
 
     //models
     var userModel = require("./models/user.model.js")(app);
@@ -16,7 +16,7 @@ module.exports = function (app, db, request) {
     var orderService = require("./services/order.service.server.js")(app, orderModel, db);
     var menuService = require("./services/menu.service.server.js")(app, dishModel, db);
     var dishService = require("./services/dish.service.server.js")(app, dishModel, db);
-    var searchService = require("./services/search.service.server.js")(app, request);
+    var searchService = require("./services/search.service.server.js")(app);
 
 
 }
