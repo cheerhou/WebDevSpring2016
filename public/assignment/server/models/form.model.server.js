@@ -1,5 +1,6 @@
-module.exports = function (db, mongoose) {
+var q = require("q");
 
+module.exports = function (db, mongoose) {
     var FormSchema = require("./form.schema.server.js")(mongoose);
     var FormModel = mongoose.model('FormModel', FormSchema);
 
@@ -18,9 +19,9 @@ module.exports = function (db, mongoose) {
     function createFormForUser(form) {
         var deferred = q.defer();
         FormModel.create(form,
-            function (err, user) {
+            function (err, form) {
                 if (!err) {
-                    deferred.resolve(user);
+                    deferred.resolve(form);
                 } else {
                     deferred.reject(err);
                 }
@@ -69,7 +70,7 @@ module.exports = function (db, mongoose) {
 
     function deleteForm(formId) {
         var deferred = q.defer();
-        UserModel.remove({_id: formId},
+        FormModel.remove({_id: formId},
             function (err, stats) {
                 if (!err) {
                     deferred.resolve(stats);

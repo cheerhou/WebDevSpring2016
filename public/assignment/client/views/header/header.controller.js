@@ -10,8 +10,6 @@
         function logout() {
             UserService.setCurrentUser(null);
             $location.url("/home");
-
-            console.log("logout by ng-click");
         }
     }
 

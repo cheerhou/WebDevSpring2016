@@ -5,7 +5,7 @@ module.exports = function (mongoose) {
         {
             title: String,
             fields: [FieldSchema],
-            userId:String,
+            userId: String,
             created: {type: Date, default: Date.now},
             updated: {type: Date, default: Date.now}
         }, {collection: 'form'}

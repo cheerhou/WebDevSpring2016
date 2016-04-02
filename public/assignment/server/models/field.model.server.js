@@ -1,3 +1,5 @@
+var q = require("q");
+
 module.exports = function (db, mongoose) {
     var FieldSchema = require("./field.schema.server.js")(mongoose);
     var FieldModel = mongoose.model('FieldModel', FieldSchema);

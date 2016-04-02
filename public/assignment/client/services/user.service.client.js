@@ -25,7 +25,8 @@
         }
 
         function getCurrentUser() {
-            return $http.get("/api/assignment/loggedin");
+            //return $http.get("/api/assignment/loggedin");
+            return $rootScope.currentUser;
         }
 
         function createUser(user) {

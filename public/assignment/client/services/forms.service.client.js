@@ -27,8 +27,8 @@
             return $http.get("/api/assignment/form");
         }
 
-        function createFormForUser(userId, form) {
-            return $http.post("/api/assignment/user/" + userId +"/form", form);
+        function createFormForUser(form) {
+            return $http.post("/api/assignment/user/" + form.userId +"/form", form);
         }
 
         function findAllFormsForUser(userId) {
