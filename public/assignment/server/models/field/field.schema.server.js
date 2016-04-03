@@ -9,7 +9,7 @@ module.exports = function () {
             type: {
                 type: String,
                 default: "TEXT",
-                enum: ["TEXT", "EMAIL", "PASSWORD", "OPTIONS", "DATE", "RADIOS", "CHECKBOXES", "TEXTAREA"]
+                enum: ["TEXT", "EMAIL", "OPTIONS", "DATE", "RADIOS", "CHECKBOXES", "TEXTAREA"]
             },
             placeholder: {
                 type: String,
