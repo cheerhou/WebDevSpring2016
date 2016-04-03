@@ -11,7 +11,8 @@ module.exports = function (db, mongoose, formModel) {
         findAllFileds: findAllFileds,
         findFieldById: findFieldById,
         updateField: updateField,
-        deleteFieldInForm: deleteFieldInForm
+        deleteFieldInForm: deleteFieldInForm,
+        updateFieldInForm: updateFieldInForm
     };
     return api;
 
@@ -32,7 +33,7 @@ module.exports = function (db, mongoose, formModel) {
 
     function createFieldInForm(formId, fieldType) {
         var deferred = q.defer();
-        console.log("model formId + fieldType " + formId + fieldType);
+        //console.log("model formId + fieldType " + formId + fieldType);
         FormModel.findById(formId,
             function (err, form) {
                 if (!err) {
@@ -112,5 +113,29 @@ module.exports = function (db, mongoose, formModel) {
         return deferred.promise;
     }
 
+    function updateFieldInForm(formId, fieldId, newField) {
+        var deferred = q.defer();
+        FormModel.findById(formId,
+            function(err, form) {
+                if (!err) {
+                    var field = form.fields.id(fieldId);
+                    field.label = newField.label;
+                    field.placeholder = newField.placeholder;
+                    field.options = newField.options;
+
+                    form.save(function (err, doc) {
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(doc);
+                        }
+                    });
+                } else {
+                    deferred.reject(err);
+                }
+            }
+        );
+        return deferred.promise;
+    }
 
 };

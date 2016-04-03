@@ -7,6 +7,7 @@
     function FieldsController($scope, FormService, FieldService) {
         var vm = this;
         var formId;
+        var fieldId;
 
         vm.dynamicPopover = {
             templateUrl: 'myPopoverTemplate'
@@ -25,6 +26,7 @@
         vm.addField = addField;
         vm.removeField = removeField;
         vm.updateField = updateField;
+        vm.selectField = selectField;
 
 
         function init() {
@@ -210,10 +212,15 @@
         }
 
 
+        function selectField (field){
+            vm.field = field;
+        }
+
         function updateField(field, newOptions) {
             if (newOptions) {
                 field.options = ToFieldOptions(newOptions);
             }
+            console.log(field);
 
             FieldService
                 .updateFieldInForm(formId, field._id, field)

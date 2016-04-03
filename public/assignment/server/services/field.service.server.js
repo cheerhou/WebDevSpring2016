@@ -10,7 +10,7 @@ module.exports = function (app, fieldModel, formModel) {
         formModel.findFormById(formId)
             .then(
                 function (form) {
-                    console.log(form.fields);
+                    //console.log(form.fields);
                     res.json(form.fields);
                 },
                 function (err) {
@@ -23,7 +23,7 @@ module.exports = function (app, fieldModel, formModel) {
     function createFieldInForm(req, res) {
         var formId = req.params.formId;
         var fieldType = req.query.fieldType;
-        console.log("formId + fieldType " + formId + " " + fieldType);
+        //console.log("formId + fieldType " + formId + " " + fieldType);
         fieldModel.createFieldInForm(formId, fieldType)
             .then(
                 function (form) {
@@ -69,32 +69,14 @@ module.exports = function (app, fieldModel, formModel) {
         var fieldId = req.params.fieldId;
         var newField = req.body;
 
-        var form = formModel.findFormById(formId);
-        var fields = form.fields;
-
-        //no options is text field
-        if (!newField.options) {
-            for (var i in fields) {
-                if (fields[i]._id === fieldId) {
-                    fields[i].label = newField.label;
-                    fields[i].placeholder = newField.placeholder;
+        fieldModel.updateFieldInForm(formId, fieldId, newField)
+            .then(
+                function (doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
                 }
-            }
-            res.json(form);
-            console.log("from serverside:" + formId + "   " + fieldId + "   " + newField.label + "  " + newField.placeholder);
-
-        } else {//update fileds with options
-            for (var i in fields) {
-                if (fields[i]._id === fieldId) {
-                    fields[i].label = newField.label;
-                    fields[i].options = newField.options;
-                }
-            }
-            res.json(form);
-            console.log("from serverside: new options" + newField.options.toString());
-
-        }
-
-
+            );
     }
 }

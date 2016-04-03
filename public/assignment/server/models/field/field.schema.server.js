@@ -15,7 +15,7 @@ module.exports = function () {
                 type: String,
                 default: "New Field"
             },
-            options: [{lable: String, value: String}]
+            options: [{label: String, value: String}]
         }
     );
 
