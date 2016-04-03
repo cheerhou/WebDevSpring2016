@@ -6,19 +6,20 @@
     function FieldService($http) {
         var api = {
             createFieldInForm: createFieldInForm,
-            getFieldsForForm: getFieldsForForm,
+            getAllFieldsInForm: getAllFieldsInForm,
             getFieldForForm: getFieldForForm,
-            deleteFieldFromForm: deleteFieldFromForm,
+            deleteFieldInForm: deleteFieldInForm,
             updateFieldInForm: updateFieldInForm
         };
 
         return api;
 
-        function createFieldInForm(formId, field) {
-            return $http.post("/api/assignment/form/" + formId + "/field", field);
+
+        function createFieldInForm(formId, fieldType) {
+            return $http.post("/api/assignment/form/" + formId + "/field?fieldType=" + fieldType);
         }
 
-        function getFieldsForForm(formId) {
+        function getAllFieldsInForm(formId) {
             return $http.get("/api/assignment/form/" + formId + "/field");
         }
 
@@ -26,7 +27,7 @@
             return $http.get("/api/assignment/form/" + formId + "/field/" + fieldId);
         }
 
-        function deleteFieldFromForm(formId, fieldId) {
+        function deleteFieldInForm(formId, fieldId) {
             return $http.delete("/api/assignment/form/" + formId + "/field/" + fieldId);
         }
 

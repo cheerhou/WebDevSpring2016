@@ -32,7 +32,7 @@
         <tbody>
         <tr ng-repeat="form in model.forms">
             <td>
-                <a href="#/fields" type="button" ng-click="selectForm(form)">{{form.title}}</a>
+                <a href="#/fields" type="button" ng-click="model.selectForm(form)">{{form.title}}</a>
             </td>
             <td>
                 <button ng-click="model.selectForm(form)" class="btn btn-info"><span

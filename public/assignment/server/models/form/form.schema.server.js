@@ -1,5 +1,5 @@
 module.exports = function (mongoose) {
-    var FieldSchema = require("../models/field.schema.server.js");
+    var FieldSchema = require("../field/field.schema.server.js")();
 
     var FormSchema = mongoose.Schema(
         {

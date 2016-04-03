@@ -1,15 +1,17 @@
 var q = require("q");
 
-module.exports = function (db, mongoose) {
-    var FieldSchema = require("./field.schema.server.js")(mongoose);
+module.exports = function (db, mongoose, formModel) {
+    var FieldSchema = require("./field.schema.server.js")();
     var FieldModel = mongoose.model('FieldModel', FieldSchema);
+    var FormModel = formModel.getFormModel();
 
     var api = {
         createField: createField,
+        createFieldInForm: createFieldInForm,
         findAllFileds: findAllFileds,
         findFieldById: findFieldById,
         updateField: updateField,
-        deleteField: deleteField
+        deleteFieldInForm: deleteFieldInForm
     };
     return api;
 
@@ -26,6 +28,29 @@ module.exports = function (db, mongoose) {
 
             });
         return deferred.promise;
+    }
+
+    function createFieldInForm(formId, fieldType) {
+        var deferred = q.defer();
+        console.log("model formId + fieldType " + formId + fieldType);
+        FormModel.findById(formId,
+            function (err, form) {
+                if (!err) {
+                    form.fields.push({"type": fieldType});
+                    form.save(function (err, doc) {
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(doc);
+                        }
+                    });
+                } else {
+                    deferred.reject(err);
+                }
+            }
+        );
+        return deferred.promise;
+
     }
 
     function findAllFileds() {
@@ -66,16 +91,24 @@ module.exports = function (db, mongoose) {
         return deferred.promise;
     }
 
-    function deleteField(fieldId){
+    function deleteFieldInForm(formId, fieldId) {
         var deferred = q.defer();
-        UserModel.remove({_id: fieldId},
-            function (err, stats) {
+        FormModel.findById(formId,
+            function(err, form) {
                 if (!err) {
-                    deferred.resolve(stats);
+                    form.fields.id(fieldId).remove();
+                    form.save(function (err, doc) {
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(doc);
+                        }
+                    });
                 } else {
                     deferred.reject(err);
                 }
-            });
+            }
+        );
         return deferred.promise;
     }
 

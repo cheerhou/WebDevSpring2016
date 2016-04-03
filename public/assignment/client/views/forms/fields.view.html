@@ -1,8 +1,8 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Forms</h1>
 
-    <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
-    <div ng-show="error" class="alert alert-danger" role="alert">{{error}}</div>
+    <div ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
 
     <div>
         <ul class="nav nav-tabs">
@@ -14,11 +14,17 @@
             <thead ng-switch="fieldType">
             <tr>
                 <th>
-                    <select class="form-control" ng-model="fieldType" ng-options="option for option in options">
+                    <select class="form-control" ng-model="model.fieldType">
+                        <option value='TEXT'>Single Line Text Field</option>
+                        <option value='TEXTAREA'>Multi Line Text Field</option>
+                        <option value='DATE'>Date Field</option>
+                        <option value='OPTIONS'>Dropdown Field</option>
+                        <option value='CHECKBOXES'>Checkboxes Field</option>
+                        <option value='RADIOS'>Radio Buttons Field</option>
                     </select>
                 </th>
                 <th>
-                    <button ng-click="addField(fieldType)" class="btn btn-primary">
+                    <button ng-click="model.addField(model.fieldType)" class="btn btn-primary">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </th>
@@ -26,7 +32,7 @@
             </thead>
 
             <tbody id="tbody-sortable">
-            <tr ng-repeat="field in fields">
+            <tr ng-repeat="field in model.fields">
                 <td ng-if="field.type==='TEXT'">
                     <label>{{field.label}}:</label><br>
                     <input type=text placeholder={{field.placeholder}}>
@@ -63,14 +69,11 @@
                 </td>
                 <td>
                     <button class="btn btn-info"
-                            uib-popover-template="dynamicPopover.templateUrl"
+                            uib-popover-template="model.dynamicPopover.templateUrl"
                             popover-title={{field.type}}>
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
-                    <button class="btn btn-info" ng-click="">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                    <button class="btn btn-danger" ng-click="removeField(field)">
+                    <button class="btn btn-danger" ng-click="model.removeField(field)">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
                     <a type="button" class="btn btn-info">
@@ -92,19 +95,19 @@
         <script type="text/ng-template" id="myPopoverTemplate">
             <div class="form-group">
                 <label>Lable:</label>
-                <input type="text" ng-model="field.label" class="form-control">
+                <input type="text" ng-model="model.field.label" class="form-control">
             </div>
-            <div class="form-group" ng-show="field.type==='TEXT'||field.type==='TEXTAREA'">
+            <div class="form-group" ng-show="model.field.type==='TEXT'||field.type==='TEXTAREA'">
                 <label>Placeholder:</label>
-                <input type="text" ng-model="field.placeholder" class="form-control">
+                <input type="text" ng-model="model.field.placeholder" class="form-control">
             </div>
-            <div class="form-group" ng-show="field.type==='CHECKBOXES'||field.type==='OPTIONS'||field.type==='RADIOS'">
+            <div class="form-group" ng-show="model.field.type==='CHECKBOXES'||model.field.type==='OPTIONS'||model.field.type==='RADIOS'">
                 <label>Options:</label><br>
-                <textarea ng-model="newOptions"></textarea>
+                <textarea ng-model="model.newOptions"></textarea>
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary" ng-click="updateField(field, newOptions)">Ok</button>
+                <button class="btn btn-primary" ng-click="model.updateField(model.field, model.newOptions)">Ok</button>
             </div>
         </script>
 

@@ -106,8 +106,9 @@
         function selectForm(form) {
             vm.form = form;
             selectedFormId = form._id;
-            console.log("selectedFormId" + selectedFormId);
+            console.log("selectedFormId " + selectedFormId);
             FormService.setCurrentForm(form);
+            console.log("current from " + form._id);
         }
 
     }

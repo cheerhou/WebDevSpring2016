@@ -6,12 +6,14 @@ module.exports = function (db, mongoose) {
 
     var api = {
         createFormForUser: createFormForUser,
+        //createFieldInForm: createFieldInForm,
         findAllForms: findAllForms,
         findFormById: findFormById,
         updateForm: updateForm,
         deleteForm: deleteForm,
         findFormByTitle: findFormByTitle,
-        findFormByUser: findFormByUser
+        findFormByUser: findFormByUser,
+        getFormModel: getFormModel
 
     };
     return api;
@@ -29,6 +31,17 @@ module.exports = function (db, mongoose) {
             });
         return deferred.promise;
     }
+
+    //function createFieldInForm(formId, fieldType) {
+    //    return FormModel.findById(formId)
+    //        .then(
+    //            function (form) {
+    //                fieldType
+    //                form.fields.push(field);
+    //                return form.save();
+    //            }
+    //        );
+    //}
 
     function findAllForms() {
         var deferred = q.defer();
@@ -105,5 +118,9 @@ module.exports = function (db, mongoose) {
                 }
             });
         return deferred.promise;
+    }
+
+    function getFormModel() {
+        return FormModel;
     }
 }
