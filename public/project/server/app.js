@@ -14,7 +14,7 @@ module.exports = function (app, db) {
     var orderService = require("./services/order.service.server.js")(app, orderModel);
 
 
-    var menuModel = require("./models/menu/menu.model.js")(db);
+    var menuModel = require("./models/menu/menu.model.server.js")(db);
     var menuService = require("./services/menu.service.server.js")(app, dishModel);
 
     var dishModel = require("./models/dish/dish.model.server.js")(db);
