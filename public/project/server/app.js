@@ -3,7 +3,7 @@ module.exports = function (app, db) {
     var userModel = require("./models/user/user.model.server.js")(db);
     var userService = require("./services/user.service.server.js")(app, userModel);
 
-    var salaryModel = require("./models/salary/salary.model.js")(db);
+    var salaryModel = require("./models/salary/salary.model.server.js")(db);
     var salaryService = require("./services/salary.service.server.js")(app, salaryModel);
 
     var reservationModel = require("./models/reservation/reservation.model.server.js")(db);
