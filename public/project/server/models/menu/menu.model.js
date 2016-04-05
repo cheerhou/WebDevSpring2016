@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function(db) {
     var api = {
         //all the functions
 

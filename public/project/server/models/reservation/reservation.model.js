@@ -1,7 +1,7 @@
 var mockRevs = require("./reservation.mock.json");
 var uuid = require("node-uuid");
 
-module.exports = function(app) {
+module.exports = function(db) {
     var api = {
         createReservation: createReservation,
         deleteRev: deleteRev,
