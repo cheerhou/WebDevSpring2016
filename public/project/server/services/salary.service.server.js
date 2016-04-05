@@ -1,4 +1,4 @@
-module.exports = function(app, salaryModel, db) {
+module.exports = function(app, salaryModel) {
     //All app.post get put delete here
 
 

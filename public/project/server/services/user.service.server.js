@@ -1,4 +1,4 @@
-module.exports = function(app, userModel, db) {
+module.exports = function(app, userModel) {
 
     app.post("/api/project/user", createUser);
     app.get("/api/project/user", findUser);

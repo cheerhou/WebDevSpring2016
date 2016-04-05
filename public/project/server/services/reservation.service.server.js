@@ -1,4 +1,4 @@
-module.exports = function(app, reservationModel, db) {
+module.exports = function(app, reservationModel) {
 
     app.post("/api/project/reservation/:userId", createReservation);
     app.get("/api/project/reservation", findAllReservation);
