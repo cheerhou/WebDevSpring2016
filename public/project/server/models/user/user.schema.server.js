@@ -11,7 +11,7 @@ module.exports = function () {
             email: String,
             phone: String
         }, {collection: 'project.user'}
-    );
+    );a
 
     return UserSchema;
 
