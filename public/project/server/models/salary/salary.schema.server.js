@@ -1,17 +1,17 @@
 var mongoose = require("mongoose");
 
 module.exports = function () {
-    var ReservationSchema = mongoose.Schema(
+    var SalarySchema = mongoose.Schema(
         {
             userId: String,
-            revDate: {type: Date, default: Date.now},
-            revSeates: Number,
-            note: String,
+            amount: Number,
+            penalty: Number,
+            tips: Number,
             created: {type: Date, default: Date.now}
 
         }, {collection: 'project.reservation'}
     );
 
-    return ReservationSchema;
+    return SalarySchema;
 
 };
