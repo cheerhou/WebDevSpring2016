@@ -10,7 +10,7 @@ module.exports = function (app, db) {
     var reservationService = require("./services/reservation.service.server.js")(app, reservationModel);
 
 
-    var orderModel = require("./models/order/order.model.js")(db);
+    var orderModel = require("./models/order/order.model.server.js")(db);
     var orderService = require("./services/order.service.server.js")(app, orderModel);
 
 
