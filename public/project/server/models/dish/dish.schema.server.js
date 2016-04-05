@@ -7,7 +7,8 @@ module.exports = function () {
             recipe_id: String,
             title: String,
             image_url: String,
-            social_rank: Number
+            social_rank: Number,
+            price: Number
         }, {collection: 'project.dish'}
     );
 
