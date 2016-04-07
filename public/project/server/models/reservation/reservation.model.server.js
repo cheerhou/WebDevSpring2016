@@ -1,9 +1,10 @@
 var q = require("q");
+var mongoose = require("mongoose");
 
 module.exports = function (db) {
 
-    var ReservationSchema = require("./reservation.schema.server.js")();
-    var ReservationModel = mongoose.model("ReservationModel", ReservationModel);
+    var ReservationSchema = require("./reservation.schema.server.js")(mongoose);
+    var ReservationModel = mongoose.model("ReservationModel", ReservationSchema);
 
     var api = {
         createReservation: createReservation,

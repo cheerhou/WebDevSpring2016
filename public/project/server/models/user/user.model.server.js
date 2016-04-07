@@ -1,8 +1,9 @@
 var q = require("q");
+var mongoose = require("mongoose");
 
 module.exports = function (db) {
     var UserSchema = require("./user.schema.server.js")();
-    var UserModel = mongoose.model("UserModel", UserSchema);
+    var ProUserModel = mongoose.model("ProUserModel", UserSchema);
 
 
     var api = {
@@ -20,7 +21,7 @@ module.exports = function (db) {
 
     function createUser(user) {
         var deferred = q.defer();
-        UserModel.create(user,
+        ProUserModel.create(user,
             function (err, user) {
                 if (!err) {
                     deferred.resolve(user);
@@ -36,7 +37,7 @@ module.exports = function (db) {
     function findAllUser() {
         var deferred = q.defer();
 
-        UserModel.find(function (err, users) {
+        ProUserModel.find(function (err, users) {
             if (!err) {
                 deferred.resolve(users);
             } else {
@@ -50,7 +51,7 @@ module.exports = function (db) {
 
     function findUserById(userId) {
         var deferred = q.defer();
-        UserModel.findById(userId, function (err, user) {
+        ProUserModel.findById(userId, function (err, user) {
             if (!err) {
                 deferred.resolve(user);
             } else {
@@ -64,7 +65,7 @@ module.exports = function (db) {
 
     function updateUser(userId, newUser) {
         var deferred = q.defer();
-        UserModel
+        ProUserModel
             .update({_id: userId}, {$set: newUser}, function (err, stats) {
                 if (!err) {
                     deferred.resolve(stats);
@@ -77,7 +78,7 @@ module.exports = function (db) {
 
     function deleteUser(userId) {
         var deferred = q.defer();
-        UserModel
+        ProUserModel
             .remove({_id: userId}, function (err, stats) {
                 if (!err) {
                     deferred.resolve(stats);
@@ -92,7 +93,7 @@ module.exports = function (db) {
     function findUserByUsername(username) {
         var deferred = q.defer();
 
-        UserModel
+        ProUserModel
             .findOne({username: username},
                 function (err, user) {
                     if (!err) {
@@ -109,7 +110,7 @@ module.exports = function (db) {
     function findUserByCredentials(credentials) {
         var deferred = q.defer();
 
-        UserModel.findOne(
+        ProUserModel.findOne(
             {
                 username: credentials.username,
                 password: credentials.password

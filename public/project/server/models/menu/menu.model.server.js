@@ -1,7 +1,10 @@
+var q = require("q");
+var mongoose = require("mongoose");
+
 module.exports = function (db) {
 
     var MenuSchema = require("./menu.schema.server.js")();
-    var MenuModel = mongoose.model("MenuModel", MenuModel);
+    var MenuModel = mongoose.model("MenuModel", MenuSchema);
 
     var api = {
         createMenu: createMenu,

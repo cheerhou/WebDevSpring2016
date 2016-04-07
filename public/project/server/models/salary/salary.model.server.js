@@ -1,4 +1,6 @@
 var q = require("q");
+var mongoose = require("mongoose");
+
 
 module.exports = function (db) {
     var SalarySchema = require("./salary.schema.server.js")();

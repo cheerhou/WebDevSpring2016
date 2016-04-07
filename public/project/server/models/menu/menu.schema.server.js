@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 
+
 module.exports = function () {
 
     var DishSchema = require("../dish/dish.schema.server.js")();
@@ -10,7 +11,7 @@ module.exports = function () {
             created: {type: Date, default: Date.now}
 
         }, {collection: 'project.menu'}
-    );a
+    );
 
     return MenuSchema;
 
