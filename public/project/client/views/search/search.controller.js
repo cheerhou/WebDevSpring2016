@@ -3,29 +3,25 @@
         .module("ResManageApp")
         .controller("MenuSearchController", MenuSearchController);
 
-    function MenuSearchController($scope, $location, $routeParams, MenuService) {
-        $scope.error = null;
-        $scope.message = null;
+    function MenuSearchController($location, MenuService) {
+        var vm = this;
 
-        $scope.search = search;
-        $scope.addDishToMenu = addDishToMenu;
-        $scope.title = $routeParams.title;
-
-        if ($scope.title) {
-            search($scope.title);
-        }
+        vm.search = search;
+        vm.addDishToMenu = addDishToMenu;
 
 
         function search(title) {
-            $location.url("/search?title=" + $scope.title);
-
             MenuService
                 .findMenuByTitle(title)
-                .then(function(respond) {
-                    if(respond.data) {
-                        $scope.dishes = respond.data;
+                .then(function (respond) {
+                        if (respond.data) {
+                            vm.hits = respond.data;
+                        }
+                    }, function (error) {
+                        vm.err = error;
                     }
-                });
+                );
+
         }
 
 

@@ -1,15 +1,27 @@
-module.exports = function(app, dishModel) {
+module.exports = function (app, dishModel) {
     app.post("/api/project/menu/dish", createDish);
     app.get("/api/project/menu", findAllDishes);
 
     function createDish(req, res) {
         var dish = req.body;
-        var menu = dishModel.createDish(dish);
-        res.json(menu);
+        dishModel.createDish(dish)
+            .then(function (menu) {
+                    res.json(menu);
+                }, function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
     function findAllDishes(req, res) {
-        var dishes = dishModel.findAllDishes();
-        res.json(dishes);
+        dishModel.findAllDishes()
+            .then(function (dishes) {
+                    res.json(dishes);
+                }, function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
     }
 }

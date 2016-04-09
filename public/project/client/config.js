@@ -7,11 +7,13 @@
         $routeProvider
             .when("/menu", {
                 templateUrl: "views/menu/menu.view.html",
-                controller: "MenuController"
+                controller: "MenuController",
+                controllerAs: "model"
             })
             .when("/order", {
                 templateUrl: "views/order/order.view.html",
-                controller: "OrderController"
+                controller: "OrderController",
+                controllerAs: "model"
             })
             .when("/order/summary", {
                 templateUrl: "views/order/order.summary.view.html"
@@ -21,14 +23,16 @@
             })
             .when("/reservation", {
                 templateUrl: "views/reservation/reservation.view.html",
-                controller: "ReservationController"
+                controller: "ReservationController",
+                controllerAs: "model"
             })
             .when("/reservation/detail", {
                 templateUrl: "views/reservation/reservation.detail.view.html"
             })
             .when("/manage", {
                 templateUrl: "views/manager/manager.view.html",
-                controller: "ManagerController"
+                controller: "ManagerController",
+                controllerAs: "model"
             })
             .when("/manage/tips", {
                 templateUrl: "views/manager/manage.tips.view.html"
@@ -38,23 +42,28 @@
             })
             .when("/search", {
                 templateUrl: "views/search/search.view.html",
-                controller: "MenuSearchController"
+                controller: "MenuSearchController",
+                controllerAs: "model"
             })
             .when("/dish/:id", {
                 templateUrl: "views/dish/dish.view.html",
-                controller: "DishController"
+                controller: "DishController",
+                controllerAs: "model"
             })
             .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
-                controller: "ProfileController"
+                controller: "ProfileController",
+                controllerAs: "model"
             })
             .when("/login", {
                 templateUrl: "views/users/login.view.html",
-                controller: "LoginController"
+                controller: "LoginController",
+                controllerAs: "model"
             })
             .when("/register", {
                 templateUrl: "views/users/register.view.html",
-                controller: "RegisterController"
+                controller: "RegisterController",
+                controllerAs: "model"
             })
             .otherwise("/menu", {
                 redirectTo: "/menu"
