@@ -3,17 +3,16 @@
         .module("FormBuilderApp")
         .controller("ProfileController", profileController);
 
-    function profileController($scope, $location, $routeParams, UserService) {
+    function profileController($routeParams, UserService) {
         var vm = this;
-        //var userId = $routeParams.id;
-        //console.log("userId " + userId);
+        var username = $routeParams.username;
 
         vm.update = update;
 
-        function init () {
-            //get current user profile by userId
-            UserService.getProfile()
-                .then (
+        function init() {
+            //get current user profile by username
+            UserService.findUserProfileByUsername(username)
+                .then(
                     function (response) {
                         vm.user = response.data;
                     },
@@ -28,8 +27,9 @@
             UserService.updateUser(user)
                 .then(
                     function (response) {
-                        if(response.data) {
+                        if (response.data) {
                             vm.message = "update successfully"
+                            init();
                         }
 
                     },

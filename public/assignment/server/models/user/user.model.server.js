@@ -100,7 +100,8 @@ module.exports = function (db, mongoose) {
                     } else {
                         deferred.reject(err);
                     }
-                });
+                }
+            );
 
         return deferred.promise;
     }
