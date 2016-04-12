@@ -23,7 +23,7 @@
             <tbody>
             <tr ng-repeat="hit in model.hits">
                 <td>
-                    <a href="#/dish">
+                    <a href="#/dish/{{hit.recipe.uri}}">
                         {{hit.recipe.label}}
                     </a>
                 </td>
