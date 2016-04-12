@@ -1,15 +1,16 @@
-var express = require("express");
+var express = require('express');
 var app = express();
-var mongoose = require("mongoose");
+
+var mongoose = require('mongoose');
 
 // load passport module
 var passport = require('passport');
 
 // load cookie parsers
-var cookieParser = require('cookie-parser');
+var cookieParser = require("cookie-parser");
 
 // load session support
-var session      = require('express-session');
+var session = require("express-session");
 
 var connectionString = "mongodb://127.0.0.1:27017/cs5610";
 //Openshift mongoDB
@@ -20,6 +21,10 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
         process.env.OPENSHIFT_APP_NAME;
 }
+
+//configure local or openShift ip address and port
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 var db = mongoose.connect(connectionString);
 
@@ -39,10 +44,6 @@ app.use(passport.session());
 
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
-
-//configure local or openShift ip address and port
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 
 //For assignment

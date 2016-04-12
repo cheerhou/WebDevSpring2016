@@ -21,13 +21,13 @@
             </thead>
 
             <tbody>
-            <tr ng-repeat="hit in model.hits">
+            <tr ng-repeat="dish in model.recipes">
                 <td>
-                    <a href="#/dish/{{hit.recipe.uri}}">
-                        {{hit.recipe.label}}
+                    <a href="#/dish/{{dish.recipe_id}}">
+                        {{dish.title}}
                     </a>
                 </td>
-                <td><img class="img-thumbnail" height="100px" width="150px" ng-src="{{hit.recipe.image}}"/></td>
+                <td><img class="img-thumbnail" height="100px" width="150px" ng-src="{{dish.image_url}}"/></td>
                 <td><button class="btn btn-info" ng-click="model.addDishToMenu(dish)"><span class="glyphicon glyphicon-plus"></span></button></td>
             </tr>
             </tbody>

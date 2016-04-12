@@ -15,7 +15,7 @@
                 .findMenuByTitle(title)
                 .then(function (respond) {
                         if (respond.data) {
-                            vm.hits = respond.data;
+                            vm.recipes = respond.data;
                         }
                     }, function (error) {
                         vm.err = error;
@@ -37,9 +37,9 @@
                 .addDishToMenu(newDish)
                 .then(function (respond) {
                     if (respond.data) {
-                        $scope.message = "dish added successfully.";
+                        vm.message = "dish added successfully.";
                     } else {
-                        $scope.error = "fail to add dish."
+                        vm.error = "fail to add dish."
                     }
                 });
         }
