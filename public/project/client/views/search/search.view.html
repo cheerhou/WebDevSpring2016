@@ -1,9 +1,8 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Search Menus</h1>
 
-    <div ng-show="model.message" class="alert alert-success" role="alert">{{message}}</div>
-    <div ng-show="model.error" class="alert alert-danger" role="alert">{{error}}</div>
-
+    <div ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
 
     <ul class="nav nav-tabs">
         <li ng-class="{'active' : $location.path() == '/search'}"><a href="#/search">Search Dish</a></li>
