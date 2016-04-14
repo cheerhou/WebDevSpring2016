@@ -34,6 +34,7 @@
                     function (respond) {
                         if (respond.data) {
                             vm.user = respond.data;
+                            $rootScope.currentUser = respond.data;
                             $location.url("/profile/" + user.username);
                         }
                     },

@@ -11,7 +11,8 @@
             findAllUsers: findAllUsers,
             findUserProfileByUsername: findUserProfileByUsername,
             deleteUser: deleteUser,
-            updateUser: updateUser
+            updateUser: updateUser,
+            createUser: createUser
         };
         return api;
 
@@ -40,9 +41,13 @@
         }
 
         function updateUser(user) {
-            //console.log("updateUser : " + userId + " " + user.username);
             return $http.put("/api/assignment/user/" + user._id, user);
         }
+
+        function createUser(user) {
+            return $http.post("/api/assignment/user", user);
+        }
+
 
     }
 })();

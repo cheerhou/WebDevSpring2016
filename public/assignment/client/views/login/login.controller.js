@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($location, UserService) {
+    function LoginController($location, $rootScope, UserService) {
         var vm = this;
         vm.login = login;
 
@@ -16,6 +16,7 @@
                 .login(user)
                 .then(function (respond) {
                     if (respond.data) {
+                        $rootScope.currentUser = respond.data;
                         $location.url("/profile/" + user.username);
                     } else {
                         vm.error = "Please verify your user name or password."

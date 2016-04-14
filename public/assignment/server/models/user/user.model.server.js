@@ -77,8 +77,9 @@ module.exports = function (db, mongoose) {
 
     function deleteUser(userId) {
         var deferred = q.defer();
-        UserModel
-            .remove({_id: userId}, function (err, stats) {
+        UserModel.remove(
+            {_id: userId},
+            function (err, stats) {
                 if (!err) {
                     deferred.resolve(stats);
                 } else {

@@ -12,13 +12,14 @@
             .when("/admin", {
                 templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {loggedin: checkAdmin}
             })
             .when("/profile/:username", {
                 templateUrl: "views/profile/profile.view.html",
                 controller: "ProfileController",
                 controllerAs: "model",
-                resolve: { loggedin: checkLoggedin }
+                resolve: {loggedin: checkLoggedin}
 
             })
             .when("/login", {
@@ -34,37 +35,49 @@
             .when("/forms", {
                 templateUrl: "views/forms/forms.view.html",
                 controller: "FormsController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {loggedin: checkLoggedin}
             })
             .when("/fields", {
                 templateUrl: "views/forms/fields.view.html",
                 controller: "FieldsController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {loggedin: checkLoggedin}
             })
             .otherwise("/home", {
                 redirectTo: "/home"
             })
     }
 
-    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope)
-    {
+    var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
         var deferred = $q.defer();
 
-        $http.get('/api/assignment/loggedin').success(function(user)
-        {
+        $http.get('/api/assignment/loggedin').success(function (user) {
             $rootScope.errorMessage = null;
             // User is Authenticated
-            if (user !== '0')
-            {
+            if (user !== '0') {
                 $rootScope.currentUser = user;
                 deferred.resolve();
             }
             // User is Not Authenticated
-            else
-            {
+            else {
                 $rootScope.error = 'You need to log in.';
                 deferred.reject();
                 $location.url('/');
+            }
+        });
+
+        return deferred.promise;
+    };
+
+    var checkAdmin = function ($q, $timeout, $http, $location, $rootScope) {
+        var deferred = $q.defer();
+        $http.get('/api/assignment/loggedin').success(function (user) {
+            $rootScope.errorMessage = null;
+            // User is Authenticated
+            if (user !== '0' && user.roles.indexOf("admin") >= 0) {
+                $rootScope.currentUser = user;
+                deferred.resolve();
             }
         });
 

@@ -15,7 +15,8 @@ module.exports = function (app, userModel) {
     app.post("/api/assignment/register", register);
     app.post("/api/assignment/user", createUser);
 
-    app.get("/api/assignment/user/:username", auth, findUser);
+    app.get("/api/assignment/user", auth, findAllUsers);
+    app.get("/api/assignment/user/:username", auth, findUserByUsername);
     app.put("/api/assignment/user/:id", auth, updateUser);
     app.delete("/api/assignment/user/:id", auth, deleteUser);
     app.get("/api/assignment/profile/:username", auth, findUserProfileByUsername);
@@ -91,7 +92,6 @@ module.exports = function (app, userModel) {
 
     function register(req, res) {
         var newUser = req.body;
-        newUser.roles = ['user'];
         console.log("server side user: " + newUser.username + " " + newUser.emails);
 
         userModel
@@ -142,6 +142,7 @@ module.exports = function (app, userModel) {
             .createUser(user)
             .then(
                 function (user) {
+                    console.log("return value when create user " + user);
                     res.json(user);
                 },
                 function (err) {
@@ -150,42 +151,36 @@ module.exports = function (app, userModel) {
             );
     }
 
-    function findUser(req, res) {
-        var username = req.params.username;
-        //find all user
-        if (!username) {
-            if (isAdmin(req.user)) {
-                userModel
-                    .findAllUser()
-                    .then(
-                        function (users) {
-                            res.json(users);
-                        },
-                        function (err) {
-                            res.status(400).send(err);
-                        }
-                    );
-            } else {
-                res.status(403);
-            }
-            //find user by username
-        } else {
-            if (!username) {
-                userModel
-                    .findUserByUsername(username)
-                    .then(
-                        function (user) {
-                            res.json(user);
-                        },
-                        function (err) {
-                            res.status(400).send(err);
-                        }
-                    );
-            } else {
-                res.status(403);
-            }
-        }
+    function findAllUsers(req, res) {
+        userModel
+            .findAllUser()
+            .then(
+                function (users) {
+                    res.json(users);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
     }
+
+    function findUserByUsername(req, res) {
+        var username = req.params.username;
+
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    res.json(user);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
+    }
+
 
     function findUserProfileByUsername(req, res) {
         var username = req.params.username;
@@ -205,36 +200,49 @@ module.exports = function (app, userModel) {
     function updateUser(req, res) {
         var userId = req.params.id;
         var newUser = req.body;
-        //console.log("receive from client: userId-" + userId + " user-" + user.username);
+        console.log("update user");
 
         //only admin can update the role of the user
-        if (!isAdmin(req.user)) {
-            delete newUser.roles;
-        }
-        if (typeof newUser.roles == "string") {
-            newUser.roles = newUser.roles.split(",");
-        }
+        if (isAdmin(req.user)) {
+            if (typeof newUser.roles == "string") {
+                var roles = [];
+                var rolesArr = newUser.roles.split(",");
 
-        userModel
-            .updateUser(userId, newUser)
-            .then(
-                function (users) {
-                    res.json(users);
-                },
-                function (err) {
-                    res.status(400).send(err);
+                for (var i in rolesArr) {
+                    var role = rolesArr[i].trim();
+                    roles.push(role);
+
                 }
-            );
+                newUser.roles = roles;
+            }
+
+            userModel
+                .updateUser(userId, newUser)
+                .then(
+                    function (users) {
+                        res.json(users);
+                    },
+                    function (err) {
+                        res.status(400).send(err);
+                    }
+                );
+        }
     }
 
     function deleteUser(req, res) {
-        var userId = req.param.id;
+        var userId = req.params.id;
+
+        console.log(req.user);
+        console.log(req.user.roles);
+        console.log(req.user.roles.indexOf("admin"));
 
         if (isAdmin(req.user)) {
             userModel
                 .deleteUser(userId)
                 .then(
                     function (users) {
+                        console.log("delete user");
+
                         res.json(users);
                     },
                     function (err) {
@@ -247,7 +255,7 @@ module.exports = function (app, userModel) {
     }
 
     function isAdmin(user) {
-        if (user.roles.indexOf("admin") > 0) {
+        if (user.roles.indexOf("admin") >= 0) {
             return true
         }
         return false;
