@@ -1,0 +1,51 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Manage Menu</h1>
+
+    <div ng-if="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+    <div ng-if="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+
+
+    <ul class="nav nav-tabs">
+        <li ng-class="{'active' : $location.path() == '/search'}"><a href="#/search">Search Dish</a></li>
+        <li ng-class="{'active' : $location.path() == '/manage/menu'}"><a href="#/manage/menu">Manage Dish</a></li>
+    </ul>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Image</th>
+            <th>Dish Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th><input ng-model="model.dish.title" class="form-control"/></th>
+            <th><input ng-model="model.dish.price" class="form-control"/></th>
+            <th>
+                <button ng-click="model.addDish(model.dish)" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <button ng-click="model.updateDish(model.dish)" class="btn btn-success">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="dish in model.dishes">
+            <td><img class="img-thumbnail" height="100px" width="150px" ng-src="{{dish.image_url}}"/></td>
+            <td>{{dish.title}}</td>
+            <td>{{dish.price}}</td>
+            <td>
+                <button ng-click="model.selectDish(dish)" class="btn btn-info"><span
+                        class="glyphicon glyphicon-pencil"></span></button>
+                <button ng-click="model.deleteDish(dish)" class="btn btn-danger"><span
+                        class="glyphicon glyphicon-remove"></span></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

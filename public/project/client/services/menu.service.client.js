@@ -8,7 +8,9 @@
             findMenuByTitle: findMenuByTitle,
             findRecipeById: findRecipeById,
             addDishToMenu: addDishToMenu,
-            findAllDishes: findAllDishes
+            findAllDishes: findAllDishes,
+            updateDish: updateDish,
+            deleteDish: deleteDish
         };
         return api;
 
@@ -27,6 +29,14 @@
 
         function findAllDishes() {
            return $http.get("/api/project/menu");
+        }
+
+        function updateDish(id, newDish) {
+            return $http.put("/api/project/menu/dish/" + id, newDish);
+        }
+
+        function deleteDish(id) {
+            return $http.delete("/api/project/menu/dish/" + id);
         }
 
     }

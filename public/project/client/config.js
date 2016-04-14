@@ -34,6 +34,11 @@
                 controller: "ManagerController",
                 controllerAs: "model"
             })
+            .when("/manage/menu", {
+                templateUrl: "views/menu/menu.update.view.html",
+                controller: "MenuController",
+                controllerAs: "model"
+            })
             .when("/manage/tips", {
                 templateUrl: "views/manager/manage.tips.view.html"
             })

@@ -2,14 +2,14 @@
     <h1 class="page-header">Menu</h1>
 
     <div class="row">
-        <div class="col-sm-6 col-md-3" ng-repeat="dish in dishes">
+        <div class="col-sm-6 col-md-3" ng-repeat="dish in model.dishes">
             <div class="thumbnail">
                 <img ng-src={{dish.image_url}}>
                 <div class="caption">
 
                     <h3><a href="#/dish/{{dish.recipe_id}}">{{dish.title}}</a></h3>
                     <a>Rate: {{dish.social_rank}}</a><br>
-                    <a href="#" class="btn btn-primary" role="button">Add to Cart</a>
+                    <button class="btn btn-primary" ng-click="model.order(dish)">Order</button>
                 </div>
             </div>
         </div>

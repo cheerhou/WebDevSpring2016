@@ -2,8 +2,15 @@
     <h1 class="page-header">Search Menus</h1>
 
     <div ng-show="model.message" class="alert alert-success" role="alert">{{message}}</div>
-    <div ng-show="model.error"  class="alert alert-danger"  role="alert">{{error}}</div>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{error}}</div>
 
+
+    <ul class="nav nav-tabs">
+        <li ng-class="{'active' : $location.path() == '/search'}"><a href="#/search">Search Dish</a></li>
+        <li ng-class="{'active' : $location.path() == '/manage/menu'}"><a href="#/manage/menu">Manage Dish</a></li>
+    </ul>
+
+    <h1>&nbsp;</h1>
     <input ng-model="model.title" class="form-control" placeholder="key words"/>
     <button ng-click="model.search(model.title)" class="btn btn-block btn-primary"> Search</button>
 
@@ -28,9 +35,13 @@
                     </a>
                 </td>
                 <td><img class="img-thumbnail" height="100px" width="150px" ng-src="{{dish.image_url}}"/></td>
-                <td><button class="btn btn-info" ng-click="model.addDishToMenu(dish)"><span class="glyphicon glyphicon-plus"></span></button></td>
+                <td>
+                    <button class="btn btn-info" ng-click="model.addDishToMenu(dish)"><span
+                            class="glyphicon glyphicon-plus"></span></button>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
+
 </div>
