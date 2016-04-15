@@ -1,79 +1,80 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Order Items</h1>
-    <form class="form-horizontal" role="form">
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th><span class="glyphicon glyphicon-triangle-bottom"></span> Order</th>
-                    <th><span class="glyphicon glyphicon-triangle-bottom"></span> Quantity</th>
-                    <th><span class="glyphicon glyphicon-triangle-bottom"></span> Price</th>
-                    <th><span class="glyphicon glyphicon-triangle-bottom"></span> Action</th>
-                </tr>
-                </thead>
 
-                <tbody>
-                <tr>
-                    <td>Fire Chicken</td>
-                    <td>
+    <div ng-if="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+    <div ng-if="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
 
-                        <select class="form-control" id="qunantity1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
 
-                    </td>
-                    <td>$10</td>
-                    <td>
-                        <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Apple Pie</td>
-                    <td>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Order</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        </thead>
 
-                        <select class="form-control" id="qunantity2">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-
-                    </td>
-                    <td>$5</td>
-                    <td>
-                        <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="payment">Payment Type:</label><br>
-            <div class="col-sm-10">
-                <select class="form-control" id="payment">
-                    <option value="credit">Credit Card</option>
-                    <option value="cash">Cash</option>
+        <tbody>
+        <tr ng-repeat="item in model.order.items">
+            <td>{{item.title}}</td>
+            <td>
+                <select ng-model="item.quantity" ng-change="model.calculateTotal(item)" class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
                 </select>
+
+            </td>
+            <td>{{item.price}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="model.deleteItemInOrder(item)"><span
+                        class="glyphicon glyphicon-remove"></span></button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td ng-model="model.order.total">{{model.order.total}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="payment">Payment Type:</label><br>
+                <div class="col-sm-10">
+                    <select ng-model="model.order.payment" class="form-control" id="payment">
+                        <option value="credit">Credit Card</option>
+                        <option value="cash">Cash</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="devMed">Delivery Method:</label><br>
-            <div class="col-sm-10">
-                <select class="form-control" id="devMed">
-                    <option value="pickUp">Pick Up</option>
-                    <option value="deliver">Deliver</option>
-                </select>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="devMed">Delivery Method:</label><br>
+                <div class="col-sm-10">
+                    <select ng-model="model.order.delivery" class="form-control" id="devMed">
+                        <option value="pickUp">Pick Up</option>
+                        <option value="deliver">Deliver</option>
+                    </select>
+                </div>
             </div>
+
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2">Total:</label>
-        </div>
-    </form>
+    </div>
+
 
     <!--------payment------------------->
-    <div ng-include="'views/order/payment.order.view.html'"></div>
+    <div class="panel panel-default" ng-show="model.order.payment === 'credit'">
+        <div class="panel-body">
+            <div ng-include="'views/order/payment.order.view.html'"></div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary btn-block">Order</button>
+
 
 </div>

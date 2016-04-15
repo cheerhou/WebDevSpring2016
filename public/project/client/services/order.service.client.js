@@ -3,12 +3,14 @@
         .module("ResManageApp")
         .factory("OrderService", OrderService);
 
-    function OrderService($http) {
+    function OrderService($http, $rootScope) {
+
         var api = {
             setCurrentOrder: setCurrentOrder,
             getCurrentOrder: getCurrentOrder,
             createOrder: createOrder,
-            addDishToCurrentOrder: addDishToCurrentOrder
+            addDishToCurrentOrder: addDishToCurrentOrder,
+            deleteItemInOrder: deleteItemInOrder
         };
         return api;
 
@@ -25,7 +27,19 @@
         }
 
         function addDishToCurrentOrder(dish) {
-            $rootScope.currentOrder.dishes.push(dish);
+            $rootScope.currentOrder.items.push(dish);
+        }
+
+        function deleteItemInOrder(recipe_id) {
+            var order = $rootScope.currentOrder;
+            var items = order.items;
+            for(var i in items) {
+                if(items[i].recipe_id == recipe_id) {
+                    order.items.splice(i, 1);
+                    return order;
+                }
+            }
+            return null;
         }
     }
 

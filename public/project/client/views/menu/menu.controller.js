@@ -14,6 +14,11 @@
 
 
         function init() {
+            if(!OrderService.getCurrentOrder()) {
+                var currentOrder = {items: [], total: 0};
+                OrderService.setCurrentOrder(currentOrder);
+            }
+
             MenuService
                 .findAllDishes()
                 .then(function (respond) {
