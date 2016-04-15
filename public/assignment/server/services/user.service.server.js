@@ -92,7 +92,6 @@ module.exports = function (app, userModel) {
 
     function register(req, res) {
         var newUser = req.body;
-        console.log("server side user: " + newUser.username + " " + newUser.emails);
 
         userModel
             .findUserByUsername(newUser.username)
@@ -101,10 +100,6 @@ module.exports = function (app, userModel) {
                     if (user) {
                         res.json(null);
                     } else {
-                        //encrypt the password when registering
-                        newUser.password = bcrypt.hashSync(newUser.password);
-                        console.log("encrypt the password");
-
                         return userModel.createUser(newUser);
                     }
                 },
@@ -115,15 +110,13 @@ module.exports = function (app, userModel) {
             .then(
                 function (user) {
                     if (user) {
-                        console.log("login user start");
                         req.login(user,
-                            function (err) {//???
+                            function (err) {
                                 if (err) {
                                     console.log(err);
                                     res.status(400).send(err);
                                 } else {
                                     res.json(user);
-                                    console.log("login user");
                                 }
                             }
                         );
@@ -138,11 +131,14 @@ module.exports = function (app, userModel) {
 
     function createUser(req, res) {
         var user = req.body;
+
+        //encrypt the password when registering
+        user.password = bcrypt.hashSync(user.password);
+
         userModel
             .createUser(user)
             .then(
                 function (user) {
-                    console.log("return value when create user " + user);
                     res.json(user);
                 },
                 function (err) {
