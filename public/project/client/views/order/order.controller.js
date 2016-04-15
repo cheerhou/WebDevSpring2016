@@ -3,14 +3,19 @@
         .module("ResManageApp")
         .controller("OrderController", OrderController);
 
-    function OrderController($location, OrderService) {
+    function OrderController($location, OrderService, UserService) {
         var vm = this;
+        var userId;
+
         vm.calculateTotal = calculateTotal;
         vm.deleteItemInOrder = deleteItemInOrder;
+        vm.createOrder = createOrder;
 
-        function init(){
+        function init() {
             vm.order = OrderService.getCurrentOrder();
+            userId = UserService.getCurrentUser();
         }
+
         init();
 
 
@@ -20,7 +25,7 @@
             //re-calculate total
             var items = vm.order.items;
             vm.order.total = 0;
-            for(var i in items) {
+            for (var i in items) {
                 calculateTotal(items[i]);
             }
         }
@@ -30,6 +35,25 @@
             total += item.quantity * item.price;
 
             vm.order.total = total;
+        }
+
+        function createOrder(order) {
+            if(!userId) {
+                vm.error = "Please register or login."
+            } else {
+                order.userId = userId;
+
+                OrderService.createOrder
+                    .then(
+                        function (respond) {
+                            if (repond.data) {
+                                vm.message = "Order created successfully."
+                            }
+                        }, function (err) {
+                            vm.error = err;
+                        }
+                    );
+            }
         }
     }
 

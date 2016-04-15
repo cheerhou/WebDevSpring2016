@@ -15,7 +15,14 @@
 
         function init() {
             if(!OrderService.getCurrentOrder()) {
-                var currentOrder = {items: [], total: 0};
+                var currentOrder = {
+                    userId: "",
+                    items: [],
+                    total: 0,
+                    delivery: "",
+                    paymentType: ""
+                };
+
                 OrderService.setCurrentOrder(currentOrder);
             }
 

@@ -19,11 +19,12 @@
         <tr ng-repeat="item in model.order.items">
             <td>{{item.title}}</td>
             <td>
-                <select ng-model="item.quantity" ng-change="model.calculateTotal(item)" class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                <select class="form-control" ng-model="item.quantity" ng-init="item.quantity='1'" ng-change="model.calculateTotal(item)" >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </select>
 
             </td>
@@ -68,13 +69,13 @@
 
 
     <!--------payment------------------->
-    <div class="panel panel-default" ng-show="model.order.payment === 'credit'">
+    <div class="panel panel-default" ng-show="model.order.paymentType === 'credit'">
         <div class="panel-body">
             <div ng-include="'views/order/payment.order.view.html'"></div>
         </div>
     </div>
 
-    <button class="btn btn-primary btn-block">Order</button>
+    <button class="btn btn-primary btn-block" ng-click="createOrder(model.order)">Order</button>
 
 
 </div>

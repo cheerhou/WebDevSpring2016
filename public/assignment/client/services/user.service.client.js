@@ -12,7 +12,9 @@
             findUserProfileByUsername: findUserProfileByUsername,
             deleteUser: deleteUser,
             updateUser: updateUser,
-            createUser: createUser
+            createUser: createUser,
+            getCurrentUser: getCurrentUser,
+            setCurrentUser: setCurrentUser
         };
         return api;
 
@@ -46,6 +48,14 @@
 
         function createUser(user) {
             return $http.post("/api/assignment/user", user);
+        }
+
+        function getCurrentUser() {
+            return $rootScope.currentUser;
+        }
+
+        function setCurrentUser(user) {
+            $rootScope.currentUser = user;
         }
 
 

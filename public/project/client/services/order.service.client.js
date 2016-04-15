@@ -22,8 +22,9 @@
         function getCurrentOrder() {
             return $rootScope.currentOrder;
         }
+
         function createOrder(order) {
-            //return $http.post("/api/project/order", order);
+            return $http.post("/api/project/order", order);
         }
 
         function addDishToCurrentOrder(dish) {
