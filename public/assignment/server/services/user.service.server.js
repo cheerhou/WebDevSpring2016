@@ -211,43 +211,43 @@ module.exports = function (app, userModel) {
                 }
                 newUser.roles = roles;
             }
-
-            //encrypt the password when password is changed
-            userModel.findUserById(userId)
-                .then(
-                    function (user) {
-                        //when password changed
-                        var oldPassword = user.password;
-                        if (newUser.password != oldPassword) {
-                            newUser.password = bcrypt.hashSync(newUser.password);
-                            //console.log("encrypt when update" + newUser.password);
-                        }
-
-                        return userModel.updateUser(userId, newUser);
-                    }
-                )
-                .then(
-                    function (users) {
-                        res.json(users);
-                    },
-                    function (err) {
-                        res.status(400).send(err);
-                    }
-                );
-
-
-
-                //userModel
-                //    .updateUser(userId, newUser)
-                //    .then(
-                //        function (users) {
-                //            res.json(users);
-                //        },
-                //        function (err) {
-                //            res.status(400).send(err);
-                //        }
-                //    );
         }
+
+        //encrypt the password when password is changed
+        userModel.findUserById(userId)
+            .then(
+                function (user) {
+                    //when password changed
+                    var oldPassword = user.password;
+                    if (newUser.password != oldPassword) {
+                        newUser.password = bcrypt.hashSync(newUser.password);
+                        //console.log("encrypt when update" + newUser.password);
+                    }
+
+                    return userModel.updateUser(userId, newUser);
+                }
+            )
+            .then(
+                function (users) {
+                    res.json(users);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
+
+        //userModel
+        //    .updateUser(userId, newUser)
+        //    .then(
+        //        function (users) {
+        //            res.json(users);
+        //        },
+        //        function (err) {
+        //            res.status(400).send(err);
+        //        }
+        //    );
+
     }
 
     function deleteUser(req, res) {
