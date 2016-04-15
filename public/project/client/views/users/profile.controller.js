@@ -3,35 +3,44 @@
         .module("ResManageApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, $routeParams, $location, UserService) {
-        $scope.error = null;
-        $scope.message = null;
-        $scope.currentUser = UserService.getCurrentUser();
-        $scope.update = update;
+    function ProfileController($routeParams, UserService) {
+        var vm = this;
+        vm.update = update;
 
-        if (!$scope.currentUser) {
-            $location.url("/home");
+        function init() {
+            //get current user profile by username
+            var username = $routeParams.username;
+            console.log("profile username " + username);
+
+            UserService.findUserProfileByUsername(username)
+                .then(
+                    function (response) {
+                        console.log("findUserProfileByUsername");
+                        vm.user = response.data;
+                    },
+                    function (error) {
+                        vm.error = error;
+                    }
+                );
         }
+
+        init();
 
         function update(user) {
-            if (user) {
-                console.log("user: " + userId + " " + user.username + " " + user.firstName);
-                UserService
-                    .updateUser($routeParams.id, user)
-                    .then(function (respond) {
-                        if (respond.data) {
-                            $scope.message = "User updated successfully";
-                            UserService.setCurrentUser($scope.currentUser);
-                        } else {
-                            $scope.error = "Fail to update.";
+            UserService.updateUser(user)
+                .then(
+                    function (response) {
+                        if (response.data) {
+                            vm.message = "update successfully"
+                            init();
                         }
-                    });
 
-
-            } else {
-                $scope.error = "Unable to update the user";
-            }
+                    },
+                    function (error) {
+                        vm.error = "fail to update profile. " + error;
+                    }
+                );
         }
-
     }
+
 })();

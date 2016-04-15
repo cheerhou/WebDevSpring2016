@@ -3,60 +3,46 @@
         .module("ResManageApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($scope, $rootScope, $location, UserService) {
-        $scope.register = register;
-        $scope.error = null;
+    function RegisterController(UserService, $location) {
+        var vm = this;
+        vm.register = register;
 
         function register(user) {
-            $scope.error = null;
             if (user == null) {
-                $scope.error = "Please fill in the required fields";
+                vm.error = "Please fill in the required fields";
                 return;
             }
             if (!user.username) {
-                $scope.error = "Please provide a username";
+                vm.error = "Please provide a username";
                 return;
             }
             if (!user.password || !user.password2) {
-                $scope.error = "Please provide a password";
+                vm.error = "Please provide a password";
                 return;
             }
             if (user.password != user.password2) {
-                $scope.error = "Passwords must match";
-                return;
-            }
-            var user = UserService.findUserByUsername(user.username);
-            if (user != null) {
-                $scope.error = "User already exists";
+                vm.error = "Passwords must match";
                 return;
             }
 
-            UserService
-                .findUserByUsername(user.username)
-                .then(function(respond) {
-                    if(respond.data) {
-                        $scope.error = "User already exists!";
-                        return;
-                    } else {
 
-                        UserService
-                            .createUser(user)
-                            .then(function(respond) {
-                                if(respond.data) {
-                                    $scope.message = "You have Registered successfully.";
-                                    //the last user in the respond is the new created user
-                                    UserService.setCurrentUser(respond.data.pop());
-                                    var currentUser = UserService.getCurrentUser();
-                                    //console.log("current user : " + currentUser._id + " " + currentUser.username);
+            UserService.register(user)
+                .then(
+                    function (respond) {
+                        if (respond.data) {
+                            vm.user = respond.data;
 
-                                    $location.url("/profile?id=" + currentUser._id);
-                                } else{
-                                    $scope.error = "Register failed!";
-                                }
-                            })
+                            UserService.setCurrentUser(respond.data);
+                            var u = UserService.getCurrentUser();
+                            console.log("current user " + u._id + u.username);
+
+                            $location.url("/profile/" + user.username);
+                        }
+                    },
+                    function (error) {
+                        vm.error = error;
                     }
-
-                });
+                );
 
         }
     }

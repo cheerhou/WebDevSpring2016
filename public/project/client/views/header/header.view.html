@@ -18,23 +18,32 @@
                 <li ng-class="{'active': $location.url()=='/reservation'}"><a href="#/reservation">Reservation</a></li>
                 <li ng-class="{'active': $location.url()=='/manage'}"><a href="#/manage">Manage</a></li>
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{'active': $location.url()=='/register'}">
+                <li ng-hide="currentUser"
+                    ng-class="{'active': $location.url()=='/register'}">
                     <a href="#/register">
-                        <span class="glyphicon glyphicon-user"> Register</span></a></li>
-                <li ng-class="{'active': $location.url()=='/login'}">
+                        <span class="glyphicon glyphicon-user"> Register</span></a>
+                </li>
+                <li ng-hide="currentUser"
+                    ng-class="{'active': $location.url()=='/login'}">
                     <a href="#/login">
-                        <span class="glyphicon glyphicon-log-in"> Login</span></a></li>
-                <!--<li ng-show="currentUser">-->
-                    <!--<a ng-click="logout()"><span class="glyphicon glyphicon-log-out"> Logout</span></a></li>-->
-                <!--<li ng-show="currentUser"-->
-                    <!--ng-class="{'active': $location.url()=='/profile'}">-->
-                    <!--<a href="#/profile/{{currentUser._id}}">-->
-                        <!--<span class="glyphicon glyphicon-user"> {{currentUser.username}}</span></a></li>-->
-                <!--<li ng-show="currentUser.roles.indexOf('admin') >= 0"-->
-                    <!--ng-class="{'active': $location.url()=='/admin'}">-->
-                    <!--<a href="#/manager">-->
-                        <!--<span class="glyphicon glyphicon-user"> Manager</span></a></li>-->
+                        <span class="glyphicon glyphicon-log-in"> Login</span></a>
+                </li>
+                <li ng-show="currentUser">
+                    <a ng-click="logout()"><span class="glyphicon glyphicon-log-out"> Logout</span></a>
+                </li>
+                <li ng-show="currentUser.roles.indexOf('admin') < 0"
+                    ng-class="{'active': $location.url()=='/profile'}">
+                    <a href="#/profile/{{currentUser.username}}">
+                        <span class="glyphicon glyphicon-user"> {{currentUser.username}}</span></a>
+                </li>
+                <li ng-show="currentUser.roles.indexOf('admin') >= 0"
+                    ng-class="{'active': $location.url()=='/manage'}">
+                    <a href="#/manage">
+                        <span class="glyphicon glyphicon-user">Manager</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

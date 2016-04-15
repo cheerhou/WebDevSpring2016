@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($location, $rootScope, UserService) {
+    function LoginController($location, UserService) {
         var vm = this;
         vm.login = login;
 
@@ -17,7 +17,7 @@
                 .then(
                     function (respond) {
                         if (respond.data) {
-                            $rootScope.currentUser = respond.data;
+                            UserService.setCurrentUser(respond.data);
                             $location.url("/profile/" + user.username);
                         }
                     }, function (err) {

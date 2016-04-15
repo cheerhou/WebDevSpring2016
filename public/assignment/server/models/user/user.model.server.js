@@ -1,4 +1,5 @@
 var q = require("q");
+var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function (db, mongoose) {
     var UserSchema = require("./user.schema.server.js")(mongoose);
@@ -20,6 +21,10 @@ module.exports = function (db, mongoose) {
 
     function createUser(user) {
         var deferred = q.defer();
+
+        //encrypt the password when registering
+        user.password = bcrypt.hashSync(user.password);
+
         UserModel.create(user,
             function (err, user) {
                 if (!err) {

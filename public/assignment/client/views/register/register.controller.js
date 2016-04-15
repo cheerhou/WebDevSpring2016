@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .controller("RegisterController", registerController);
 
-    function registerController(UserService, $location, $rootScope) {
+    function registerController(UserService, $location) {
         var vm = this;
 
         vm.register = register;
@@ -34,7 +34,7 @@
                     function (respond) {
                         if (respond.data) {
                             vm.user = respond.data;
-                            $rootScope.currentUser = respond.data;
+                            UserService.setCurrentUser(respond.data);
                             $location.url("/profile/" + user.username);
                         }
                     },

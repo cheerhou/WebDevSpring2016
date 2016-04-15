@@ -5,7 +5,6 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var bcrypt = require('bcrypt-nodejs');
 
-
 module.exports = function (app, userModel) {
     var auth = authenticated;
 
@@ -132,9 +131,6 @@ module.exports = function (app, userModel) {
     function createUser(req, res) {
         var user = req.body;
 
-        //encrypt the password when registering
-        user.password = bcrypt.hashSync(user.password);
-
         userModel
             .createUser(user)
             .then(
@@ -235,18 +231,6 @@ module.exports = function (app, userModel) {
                     res.status(400).send(err);
                 }
             );
-
-
-        //userModel
-        //    .updateUser(userId, newUser)
-        //    .then(
-        //        function (users) {
-        //            res.json(users);
-        //        },
-        //        function (err) {
-        //            res.status(400).send(err);
-        //        }
-        //    );
 
     }
 

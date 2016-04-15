@@ -1,9 +1,11 @@
 var q = require("q");
 var mongoose = require("mongoose");
+var bcrypt = require('bcrypt-nodejs');
+
 
 module.exports = function (db) {
     var UserSchema = require("./user.schema.server.js")();
-    var ProUserModel = mongoose.model("ProUserModel", UserSchema);
+    var ProjectUserModel = mongoose.model("ProjectUserModel", UserSchema);
 
 
     var api = {
@@ -21,7 +23,11 @@ module.exports = function (db) {
 
     function createUser(user) {
         var deferred = q.defer();
-        ProUserModel.create(user,
+
+        //encrypt the password when registering
+        user.password = bcrypt.hashSync(user.password);
+
+        ProjectUserModel.create(user,
             function (err, user) {
                 if (!err) {
                     deferred.resolve(user);
@@ -29,7 +35,8 @@ module.exports = function (db) {
                     deferred.reject(err);
                 }
 
-            });
+            }
+        );
         return deferred.promise;
     }
 
@@ -37,13 +44,15 @@ module.exports = function (db) {
     function findAllUser() {
         var deferred = q.defer();
 
-        ProUserModel.find(function (err, users) {
-            if (!err) {
-                deferred.resolve(users);
-            } else {
-                deferred.reject(err);
+        ProjectUserModel.find(
+            function (err, users) {
+                if (!err) {
+                    deferred.resolve(users);
+                } else {
+                    deferred.reject(err);
+                }
             }
-        });
+        );
 
         return deferred.promise;
     }
@@ -51,7 +60,7 @@ module.exports = function (db) {
 
     function findUserById(userId) {
         var deferred = q.defer();
-        ProUserModel.findById(userId, function (err, user) {
+        ProjectUserModel.findById(userId, function (err, user) {
             if (!err) {
                 deferred.resolve(user);
             } else {
@@ -65,7 +74,7 @@ module.exports = function (db) {
 
     function updateUser(userId, newUser) {
         var deferred = q.defer();
-        ProUserModel
+        ProjectUserModel
             .update(
                 {_id: userId},
                 {
@@ -92,7 +101,7 @@ module.exports = function (db) {
 
     function deleteUser(userId) {
         var deferred = q.defer();
-        ProUserModel
+        ProjectUserModel
             .remove({_id: userId}, function (err, stats) {
                 if (!err) {
                     deferred.resolve(stats);
@@ -107,7 +116,7 @@ module.exports = function (db) {
     function findUserByUsername(username) {
         var deferred = q.defer();
 
-        ProUserModel
+        ProjectUserModel
             .findOne({username: username},
                 function (err, user) {
                     if (!err) {
@@ -124,7 +133,7 @@ module.exports = function (db) {
     function findUserByCredentials(credentials) {
         var deferred = q.defer();
 
-        ProUserModel.findOne(
+        ProjectUserModel.findOne(
             {
                 username: credentials.username,
                 password: credentials.password
