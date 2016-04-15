@@ -43,7 +43,7 @@
         }
 
         function updateUser(user) {
-            return $http.put("/api/assignment/user/" + user._id, user);
+            return $http.put("/api/assignment/user/" + user.username, user);
         }
 
         function createUser(user) {

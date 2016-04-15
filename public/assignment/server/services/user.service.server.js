@@ -17,7 +17,7 @@ module.exports = function (app, userModel) {
 
     app.get("/api/assignment/user", auth, findAllUsers);
     app.get("/api/assignment/user/:username", auth, findUserByUsername);
-    app.put("/api/assignment/user/:id", auth, updateUser);
+    app.put("/api/assignment/user/:username", auth, updateUser);
     app.delete("/api/assignment/user/:id", auth, deleteUser);
     app.get("/api/assignment/profile/:username", auth, findUserProfileByUsername);
 
@@ -198,9 +198,8 @@ module.exports = function (app, userModel) {
 
 
     function updateUser(req, res) {
-        var userId = req.params.id;
+        var username = req.params.username;
         var newUser = req.body;
-        console.log("update user");
 
         //only admin can update the role of the user
         if (isAdmin(req.user)) {
@@ -217,7 +216,7 @@ module.exports = function (app, userModel) {
             }
 
             userModel
-                .updateUser(userId, newUser)
+                .updateUser(username, newUser)
                 .then(
                     function (users) {
                         res.json(users);

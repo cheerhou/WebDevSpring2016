@@ -62,16 +62,18 @@ module.exports = function (db, mongoose) {
     }
 
 
-    function updateUser(userId, newUser) {
+    function updateUser(username, newUser) {
         var deferred = q.defer();
         UserModel
-            .update({_id: userId}, {$set: newUser}, function (err, stats) {
-                if (!err) {
-                    deferred.resolve(stats);
-                } else {
-                    deferred.reject(err);
+            .findOneAndUpdate({username: username}, {$set: newUser},
+                function (err, stats) {
+                    if (!err) {
+                        deferred.resolve(stats);
+                    } else {
+                        deferred.reject(err);
+                    }
                 }
-            });
+            );
         return deferred.promise;
     }
 
