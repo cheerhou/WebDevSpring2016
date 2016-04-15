@@ -8,6 +8,7 @@ module.exports = function () {
             password: String,
             firstName: String,
             lastName: String,
+            roles:[String],
             email: String,
             phone: String
         }, {collection: 'project.user'}

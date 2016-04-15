@@ -66,13 +66,27 @@ module.exports = function (db) {
     function updateUser(userId, newUser) {
         var deferred = q.defer();
         ProUserModel
-            .update({_id: userId}, {$set: newUser}, function (err, stats) {
-                if (!err) {
-                    deferred.resolve(stats);
-                } else {
-                    deferred.reject(err);
+            .update(
+                {_id: userId},
+                {
+                    $set: {
+                        username: newUser.username,
+                        password: newUser.password,
+                        firstName: newUser.firstName,
+                        lastName: newUser.lastName,
+                        roles: newUser.roles,
+                        email: newUser.email,
+                        phone: newUser.phone
+                    }
+                },
+                function (err, stats) {
+                    if (!err) {
+                        deferred.resolve(stats);
+                    } else {
+                        deferred.reject(err);
+                    }
                 }
-            });
+            );
         return deferred.promise;
     }
 
