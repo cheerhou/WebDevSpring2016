@@ -74,7 +74,6 @@ module.exports = function (db, mongoose) {
                         firstName: newUser.firstName,
                         lastName: newUser.lastName,
                         roles: newUser.roles
-
                     }
                 },
                 function (err, stats) {

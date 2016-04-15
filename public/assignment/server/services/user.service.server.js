@@ -199,6 +199,8 @@ module.exports = function (app, userModel) {
 
         //only admin can update the role of the user
         if (isAdmin(req.user)) {
+
+            //clear roles string from user input
             if (typeof newUser.roles == "string") {
                 var roles = [];
                 var rolesArr = newUser.roles.split(",");
@@ -206,13 +208,24 @@ module.exports = function (app, userModel) {
                 for (var i in rolesArr) {
                     var role = rolesArr[i].trim();
                     roles.push(role);
-
                 }
                 newUser.roles = roles;
             }
 
-            userModel
-                .updateUser(userId, newUser)
+            //encrypt the password when password is changed
+            userModel.findUserById(userId)
+                .then(
+                    function (user) {
+                        //when password changed
+                        var oldPassword = user.password;
+                        if (newUser.password != oldPassword) {
+                            newUser.password = bcrypt.hashSync(newUser.password);
+                            console.log("encrypt when update" + newUser.password);
+                        }
+
+                        return userModel.updateUser(userId, newUser);
+                    }
+                )
                 .then(
                     function (users) {
                         res.json(users);
@@ -221,6 +234,19 @@ module.exports = function (app, userModel) {
                         res.status(400).send(err);
                     }
                 );
+
+
+
+                //userModel
+                //    .updateUser(userId, newUser)
+                //    .then(
+                //        function (users) {
+                //            res.json(users);
+                //        },
+                //        function (err) {
+                //            res.status(400).send(err);
+                //        }
+                //    );
         }
     }
 
