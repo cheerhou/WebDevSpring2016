@@ -12,16 +12,18 @@
                 vm.error = "No user exist!"
                 return;
             }
-            UserService
-                .login(user)
-                .then(function (respond) {
-                    if (respond.data) {
-                        $rootScope.currentUser = respond.data;
-                        $location.url("/profile/" + user.username);
-                    } else {
-                        vm.error = "Please verify your user name or password."
+
+            UserService.login(user)
+                .then(
+                    function (respond) {
+                        if (respond.data) {
+                            $rootScope.currentUser = respond.data;
+                            $location.url("/profile/" + user.username);
+                        }
+                    }, function (err) {
+                        vm.error = "Please verify your user name or password.";
                     }
-                });
+                );
 
         }
     }
