@@ -4,15 +4,15 @@
     <div ng-if="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
     <div ng-if="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
 
-    <table class="table table-responsive table-striped">
+    <table class="table table-striped">
         <thead>
         <tr>
-            <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Username</th>
-            <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Password</th>
-            <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> First Name</th>
-            <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Last Name</th>
-            <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Roles</th>
-            <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a> Actions</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Roles</th>
+            <th>Actions</th>
         </tr>
         <tr>
             <th><input type="text" placeholder="Username" ng-model="model.user.username"></th>
