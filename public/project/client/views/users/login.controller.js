@@ -1,4 +1,4 @@
-(function() {
+(function () {
     angular
         .module("ResManageApp")
         .controller("LoginController", LoginController);
@@ -9,26 +9,25 @@
         vm.login = login;
 
         function login(user) {
-            if(!user) {
+            if (!user) {
                 vm.error = "No user exist!"
                 return;
             }
-
-            UserService.login(user)
+            UserService
+                .findUserByCredentials({username: user.username, password: user.password})
                 .then(
                     function (respond) {
                         if (respond.data) {
+                            vm.user = respond.data;
                             UserService.setCurrentUser(respond.data);
-                            vm.message = "Login successful."
-
                             $location.url("/profile/" + user.username);
                         }
-                    }, function (err) {
-                        vm.error = "Please verify your user name or password.";
+                    }, function(err) {
+                        vm.error = "Please verify your user name or password." + err;
                     }
                 );
 
         }
     }
 
-}) ();
+})();

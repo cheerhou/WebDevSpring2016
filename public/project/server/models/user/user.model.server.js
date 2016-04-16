@@ -16,16 +16,12 @@ module.exports = function (db) {
         deleteUser: deleteUser,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials
-
     };
     return api;
 
 
     function createUser(user) {
         var deferred = q.defer();
-
-        //encrypt the password when registering
-        user.password = bcrypt.hashSync(user.password);
 
         ProjectUserModel.create(user,
             function (err, user) {

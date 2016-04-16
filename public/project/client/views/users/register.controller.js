@@ -26,16 +26,12 @@
             }
 
 
-            UserService.register(user)
+            UserService.createUser(user)
                 .then(
                     function (respond) {
                         if (respond.data) {
                             vm.user = respond.data;
-
                             UserService.setCurrentUser(respond.data);
-                            var u = UserService.getCurrentUser();
-                            console.log("current user " + u._id + u.username);
-
                             $location.url("/profile/" + user.username);
                         }
                     },

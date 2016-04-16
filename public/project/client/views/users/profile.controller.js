@@ -27,7 +27,7 @@
         init();
 
         function update(user) {
-            UserService.updateUser(user)
+            UserService.updateUser(user._id, user)
                 .then(
                     function (response) {
                         if (response.data) {

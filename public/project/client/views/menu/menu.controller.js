@@ -14,7 +14,8 @@
 
 
         function init() {
-            if(!OrderService.getCurrentOrder()) {
+            var currentOrder = OrderService.getCurrentOrder();
+            if(!currentOrder) {
                 var currentOrder = {
                     userId: "",
                     items: [],

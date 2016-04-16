@@ -5,58 +5,55 @@
 
     function UserService($rootScope, $http) {
         var api = {
-            login: login,
-            logout: logout,
-            register: register,
-            findAllUsers: findAllUsers,
-            findUserProfileByUsername: findUserProfileByUsername,
-            deleteUser: deleteUser,
-            updateUser: updateUser,
-            createUser: createUser,
+            setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
-            setCurrentUser: setCurrentUser
+            findUserByCredentials: findUserByCredentials,
+            findUserByUsername: findUserByUsername,
+            findAllUsers: findAllUsers,
+            createUser: createUser,
+            deleteUserById: deleteUserById,
+            updateUser: updateUser,
+            findUserProfileByUsername: findUserProfileByUsername
         };
         return api;
 
 
-        function login(user) {
-            return $http.post("/api/project/login", user);
-        }
+        function setCurrentUser(user) {
+            $rootScope.currentUser = user;
 
-        function logout() {
-            return $http.post("/api/project/logout");
-        }
-
-        function register(user) {
-            return $http.post("/api/project/register", user);
-        }
-
-        function findAllUsers() {
-            return $http.get("/api/project/user");
-        }
-
-        function findUserProfileByUsername(username) {
-            return $http.get("/api/project/profile/" + username);
-        }
-
-        function deleteUser(userId) {
-            return $http.delete("/api/project/user/" + userId);
-        }
-
-        function updateUser(user) {
-            return $http.put("/api/project/user/" + user._id, user);
-        }
-
-        function createUser(user) {
-            return $http.post("/api/project/user", user);
         }
 
         function getCurrentUser() {
             return $rootScope.currentUser;
         }
 
-        function setCurrentUser(user) {
-            $rootScope.currentUser = user;
+        function createUser(user) {
+            return $http.post("/api/project/user", user);
+        }
+
+        function findUserByUsername(username) {
+            return $http.get("/api/project/user?username=" + username);
+
+        }
+
+        function findUserByCredentials(credentials) {
+            return $http.post("/api/project/user/login", credentials);
+        }
+
+        function findAllUsers() {
+            return $http.get("/api/project/user");
+        }
+
+        function deleteUserById(userId) {
+            return $http.delete("/api/project/user/" + userId);
+        }
+
+        function updateUser(userId, user) {
+            return $http.put("/api/project/user/" + userId, user);
+        }
+
+        function findUserProfileByUsername(username) {
+            return $http.get("/api/project/profile/" + username);
         }
     }
 })();

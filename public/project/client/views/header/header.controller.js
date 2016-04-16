@@ -7,9 +7,8 @@
         $scope.logout = logout;
 
         function logout() {
-            UserService.logout();
             $rootScope.currentUser = null;
-            $location.url("/home");
+            $location.url("/menu");
         }
     }
 
