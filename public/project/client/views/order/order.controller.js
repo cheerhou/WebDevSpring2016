@@ -2,9 +2,10 @@
     angular
         .module("ResManageApp")
         .controller("OrderController", OrderController)
-        .controller("ListOrderController", ListOrderController);
+        .controller("ListOrderController", ListOrderController)
+        .controller("DetailOrderController", DetailOrderController);
 
-    function OrderController($location, OrderService, UserService) {
+    function OrderController(OrderService, UserService) {
         var vm = this;
 
         vm.updateItemTotal = updateItemTotal;
@@ -96,6 +97,24 @@
 
         }
 
+        init();
+
+    }
+
+    function DetailOrderController(OrderService, $routeParams) {
+        var vm = this;
+
+        function init() {
+            var orderId = $routeParams.orderId;
+            OrderService.findOrderByOrderId(orderId)
+                .then(
+                    function(respond) {
+                        if(respond.data) {
+                            vm.order = respond.data;
+                        }
+                    }
+                );
+        }
         init();
 
     }

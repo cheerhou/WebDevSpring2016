@@ -6,7 +6,7 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/menu", {
-                templateUrl: "views/menu/menu.view.html",
+                templateUrl: "views/menu/menu-list.view.html",
                 controller: "MenuController",
                 controllerAs: "model"
             })
@@ -24,6 +24,7 @@
             })
             .when("/order/detail/:orderId", {
                 templateUrl: "views/order/order-detail.view.html",
+                controller: "DetailOrderController",
                 controllerAs: "model"
                 //resolve: {loggedin: checkLoggedin}
             })

@@ -33,7 +33,8 @@
                 quantity: "1",
                 price: dish.price,
                 title: dish.title,
-                total: dish.price
+                total: dish.price,
+                image_url: dish.image_url
             };
 
             OrderService.addDishToCurrentOrder(newDish);

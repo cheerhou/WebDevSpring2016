@@ -2,6 +2,8 @@ module.exports = function (app, orderModel) {
 
     app.post("/api/project/order", createOrder);
     app.get("/api/project/order/:userId", findOrdersByUser);
+    app.get("/api/project/order/detail/:orderId", findOrderByOrderId);
+
 
     function createOrder(req, res) {
         var order = req.body;
@@ -19,7 +21,7 @@ module.exports = function (app, orderModel) {
 
     function findOrdersByUser(req, res) {
         var userId = req.params.userId;
-        console.log("userId " + userId);
+        //console.log("userId " + userId);
         orderModel.findOrdersByUser(userId)
             .then(
                 function (orders) {
@@ -31,6 +33,20 @@ module.exports = function (app, orderModel) {
 
                 }
             );
+    }
+
+    function findOrderByOrderId(req, res) {
+        var orderId = req.params.orderId;
+        orderModel.findOrderByOrderId(orderId)
+            .then(
+                function (order) {
+                    res.json(order);
+                }, function (err) {
+                    res.status(400).send(err);
+
+                }
+            );
+
     }
 
 

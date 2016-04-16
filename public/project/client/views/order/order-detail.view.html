@@ -4,41 +4,21 @@
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
-            <tr>Order#: 00001</tr>
+            <tr>Order No. {{model.order._id}}</tr>
             <tr>
                 <th></th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span> Order</th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span> Quantity</th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span> Price</th>
+                <th>Order</th>
+                <th>Quantity</th>
+                <th>Price</th>
             </tr>
             </thead>
 
             <tbody>
-            <tr>
-                <td><img src="..."></td>
-                <td>Fire Chicken</td>
-                <td>
-                    <select class="form-control" id="qunantity1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select>
-                </td>
-                <td>$10</td>
-            </tr>
-            <tr>
-                <td><img src="..."></td>
-                <td>Apple Pie</td>
-                <td>
-                    <select class="form-control" id="qunantity2">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select>
-                </td>
-                <td>$5</td>
+            <tr ng-repeat="item in model.order.items">
+                <td><img ng-src="{{item.image_url}}" height="100px" width="150px"></td>
+                <td>{{item.title}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.price}}</td>
             </tr>
             </tbody>
         </table>

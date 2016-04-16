@@ -12,7 +12,8 @@
             createOrder: createOrder,
             addDishToCurrentOrder: addDishToCurrentOrder,
             deleteItemInOrder: deleteItemInOrder,
-            findOrdersByUser: findOrdersByUser
+            findOrdersByUser: findOrdersByUser,
+            findOrderByOrderId: findOrderByOrderId
         };
         return api;
 
@@ -60,6 +61,10 @@
 
         function findOrdersByUser(userId) {
             return $http.get("/api/project/order/" + userId);
+        }
+
+        function findOrderByOrderId(orderId) {
+            return $http.get("/api/project/order/detail/" + orderId);
         }
 
     }

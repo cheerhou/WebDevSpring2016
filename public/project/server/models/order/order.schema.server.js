@@ -9,7 +9,8 @@ module.exports = function () {
                 title: String,
                 price: Number,
                 quantity: Number,
-                total: Number
+                total: Number,
+                image_url: String
             }],
             total: Number,
             tableNum: String,
