@@ -1,44 +1,44 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Reservation</h1>
 
-    <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
-    <div ng-show="error"  class="alert alert-danger"  role="alert">{{error}}</div>
+    <div ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+    <div ng-show="model.error"  class="alert alert-danger"  role="alert">{{model.error}}</div>
 
     <form class="form-horizontal" role="form">
         <div class="form-group">
             <label class="control-label col-sm-2" for="date">Date:</label>
             <div class="col-sm-10">
-                <input ng-model="rev.revDate" type="date" class="form-control" id="date" placeholder="Date">
+                <input ng-model="model.rev.revDate" type="date" class="form-control" id="date" placeholder="Date">
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-2" for="firstName">Reserve Person First Name:</label>
+            <label class="control-label col-sm-2" for="firstName">First Name:</label>
             <div class="col-sm-10">
-                <input ng-model="user.firstName" class="form-control" id="firstName" placeholder="First Name">
+                <input ng-model="model.user.firstName" class="form-control" id="firstName" placeholder="First Name">
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-2" for="lastName">Reserve Person Last Name:</label>
+            <label class="control-label col-sm-2" for="lastName">Last Name:</label>
             <div class="col-sm-10">
-                <input ng-model="user.lastName" class="form-control" id="lastName" placeholder="Last Name">
+                <input ng-model="model.user.lastName" class="form-control" id="lastName" placeholder="Last Name">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="phone">Phone:</label>
             <div class="col-sm-10">
-                <input ng-model="user.phone" type="text" class="form-control" id="phone" placeholder="Enter phone number">
+                <input ng-model="model.user.phone" type="text" class="form-control" id="phone" placeholder="Enter phone number">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Email:</label>
             <div class="col-sm-10">
-                <input ng-model="user.email" type="email" class="form-control" id="email" placeholder="Enter email">
+                <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="Enter email">
             </div>
         </div>
         <div class="form-group">
-            <label for="peopleNum" class="control-label col-sm-2" for="num">No. of people:</label>
+            <label for="peopleNum" class="control-label col-sm-2" for="num">Seats:</label>
             <div class="col-sm-10" id="peopleNum">
-                <select ng-model="rev.peopleNum" class="form-control" id="num">
+                <select ng-model="model.rev.seats" class="form-control" id="num">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -49,12 +49,12 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="note">Note:</label>
             <div class="col-sm-10">
-                <textarea ng-model="rev.note" class="form-control" id="note"></textarea>
+                <textarea ng-model="model.rev.note" class="form-control" id="note"></textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button ng-click="createReservation(user._id, rev)" type="submit" class="btn btn-primary">Submit</button>
+                <button ng-click="model.createReservation(model.user, model.rev)" type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </form>

@@ -4,8 +4,8 @@ module.exports = function () {
     var ReservationSchema = mongoose.Schema(
         {
             userId: String,
-            revDate: {type: Date, default: Date.now},
-            revSeates: Number,
+            revDate: Date,
+            seats: Number,
             note: String,
             created: {type: Date, default: Date.now}
 

@@ -1,6 +1,6 @@
 module.exports = function(app, reservationModel) {
 
-    app.post("/api/project/reservation/:userId", createReservation);
+    app.post("/api/project/reservation", createReservation);
     app.get("/api/project/reservation", findAllReservation);
     app.get("/api/project/reservation/:userId", findReservationByUser);
 
@@ -8,20 +8,39 @@ module.exports = function(app, reservationModel) {
 
     function createReservation(req, res) {
         var rev = req.body;
-        var userId = req.params.userId;
-        var revs = reservationModel.createReservation(userId, rev)
-        res.json(revs);
+
+        reservationModel.createReservation(rev)
+            .then(
+                function (revs) {
+                    res.json(revs);
+                }, function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function findAllReservation(req, res) {
-        var revs = reservationModel.findAllRev();
-        res.json(revs);
+        reservationModel.findAllRev()
+            .then(
+                function (revs) {
+                    res.json(revs);
+                }, function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function findReservationByUser(req, res) {
         var userId = req.params.userId;
-        var revs = reservationModel.findRevByUserId(userId);
-        res.json(revs);
+
+        reservationModel.findRevByUserId(userId)
+            .then(
+                function (revs) {
+                    res.json(revs);
+                }, function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
 }

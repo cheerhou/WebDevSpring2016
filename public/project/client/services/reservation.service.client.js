@@ -12,8 +12,8 @@
         };
         return api;
 
-        function createReservation(userId, rev) {
-            return $http.post("/api/project/reservation/" + userId, rev);
+        function createReservation(rev) {
+            return $http.post("/api/project/reservation", rev);
         }
 
         function findAllReservation() {

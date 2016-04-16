@@ -17,6 +17,7 @@ module.exports = function (db) {
 
     function createReservation(rev) {
         var defferred = q.defer();
+
         ReservationModel.create(rev,
             function (err, rev) {
                 if (err) {

@@ -29,13 +29,20 @@
                 //resolve: {loggedin: checkLoggedin}
             })
             .when("/reservation", {
-                templateUrl: "views/reservation/reservation.view.html",
+                templateUrl: "views/reservation/reservation-new.view.html",
                 controller: "ReservationController",
                 controllerAs: "model"
                 //resolve: {loggedin: checkLoggedin}
             })
             .when("/reservation/detail", {
-                templateUrl: "views/reservation/reservation.detail.view.html",
+                templateUrl: "views/reservation/reservation-list.view.html",
+                controller: "ListReservationController",
+                controllerAs: "model"
+                //resolve: {loggedin: checkLoggedin}
+            })
+            .when("/reservation/detail/:revId", {
+                templateUrl: "views/reservation/reservation-detail.view.html",
+                controller: "DetailReservationController",
                 controllerAs: "model"
                 //resolve: {loggedin: checkLoggedin}
             })
