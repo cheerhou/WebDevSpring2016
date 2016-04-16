@@ -36,24 +36,33 @@
         }
 
         function createOrder(order) {
-            var userId = UserService.getCurrentUser();
-
-            if (!userId) {
-                vm.error = "Please register or login."
-            } else {
-                order.userId = userId;
-
-                OrderService.createOrder
-                    .then(
-                        function (respond) {
-                            if (repond.data) {
-                                vm.message = "Order created successfully."
-                            }
-                        }, function (err) {
-                            vm.error = err;
-                        }
-                    );
+            var user = UserService.getCurrentUser();
+            if (!user) {
+                vm.error = "Please register or login.";
+                return;
             }
+            if(!order.paymentType) {
+                vm.error = "Please select a payment type.";
+            }
+            if(!order.delivery) {
+                vm.error = "Please select a delivery method.";
+            }
+
+            order.userId = user._id;
+            OrderService.createOrder(order)
+                .then(
+                    function (respond) {
+                        if (respond.data) {
+                            vm.message = "Order created successfully.";
+                            vm.order = OrderService.emptyCurrentOrder();
+
+
+                        }
+                    }, function (err) {
+                        vm.error = err;
+                    }
+                );
+
         }
     }
 

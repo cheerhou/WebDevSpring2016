@@ -8,6 +8,7 @@
         var api = {
             setCurrentOrder: setCurrentOrder,
             getCurrentOrder: getCurrentOrder,
+            emptyCurrentOrder: emptyCurrentOrder,
             createOrder: createOrder,
             addDishToCurrentOrder: addDishToCurrentOrder,
             deleteItemInOrder: deleteItemInOrder
@@ -21,6 +22,19 @@
 
         function getCurrentOrder() {
             return $rootScope.currentOrder;
+        }
+
+        function emptyCurrentOrder() {
+            var currentOrder = {
+                userId: "",
+                items: [],
+                total: 0,
+                delivery: "",
+                paymentType: ""
+            };
+
+            $rootScope.currentOrder = currentOrder;
+            return currentOrder;
         }
 
         function createOrder(order) {

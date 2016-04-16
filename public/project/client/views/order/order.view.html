@@ -43,12 +43,12 @@
         </tbody>
     </table>
 
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-show="model.order.total > 0">
         <div class="panel-body">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="payment">Payment Type:</label><br>
                 <div class="col-sm-10">
-                    <select ng-model="model.order.payment" class="form-control" id="payment">
+                    <select ng-model="model.order.paymentType" class="form-control" id="payment">
                         <option value="credit">Credit Card</option>
                         <option value="cash">Cash</option>
                     </select>
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    <button class="btn btn-primary btn-block" ng-click="createOrder(model.order)">Order</button>
+    <button class="btn btn-primary btn-block" ng-click="model.createOrder(model.order)">Order</button>
 
 
 </div>

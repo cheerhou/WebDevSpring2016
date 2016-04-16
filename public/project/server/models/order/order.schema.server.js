@@ -1,15 +1,20 @@
 var mongoose = require("mongoose");
 
 module.exports = function () {
-    var DishSchema = require("../dish/dish.schema.server.js")();
     var OrderSchema = mongoose.Schema(
         {
-            customerId: String,
+            userId: String,
             waiter: String,
-            dishes: [DishSchema],
-            amount: Number,
+            items: [{
+                title: String,
+                price: Number,
+                quantity: Number,
+                total: Number
+            }],
+            total: Number,
             tableNum: String,
-            deliveryMethod: String,
+            paymentType: String,
+            delivery: String,
             created: {type: Date, default: Date.now}
 
         }, {collection: 'project.order'}

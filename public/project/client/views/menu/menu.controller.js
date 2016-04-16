@@ -15,16 +15,8 @@
 
         function init() {
             var currentOrder = OrderService.getCurrentOrder();
-            if(!currentOrder) {
-                var currentOrder = {
-                    userId: "",
-                    items: [],
-                    total: 0,
-                    delivery: "",
-                    paymentType: ""
-                };
-
-                OrderService.setCurrentOrder(currentOrder);
+            if (!currentOrder) {
+                OrderService.emptyCurrentOrder();
             }
 
             MenuService
