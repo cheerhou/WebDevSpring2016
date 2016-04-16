@@ -11,18 +11,19 @@
                 controllerAs: "model"
             })
             .when("/order", {
-                templateUrl: "views/order/order.view.html",
+                templateUrl: "views/order/order-new.view.html",
                 controller: "OrderController",
                 controllerAs: "model"
                 //resolve: {loggedin: checkLoggedin}
             })
-            .when("/order/summary", {
-                templateUrl: "views/order/order.summary.view.html",
+            .when("/order/detail", {
+                templateUrl: "views/order/order-list.view.html",
+                controller: "ListOrderController",
                 controllerAs: "model"
                 //resolve: {loggedin: checkLoggedin}
             })
-            .when("/order/detail", {
-                templateUrl: "views/order/order.detail.view.html",
+            .when("/order/detail/:orderId", {
+                templateUrl: "views/order/order-detail.view.html",
                 controllerAs: "model"
                 //resolve: {loggedin: checkLoggedin}
             })

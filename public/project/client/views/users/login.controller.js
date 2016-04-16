@@ -19,6 +19,8 @@
                     function (respond) {
                         if (respond.data) {
                             vm.user = respond.data;
+                            //console.log("user id "+ vm.user._id);
+
                             UserService.setCurrentUser(respond.data);
                             $location.url("/profile/" + user.username);
                         }

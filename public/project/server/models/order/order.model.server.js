@@ -10,7 +10,7 @@ module.exports = function (db) {
         createOrderForUser: createOrderForUser,
         updateOrder: updateOrder,
         deleteOrder: deleteOrder,
-        findOrderByUser: findOrderByUser,
+        findOrdersByUser: findOrdersByUser,
         findAllOrders: findAllOrders
     };
     return api;
@@ -62,18 +62,18 @@ module.exports = function (db) {
     }
 
 
-    function findOrderByUser(userId) {
+    function findOrdersByUser(userId) {
         var deferred = q.defer();
-        OrderModel
-            .findOne({customerId: userId},
-                function (err, order) {
-                    if (!err) {
-                        deferred.resolve(order);
-                    } else {
-                        deferred.reject(err);
-                    }
+        OrderModel.find(
+            {userId: userId},
+            function (err, orders) {
+                if (!err) {
+                    deferred.resolve(orders);
+                } else {
+                    deferred.reject(err);
                 }
-            );
+            }
+        );
         return deferred.promise;
     }
 

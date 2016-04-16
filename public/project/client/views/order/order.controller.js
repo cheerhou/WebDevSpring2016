@@ -1,7 +1,8 @@
 (function () {
     angular
         .module("ResManageApp")
-        .controller("OrderController", OrderController);
+        .controller("OrderController", OrderController)
+        .controller("ListOrderController", ListOrderController);
 
     function OrderController($location, OrderService, UserService) {
         var vm = this;
@@ -12,12 +13,18 @@
 
         function init() {
             vm.order = OrderService.getCurrentOrder();
-            vm.order.total = 0;
-
-            var items = vm.order.items;
-            for (var i in items) {
-                vm.order.total += items[i].total;
+            if(!vm.order) {
+                vm.order = OrderService.emptyCurrentOrder();
+            } else{
+                vm.order.total = 0;
+                var items = vm.order.items;
+                for (var i in items) {
+                    vm.order.total += items[i].total;
+                }
             }
+
+
+
         }
 
         init();
@@ -41,10 +48,10 @@
                 vm.error = "Please register or login.";
                 return;
             }
-            if(!order.paymentType) {
+            if (!order.paymentType) {
                 vm.error = "Please select a payment type.";
             }
-            if(!order.delivery) {
+            if (!order.delivery) {
                 vm.error = "Please select a delivery method.";
             }
 
@@ -64,6 +71,33 @@
                 );
 
         }
+    }
+
+    function ListOrderController(OrderService, UserService) {
+        var vm = this;
+
+        function init() {
+            var currentUser = UserService.getCurrentUser();
+            var userId = currentUser._id;
+            console.log("current user id " + userId);
+
+            OrderService.findOrdersByUser(userId)
+                .then(
+                    function (respond) {
+                        if(respond.data) {
+                            console.log("controller " + respond.data);
+                            vm.orders = respond.data;
+                        }
+                    },
+                    function (err) {
+                        vm.error = err;
+                    }
+                );
+
+        }
+
+        init();
+
     }
 
 })();

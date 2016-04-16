@@ -10,13 +10,12 @@
         function init() {
             //get current user profile by username
             var username = $routeParams.username;
-            console.log("profile username " + username);
 
             UserService.findUserProfileByUsername(username)
                 .then(
                     function (response) {
-                        console.log("findUserProfileByUsername");
                         vm.user = response.data;
+                        //console.log("user id "+ vm.user._id);
                     },
                     function (error) {
                         vm.error = error;

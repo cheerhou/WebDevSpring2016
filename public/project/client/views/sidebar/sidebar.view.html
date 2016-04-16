@@ -6,12 +6,12 @@
             <a href="#/profile/{{currentUser.username}}">Profile</a>
         </li>
         <li ng-show="currentUser"
-            ng-class="{'active' : $location.url() == '/order/summary'}">
-            <a href="#/order/summary">Your Order</a>
+            ng-class="{'active' : $location.url() == '/order/detail'}">
+            <a href="#/order/detail">Order Detail</a>
         </li>
         <li ng-show="currentUser"
             ng-class="{'active' : $location.url() == '/reservation/detail'}">
-            <a href="#/reservation/detail">Your Reservation</a>
+            <a href="#/reservation/detail">Reservation Records</a>
         </li>
         <li ng-show="currentUser.roles.indexOf('admin') >= 0"
             ng-class="{'active' : $location.url() == '/manage/tips'}">
