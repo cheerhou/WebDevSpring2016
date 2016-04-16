@@ -19,7 +19,7 @@
         <tr ng-repeat="item in model.order.items">
             <td>{{item.title}}</td>
             <td>
-                <select class="form-control" ng-model="item.quantity" ng-init="item.quantity='1'" ng-change="model.calculateTotal(item)" >
+                <select class="form-control" ng-model="item.quantity" ng-change="model.updateItemTotal(item)" >
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

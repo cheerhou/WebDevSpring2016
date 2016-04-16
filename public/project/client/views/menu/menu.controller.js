@@ -37,7 +37,14 @@
         init();
 
         function order(dish) {
-            OrderService.addDishToCurrentOrder(dish);
+            var newDish = {
+                quantity: "1",
+                price: dish.price,
+                title: dish.title,
+                total: dish.price
+            };
+
+            OrderService.addDishToCurrentOrder(newDish);
         }
 
         function addDish(dish) {

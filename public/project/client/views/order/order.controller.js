@@ -5,15 +5,19 @@
 
     function OrderController($location, OrderService, UserService) {
         var vm = this;
-        var userId;
 
-        vm.calculateTotal = calculateTotal;
+        vm.updateItemTotal = updateItemTotal;
         vm.deleteItemInOrder = deleteItemInOrder;
         vm.createOrder = createOrder;
 
         function init() {
             vm.order = OrderService.getCurrentOrder();
-            userId = UserService.getCurrentUser();
+            vm.order.total = 0;
+
+            var items = vm.order.items;
+            for (var i in items) {
+                vm.order.total += items[i].total;
+            }
         }
 
         init();
@@ -23,22 +27,18 @@
             vm.order = OrderService.deleteItemInOrder(dish.recipe_id);
 
             //re-calculate total
-            var items = vm.order.items;
-            vm.order.total = 0;
-            for (var i in items) {
-                calculateTotal(items[i]);
-            }
+            init();
         }
 
-        function calculateTotal(item) {
-            var total = vm.order.total;
-            total += item.quantity * item.price;
-
-            vm.order.total = total;
+        function updateItemTotal(item) {
+            item.total = item.price * item.quantity;
+            init();
         }
 
         function createOrder(order) {
-            if(!userId) {
+            var userId = UserService.getCurrentUser();
+
+            if (!userId) {
                 vm.error = "Please register or login."
             } else {
                 order.userId = userId;
