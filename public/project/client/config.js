@@ -59,12 +59,12 @@
                 //resolve: {loggedin: checkAdmin}
             })
             .when("/manage/tips", {
-                templateUrl: "views/manager/manage.tips.view.html",
+                templateUrl: "views/manager/manager-tips.view.html",
                 controllerAs: "model"
                 //resolve: {loggedin: checkAdmin}
             })
             .when("/manage/review", {
-                templateUrl: "views/manager/manager.review.view.html",
+                templateUrl: "views/manager/manager-review.view.html",
                 controllerAs: "model",
                 //resolve: {loggedin: checkAdmin}
             })
