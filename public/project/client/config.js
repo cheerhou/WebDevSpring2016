@@ -60,7 +60,7 @@
             })
             .when("/manage/salary", {
                 templateUrl: "views/manager/manager-salary.view.html",
-                controller: "ManagerTipsController",
+                controller: "ManagerSalaryController",
                 controllerAs: "model"
                 //resolve: {loggedin: checkAdmin}
             })

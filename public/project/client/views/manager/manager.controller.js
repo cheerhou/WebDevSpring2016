@@ -2,7 +2,7 @@
     angular
         .module("ResManageApp")
         .controller("ManagerController", ManagerController)
-        .controller("ManagerTipsController", ManagerTipsController);
+        .controller("ManagerSalaryController", ManagerSalaryController);
 
     function ManagerController(UserService) {
         var vm = this;
@@ -97,7 +97,7 @@
 
     }
 
-    function ManagerTipsController(UserService) {
+    function ManagerSalaryController(UserService) {
         var vm = this;
         vm.updateSalary = updateSalary;
         vm.selectUser = selectUser;
