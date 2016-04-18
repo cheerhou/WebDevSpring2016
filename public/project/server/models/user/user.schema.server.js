@@ -8,12 +8,12 @@ module.exports = function () {
             password: String,
             firstName: String,
             lastName: String,
-            roles:[String],
+            role: String,
             email: String,
             phone: String,
-            salary: Number,
-            tips: Number,
-            penalty: Number
+            salary: {type: Number, default: 0},
+            tips: {type: Number, default: 0},
+            penalty: {type: Number, default: 0}
         }, {collection: 'project.user'}
     );
 

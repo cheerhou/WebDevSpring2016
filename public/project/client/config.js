@@ -60,6 +60,7 @@
             })
             .when("/manage/tips", {
                 templateUrl: "views/manager/manager-tips.view.html",
+                controller: "ManagerTipsController",
                 controllerAs: "model"
                 //resolve: {loggedin: checkAdmin}
             })

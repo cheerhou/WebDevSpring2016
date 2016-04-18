@@ -23,29 +23,29 @@
 
         function addUser(user) {
             if (!user.username) {
-                vm.error = "Please enter the username."
+                vm.error = "Please enter the username.";
                 return;
             }
             if (!user.password) {
-                vm.error = "Please enter the password."
+                vm.error = "Please enter the password.";
                 return;
             }
             if (!user.firstName) {
-                vm.error = "Please enter the first name."
+                vm.error = "Please enter the first name.";
                 return;
             }
             if (!user.lastName) {
-                vm.error = "Please enter the last name."
+                vm.error = "Please enter the last name.";
                 return;
             }
             UserService.createUser(user)
                 .then(function (respond) {
                         if (respond.data) {
-                            vm.message = "User created successfully."
+                            vm.message = "User created successfully.";
                             vm.user = null;
                             init();
                         } else {
-                            vm.error = "Fail to create a new user."
+                            vm.error = "Fail to create a new user.";
                         }
                     }
                 );
@@ -54,23 +54,23 @@
 
         function updateUser(user) {
             if (!user.username) {
-                vm.error = "Please enter the username."
+                vm.error = "Please enter the username.";
                 return;
             }
             if (!user.password) {
-                vm.error = "Please enter the password."
+                vm.error = "Please enter the password.";
                 return;
             }
             if (!user.firstName) {
-                vm.error = "Please enter the first name."
+                vm.error = "Please enter the first name.";
                 return;
             }
             if (!user.lastName) {
-                vm.error = "Please enter the last name."
+                vm.error = "Please enter the last name.";
                 return;
             }
             if (!user._id) {
-                vm.error = "Please create the user first."
+                vm.error = "Please create the user first.";
                 return;
             }
 
@@ -78,11 +78,11 @@
                 .then(
                     function (respond) {
                         if (respond.data) {
-                            vm.message = "User updated successfully."
+                            vm.message = "User updated successfully.";
                             vm.user = null;
                             init();
                         } else {
-                            vm.error = "Fail to update the user."
+                            vm.error = "Fail to update the user.";
                         }
                     }
                 );
@@ -96,7 +96,7 @@
                 .then(
                     function (respond) {
                         if (respond.data) {
-                            vm.message = "User deleted successfully."
+                            vm.message = "User deleted successfully.";
                             init();
                         }
                     },

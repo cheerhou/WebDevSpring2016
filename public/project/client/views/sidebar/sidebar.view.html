@@ -13,15 +13,15 @@
             ng-class="{'active' : $location.url() == '/reservation/detail'}">
             <a href="#/reservation/detail">Reservation Details</a>
         </li>
-        <li ng-show="currentUser.roles.indexOf('admin') >= 0"
+        <li ng-show="currentUser.roles == 'admin'"
             ng-class="{'active' : $location.url() == '/manage/tips'}">
             <a href="#/manage/tips">Manage Tips</a>
         </li>
-        <li ng-show="currentUser.roles.indexOf('admin') >= 0"
+        <li ng-show="currentUser.role == 'admin'"
             ng-class="{'active' : $location.path() == '/search'}">
             <a href="#/search">Search Recipe</a>
         </li>
-        <li ng-show="currentUser.roles.indexOf('admin') >= 0"
+        <li ng-show="currentUser.role == 'admin'"
             ng-class="{'active' : $location.url() == '/manage/review'}"><a href="#/manage/review">Review Daily
             Income</a>
         </li>

@@ -4,8 +4,8 @@ var bcrypt = require('bcrypt-nodejs');
 
 
 module.exports = function (db) {
-    var UserSchema = require("./user.schema.server.js")();
-    var ProjectUserModel = mongoose.model("ProjectUserModel", UserSchema);
+    var ProjectUserSchema = require("./user.schema.server.js")();
+    var ProjectUserModel = mongoose.model("ProjectUserModel", ProjectUserSchema);
 
 
     var api = {
@@ -79,9 +79,12 @@ module.exports = function (db) {
                         password: newUser.password,
                         firstName: newUser.firstName,
                         lastName: newUser.lastName,
-                        roles: newUser.roles,
+                        role: newUser.role,
                         email: newUser.email,
-                        phone: newUser.phone
+                        phone: newUser.phone,
+                        salary: newUser.salary,
+                        tips: newUser.tips,
+                        penalty: newUser.penalty
                     }
                 },
                 function (err, stats) {

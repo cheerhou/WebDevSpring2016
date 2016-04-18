@@ -21,11 +21,11 @@
             <tr>
                 <th><input ng-model="model.user.username" type="text" placeholder="username"></th>
                 <th>
-                    <select ng-model="model.user.roles" class="form-control">
-                        <option>Waiter</option>
-                        <option>Receptionist</option>
-                        <option>Cook</option>
-                        <option>Deliveryman</option>
+                    <select ng-model="model.user.role" class="form-control">
+                        <option value="Waiter">Waiter</option>
+                        <option value="Receptionist">Receptionist</option>
+                        <option value="Cook">Cook</option>
+                        <option value="Deliveryman">Deliveryman</option>
                     </select>
                 </th>
                 <th><input ng-model="model.user.salary" type="text" placeholder="Salary" disabled></th>
@@ -42,8 +42,8 @@
 
             <tbody>
             <tr ng-repeat="user in model.users">
-                <td><a href="#/profile/{{user.username}}">{{username}}</a></td>
-                <td>{{user.roles}}</td>
+                <td><a href="#/profile/{{user.username}}">{{user.username}}</a></td>
+                <td>{{user.role}}</td>
                 <td>{{user.salary}}</td>
                 <td>
                     <button class="btn btn-danger" ng-click="model.deleteUser(user)">
