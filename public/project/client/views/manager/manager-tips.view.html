@@ -1,45 +1,50 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Manage Tips</h1>
 
+    <div ng-if="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+    <div ng-if="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+
+    <ul class="nav nav-tabs">
+        <li ng-class="{'active' : $location.path() == '/manage'}"><a href="#/manage">Manage User</a></li>
+        <li ng-class="{'active' : $location.path() == '/manage/tips'}"><a href="#/manage/tips">Manage Tips</a></li>
+    </ul>
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span> User</th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span> Salary</th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span> Tips</th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span> Penalty</th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span> Action</th>
+                <th>User</th>
+                <th>Salary</th>
+                <th>Tips</th>
+                <th>Penalty</th>
+                <th>Action</th>
             </tr>
             <tr>
-                <th><input type="text" placeholder="cheerhou" disabled></th>
-                <th><input type="text" placeholder="$1000" disabled></th>
-                <th><input type="text" placeholder="tips"></th>
-                <th><input type="text" placeholder="penalty"></th>
+                <th><input ng-model="model.user.username" type="text" disabled></th>
+                <th><input ng-model="model.user.salary" type="text" disabled></th>
+                <th><input ng-model="model.user.tips" type="text" ></th>
+                <th><input ng-model="model.user.penalty" type="text" ></th>
                 <th>
-                    <button class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
-                    <button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+                    <button ng-click="model.updateSalary(model.user)" class="btn btn-success">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
                 </th>
             </tr>
             </thead>
 
             <tbody>
-            <tr>
-                <td>cheerhou</td>
-                <td>$900</td>
-                <td>$100</td>
-                <td>$0</td>
-                <td><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                    <button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
-                </td>
-            </tr>
-            <tr>
-                <td>alice</td>
-                <td>$1900</td>
-                <td>$100</td>
-                <td>$0</td>
-                <td><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                    <button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
+            <tr ng-repeat="user in model.users">
+                <td>{{user.username}}</td>
+                <td>{{user.salary}}</td>
+                <td>{{user.tips}}</td>
+                <td>{{user.penalty}}</td>
+                <td>
+                    <button ng-click="model.deleteSalary(user)" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <button ng-click="model.selectUser(user)" class="btn btn-info">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
                 </td>
             </tr>
             </tbody>

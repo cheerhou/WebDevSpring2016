@@ -10,7 +10,10 @@ module.exports = function () {
             lastName: String,
             roles:[String],
             email: String,
-            phone: String
+            phone: String,
+            salary: Number,
+            tips: Number,
+            penalty: Number
         }, {collection: 'project.user'}
     );
 

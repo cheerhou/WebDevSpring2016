@@ -47,7 +47,7 @@
                 //resolve: {loggedin: checkLoggedin}
             })
             .when("/manage", {
-                templateUrl: "views/manager/manager.view.html",
+                templateUrl: "views/manager/manager-user-list.view.html",
                 controller: "ManagerController",
                 controllerAs: "model"
                 //resolve: {loggedin: checkAdmin}
