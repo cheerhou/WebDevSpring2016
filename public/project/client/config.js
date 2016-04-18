@@ -58,8 +58,8 @@
                 controllerAs: "model"
                 //resolve: {loggedin: checkAdmin}
             })
-            .when("/manage/tips", {
-                templateUrl: "views/manager/manager-tips.view.html",
+            .when("/manage/salary", {
+                templateUrl: "views/manager/manager-salary.view.html",
                 controller: "ManagerTipsController",
                 controllerAs: "model"
                 //resolve: {loggedin: checkAdmin}

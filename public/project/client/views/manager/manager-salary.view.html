@@ -6,7 +6,7 @@
 
     <ul class="nav nav-tabs">
         <li ng-class="{'active' : $location.path() == '/manage'}"><a href="#/manage">Manage User</a></li>
-        <li ng-class="{'active' : $location.path() == '/manage/tips'}"><a href="#/manage/tips">Manage Tips</a></li>
+        <li ng-class="{'active' : $location.path() == '/manage/salary'}"><a href="#/manage/salary">Manage Salary</a></li>
     </ul>
 
     <div class="table-responsive">
@@ -39,9 +39,6 @@
                 <td>{{user.tips}}</td>
                 <td>{{user.penalty}}</td>
                 <td>
-                    <button ng-click="model.deleteSalary(user)" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
                     <button ng-click="model.selectUser(user)" class="btn btn-info">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>

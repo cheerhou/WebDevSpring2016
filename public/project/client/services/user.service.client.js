@@ -13,7 +13,8 @@
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
-            findUserProfileByUsername: findUserProfileByUsername
+            findUserProfileByUsername: findUserProfileByUsername,
+            getSalaryByRole: getSalaryByRole
         };
         return api;
 
@@ -54,6 +55,22 @@
 
         function findUserProfileByUsername(username) {
             return $http.get("/api/project/profile/" + username);
+        }
+
+        function getSalaryByRole(role) {
+            //set salary for different roles
+            if (role == "Waiter") {
+                return 2500;
+            }
+            if (role == "Receptionist") {
+                return 3000;
+            }
+            if (role == "Cook") {
+                return 4000;
+            }
+            if (role == "Deliveryman") {
+                return 2000;
+            }
         }
     }
 })();

@@ -32,7 +32,7 @@
             }
 
             //set salary for different roles
-            vm.user.salary = getSalaryByRole(user.role);
+            user.salary = getSalaryByRole(user.role);
 
             UserService.updateUser(user._id, user)
                 .then(
@@ -59,7 +59,7 @@
                 return;
             }
 
-            user.salary = getSalaryByRole(user.role);
+            user.salary = UserService.getSalaryByRole(user.role);
 
             UserService.createUser(user)
                 .then(
@@ -85,7 +85,7 @@
                             init();
                         }
                     },
-                    function(err) {
+                    function (err) {
                         vm.error = "Fail to delete user. " + err;
                     }
                 );
@@ -95,24 +95,45 @@
             vm.user = user;
         }
 
-        function getSalaryByRole(role) {
-            //set salary for different roles
-            if (role == "Waiter") {
-                return 2500;
-            }
-            if (role == "Receptionist") {
-                return 3000;
-            }
-            if (role == "Cook") {
-                return 4000;
-            }
-            if (role == "Deliveryman") {
-                return 2000;
-            }
-        }
     }
 
     function ManagerTipsController(UserService) {
+        var vm = this;
+        vm.updateSalary = updateSalary;
+        vm.selectUser = selectUser;
+
+
+        function init() {
+            UserService.findAllUsers()
+                .then(function (respond) {
+                        vm.users = respond.data;
+                    }
+                );
+        }
+
+        init();
+
+        function updateSalary(user) {
+            var baseSalary = UserService.getSalaryByRole(user.role);
+            user.salary = baseSalary + Number(user.tips - user.penalty);
+
+            UserService.updateUser(user._id, user)
+                .then(
+                    function (respond) {
+                        if (respond.data) {
+                            vm.message = "Salary updated successfully.";
+                            vm.user = null;
+                            init();
+                        }
+                    }, function (err) {
+                        vm.error = "Fail to update salary. " + err;
+                    }
+                );
+        }
+
+        function selectUser(user) {
+            vm.user = user;
+        }
 
     }
 
