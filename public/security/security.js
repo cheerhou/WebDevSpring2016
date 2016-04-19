@@ -12,30 +12,30 @@ module.exports = function (app, assignmentUserModel, projectUserModel) {
 
     //for assignment user
     app.post('/api/assignment/login', passport.authenticate('assignment'), login);
-    app.get("/api/assignment/loggedin", loggedin);
-    app.post("/api/assignment/logout", logout);
-    app.post("/api/assignment/register", assignmentRegister);
-    app.post("/api/assignment/user", assignmentCreateUser);
+    app.get("/api/assignment/loggedin", auth, loggedin);
+    app.post("/api/assignment/logout", auth, logout);
+    app.post("/api/assignment/register", auth, assignmentRegister);
+    app.post("/api/assignment/user", auth, assignmentCreateUser);
 
-    app.get("/api/assignment/user", asFindAllUsers);
-    app.get("/api/assignment/user/:username", asFindUserByUsername);
-    app.put("/api/assignment/user/:id", asUpdateUser);
-    app.delete("/api/assignment/user/:id", asDeleteUser);
-    app.get("/api/assignment/profile/:username", asFindUserProfileByUsername);
+    app.get("/api/assignment/user", auth, asFindAllUsers);
+    app.get("/api/assignment/user/:username", auth, asFindUserByUsername);
+    app.put("/api/assignment/user/:id", auth, asUpdateUser);
+    app.delete("/api/assignment/user/:id", auth, asDeleteUser);
+    app.get("/api/assignment/profile/:username", auth, asFindUserProfileByUsername);
 
 
     //for project user
     app.post('/api/project/login', passport.authenticate('project'), login);
-    app.post('/api/project/logout', logout);
-    app.get('/api/project/loggedin', loggedin);
-    app.post('/api/project/register', projectRegister);
+    app.post('/api/project/logout', auth, logout);
+    app.get('/api/project/loggedin', auth, loggedin);
+    app.post('/api/project/register', auth, projectRegister);
 
-    app.post("/api/project/user", proCreateUser);
-    app.get("/api/project/user", proFindAllUsers);
-    app.get('/api/project/user/:id', proFindUserById);
-    app.put("/api/project/user/:id", proUpdateUser);
-    app.delete("/api/project/user/:id", proDeleteUser);
-    app.get("/api/project/profile/:username", proFindUserProfileByUsername);
+    app.post("/api/project/user", auth, proCreateUser);
+    app.get("/api/project/user", auth, proFindAllUsers);
+    app.get('/api/project/user/:id', auth, proFindUserById);
+    app.put("/api/project/user/:id", auth, proUpdateUser);
+    app.delete("/api/project/user/:id", auth, proDeleteUser);
+    app.get("/api/project/profile/:username", auth, proFindUserProfileByUsername);
 
 
     function authenticated(req, res, next) {

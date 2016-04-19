@@ -16,7 +16,7 @@
             .findRecipeById(id)
             .then(function(respond) {
                 if(respond.data) {
-                    console.log(respond.data);
+                    //console.log(respond.data);
                     $scope.recipe = respond.data.recipe;
                 }
             });

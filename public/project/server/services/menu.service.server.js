@@ -44,7 +44,7 @@ module.exports = function (app, dishModel) {
 
     function deleteDish(req, res) {
         var dishId = req.params.id;
-        console.log("delete dish " + dishId);
+        //console.log("delete dish " + dishId);
 
         dishModel.deleteDish(dishId)
             .then(

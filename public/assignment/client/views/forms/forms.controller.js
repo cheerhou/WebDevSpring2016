@@ -16,7 +16,7 @@
         function init() {
             var currentUser = UserService.getCurrentUser();
             userId = currentUser._id;
-            console.log("userId " + userId);
+            //console.log("userId " + userId);
 
             if (userId) {
                 FormService
@@ -49,7 +49,7 @@
                 .then(function (respond) {
                     if (respond.data) {
                         var currentForm = respond.data;
-                        console.log("currentForm " + currentForm._id);
+                        //console.log("currentForm " + currentForm._id);
                         FormService.setCurrentForm(currentForm);
                         vm.message = "Create form successfully.";
 
@@ -106,9 +106,9 @@
         function selectForm(form) {
             vm.form = form;
             selectedFormId = form._id;
-            console.log("selectedFormId " + selectedFormId);
+            //console.log("selectedFormId " + selectedFormId);
             FormService.setCurrentForm(form);
-            console.log("current from " + form._id);
+            //console.log("current from " + form._id);
         }
 
     }

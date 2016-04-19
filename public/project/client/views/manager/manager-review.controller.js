@@ -57,11 +57,11 @@
 
         function selectRow(type) {
             if(type == 'cash') {
-                console.log("type " + type);
+                //console.log("type " + type);
                 vm.orders = cashOrders;;
             }
             if(type == 'credit') {
-                console.log("type " + type);
+                //console.log("type " + type);
                 vm.orders = creditOrders;;
             }
 

@@ -24,7 +24,7 @@ module.exports = function (db) {
                 if (err) {
                     defferred.reject(err);
                 } else {
-                    console.log("model side created order " + order);
+                    //console.log("model side created order " + order);
                     defferred.resolve(order);
                 }
             }

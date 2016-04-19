@@ -17,7 +17,7 @@
                 .then(
                     function (respond) {
                         if (respond.data) {
-                            UserService.setCurrentUser(respond.data);
+                            //UserService.setCurrentUser(respond.data);
                             $location.url("/profile/" + user.username);
                         }
                     }, function (err) {

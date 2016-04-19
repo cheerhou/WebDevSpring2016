@@ -5,11 +5,12 @@
 
     function ProfileController($routeParams, UserService) {
         var vm = this;
+        var username = $routeParams.username;
+
         vm.update = update;
 
         function init() {
             //get current user profile by username
-            var username = $routeParams.username;
 
             UserService.findUserProfileByUsername(username)
                 .then(

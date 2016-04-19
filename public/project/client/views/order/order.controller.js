@@ -80,13 +80,13 @@
         function init() {
             var currentUser = UserService.getCurrentUser();
             var userId = currentUser._id;
-            console.log("current user id " + userId);
+            //console.log("current user id " + userId);
 
             OrderService.findOrdersByUser(userId)
                 .then(
                     function (respond) {
                         if(respond.data) {
-                            console.log("controller " + respond.data);
+                            //console.log("controller " + respond.data);
                             vm.orders = respond.data;
                         }
                     },

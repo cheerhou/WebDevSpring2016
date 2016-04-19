@@ -45,6 +45,7 @@ app.use(passport.session());
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
+
 //for user security
 require("./app.js")(app, db);
 
