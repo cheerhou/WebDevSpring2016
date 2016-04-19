@@ -50,7 +50,16 @@ module.exports = function (db) {
     function upDateDish(dishId, newDish) {
         var deferred = q.defer();
         DishModel
-            .update({_id: dishId}, {$set: newDish},
+            .update({_id: dishId},
+                {
+                    $set: {
+                        recipe_id: newDish.recipe_id,
+                        title: newDish.title,
+                        image_url: newDish.image_url,
+                        social_rank: newDish.social_rank,
+                        price: newDish.price
+                    }
+                },
                 function (err, stats) {
                     if (!err) {
                         deferred.resolve(stats);
