@@ -44,10 +44,38 @@
                 <li ng-show="currentUser.role == 'admin'"
                     ng-class="{'active': $location.url()=='/profile'}">
                     <a href="#/profile/{{currentUser.username}}">
-                        <span class="glyphicon glyphicon-user">Manager</span>
+                        <span class="glyphicon glyphicon-user"> Manager</span>
                     </a>
                 </li>
+
+                <!--show when xs screen-->
+                <li class="visible-xs" ng-show="currentUser"
+                    ng-class="{'active' : $location.path() == '/profile'}">
+                    <a href="#/profile/{{currentUser.username}}"> Profile</a>
+                </li>
+                <li class="visible-xs" ng-show="currentUser"
+                    ng-class="{'active' : $location.url() == '/order/detail'}">
+                    <a href="#/order/detail"> Order Details</a>
+                </li>
+                <li class="visible-xs" ng-show="currentUser"
+                    ng-class="{'active' : $location.url() == '/reservation/detail'}">
+                    <a href="#/reservation/detail"> Reservation Details</a>
+                </li>
+                <li class="visible-xs" ng-show="currentUser.roles == 'admin'"
+                    ng-class="{'active' : $location.url() == '/manage/tips'}">
+                    <a href="#/manage/tips"> Manage Tips</a>
+                </li>
+                <li class="visible-xs" ng-show="currentUser.role == 'admin'"
+                    ng-class="{'active' : $location.path() == '/search'}">
+                    <a href="#/search"> Search Recipe</a>
+                </li>
+                <li class="visible-xs" ng-show="currentUser.role == 'admin'"
+                    ng-class="{'active' : $location.url() == '/manage/review'}"><a href="#/manage/review">Review Daily
+                    Income</a>
+                </li>
+
             </ul>
+
         </div>
     </div>
 

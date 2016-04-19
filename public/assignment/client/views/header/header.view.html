@@ -38,26 +38,27 @@
                     </a>
                 </li>
 
-                <div class="visible-xs nav navbar-nav navbar-right">
-                    <li ng-class="{'active' : $location.url() == '/home'}">
-                        <a href="#/home">
-                            <span class="glyphicon glyphicon-home"> Home</span>
-                        </a>
-                    </li>
-                    <li ng-show="currentUser"
-                        ng-class="{'active' : $location.path() == '/profile'} ">
-                        <a href="#/profile/{{currentUser.username}}">
-                            <span class="glyphicon glyphicon-cog"> Profile</span>
-                        </a>
-                    </li>
-                    <li ng-show="currentUser"
-                        ng-class="{'active' : $location.url() == '/forms' || $location.url() == '/fields'}">
-                        <a href="#/forms">
-                            <span class="glyphicon glyphicon-folder-open"> Forms</span>
-                        </a>
-                    </li>
 
-                </div>
+                <!--show when xs screen-->
+                <li class="visible-xs" ng-class="{'active' : $location.url() == '/home'}">
+                    <a href="#/home">
+                        <span class="glyphicon glyphicon-home"> Home</span>
+                    </a>
+                </li>
+                <li class="visible-xs" ng-show="currentUser"
+                    ng-class="{'active' : $location.path() == '/profile'} ">
+                    <a href="#/profile/{{currentUser.username}}">
+                        <span class="glyphicon glyphicon-cog"> Profile</span>
+                    </a>
+                </li>
+                <li class="visible-xs" ng-show="currentUser"
+                    ng-class="{'active' : $location.url() == '/forms' || $location.url() == '/fields'}">
+                    <a href="#/forms">
+                        <span class="glyphicon glyphicon-folder-open"> Forms</span>
+                    </a>
+                </li>
+
+
             </ul>
         </div>
     </div>
