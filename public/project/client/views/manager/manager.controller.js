@@ -32,7 +32,8 @@
             }
 
             //set salary for different roles
-            user.salary = getSalaryByRole(user.role);
+            user.salary = UserService.getSalaryByRole(user.role);
+            console.log("salary " +  user.salary);
 
             UserService.updateUser(user._id, user)
                 .then(

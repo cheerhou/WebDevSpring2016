@@ -9,7 +9,7 @@
 
         function login(user) {
             if (!user) {
-                vm.error = "No user exist!"
+                vm.error = "No user exist!";
                 return;
             }
 

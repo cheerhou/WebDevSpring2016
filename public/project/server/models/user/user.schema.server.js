@@ -13,7 +13,8 @@ module.exports = function () {
             phone: String,
             salary: {type: Number, default: 0},
             tips: {type: Number, default: 0},
-            penalty: {type: Number, default: 0}
+            penalty: {type: Number, default: 0},
+            type: {type: String, default: "project"}
         }, {collection: 'project.user'}
     );
 

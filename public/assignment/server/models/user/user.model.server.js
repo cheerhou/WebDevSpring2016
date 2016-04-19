@@ -1,8 +1,9 @@
 var q = require("q");
+var mongoose = require("mongoose");
 var bcrypt = require('bcrypt-nodejs');
 
-module.exports = function (db, mongoose) {
-    var UserSchema = require("./user.schema.server.js")(mongoose);
+module.exports = function (db) {
+    var UserSchema = require("./user.schema.server.js")();
     var UserModel = mongoose.model("UserModel", UserSchema);
 
 
@@ -79,7 +80,8 @@ module.exports = function (db, mongoose) {
                         firstName: newUser.firstName,
                         lastName: newUser.lastName,
                         roles: newUser.roles,
-                        emails: newUser.emails
+                        emails: newUser.emails,
+                        type: newUser.type
                     }
                 },
                 function (err, stats) {

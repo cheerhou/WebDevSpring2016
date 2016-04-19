@@ -7,7 +7,10 @@
         var api = {
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
-            findUserByCredentials: findUserByCredentials,
+            login: login,
+            logout: logout,
+            register: register,
+            //findUserByCredentials: findUserByCredentials,
             findUserByUsername: findUserByUsername,
             findAllUsers: findAllUsers,
             createUser: createUser,
@@ -21,11 +24,22 @@
 
         function setCurrentUser(user) {
             $rootScope.currentUser = user;
-
         }
 
         function getCurrentUser() {
             return $rootScope.currentUser;
+        }
+
+        function login(user) {
+            return $http.post("/api/project/login", user);
+        }
+
+        function logout() {
+            return $http.post("/api/project/logout");
+        }
+
+        function register(user) {
+            return $http.post("/api/project/register", user);
         }
 
         function createUser(user) {
@@ -37,9 +51,9 @@
 
         }
 
-        function findUserByCredentials(credentials) {
-            return $http.post("/api/project/user/login", credentials);
-        }
+        //function findUserByCredentials(credentials) {
+        //    return $http.post("/api/project/user/login", credentials);
+        //}
 
         function findAllUsers() {
             return $http.get("/api/project/user");

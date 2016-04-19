@@ -1,7 +1,7 @@
 module.exports = function (app, db) {
 
-    var projectUserModel = require("./models/user/user.model.server.js")(db);
-    var userService = require("./services/user.service.server.js")(app, projectUserModel);
+    //var projectUserModel = require("./models/user/user.model.server.js")(db);
+    //var userService = require("./services/user.service.server.js")(app, projectUserModel);
 
     var salaryModel = require("./models/salary/salary.model.server.js")(db);
     var salaryService = require("./services/salary.service.server.js")(app, salaryModel);

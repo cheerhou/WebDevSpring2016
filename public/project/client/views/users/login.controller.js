@@ -10,21 +10,17 @@
 
         function login(user) {
             if (!user) {
-                vm.error = "No user exist!"
+                vm.error = "No user exist!";
                 return;
             }
-            UserService
-                .findUserByCredentials({username: user.username, password: user.password})
+            UserService.login(user)
                 .then(
                     function (respond) {
                         if (respond.data) {
-                            vm.user = respond.data;
-                            //console.log("user id "+ vm.user._id);
-
                             UserService.setCurrentUser(respond.data);
                             $location.url("/profile/" + user.username);
                         }
-                    }, function(err) {
+                    }, function (err) {
                         vm.error = "Please verify your user name or password." + err;
                     }
                 );

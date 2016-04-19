@@ -1,4 +1,5 @@
-module.exports = function (mongoose) {
+var mongoose = require("mongoose");
+module.exports = function () {
 
     var UserSchema = mongoose.Schema(
         {
@@ -8,7 +9,8 @@ module.exports = function (mongoose) {
             lastName: String,
             emails: [String],
             phones: [String],
-            roles: {type: [String], default: ["user"]}
+            roles: {type: [String], default: ["user"]},
+            type: {type: String, default: "assignment"}
         }, {collection: 'user'}
     );
 

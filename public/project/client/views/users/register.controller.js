@@ -25,8 +25,23 @@
                 return;
             }
 
+            //
+            //UserService.createUser(user)
+            //    .then(
+            //        function (respond) {
+            //            if (respond.data) {
+            //                vm.user = respond.data;
+            //                UserService.setCurrentUser(respond.data);
+            //                $location.url("/profile/" + user.username);
+            //            }
+            //        },
+            //        function (error) {
+            //            vm.error = error;
+            //        }
+            //    );
 
-            UserService.createUser(user)
+            UserService
+                .register(user)
                 .then(
                     function (respond) {
                         if (respond.data) {

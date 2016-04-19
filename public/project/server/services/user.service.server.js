@@ -3,7 +3,7 @@ module.exports = function(app, userModel, db) {
     app.post("/api/project/user", createUser);
     app.get("/api/project/user", findAllUsers);
     app.get('/api/project/user/:id', findUserById);
-    app.post("/api/project/user/login", findUserByCredentials);
+    //app.post("/api/project/user/login", findUserByCredentials);
     app.put("/api/project/user/:id", updateUser);
     app.delete("/api/project/user/:id", deleteUser);
     app.get("/api/project/profile/:username", findUserProfileByUsername);

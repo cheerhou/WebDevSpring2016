@@ -1,7 +1,9 @@
 var q = require("q");
+var mongoose = require("mongoose");
 
-module.exports = function (db, mongoose) {
-    var FormSchema = require("./form.schema.server.js")(mongoose);
+
+module.exports = function (db) {
+    var FormSchema = require("./form.schema.server.js")();
     var FormModel = mongoose.model('FormModel', FormSchema);
 
     var api = {

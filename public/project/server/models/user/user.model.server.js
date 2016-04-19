@@ -23,6 +23,9 @@ module.exports = function (db) {
     function createUser(user) {
         var deferred = q.defer();
 
+        //encrypt the password when registering
+        user.password = bcrypt.hashSync(user.password);
+
         ProjectUserModel.create(user,
             function (err, user) {
                 if (!err) {
@@ -84,7 +87,8 @@ module.exports = function (db) {
                         phone: newUser.phone,
                         salary: newUser.salary,
                         tips: newUser.tips,
-                        penalty: newUser.penalty
+                        penalty: newUser.penalty,
+                        type: newUser.type
                     }
                 },
                 function (err, stats) {
