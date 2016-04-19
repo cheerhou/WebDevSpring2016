@@ -13,7 +13,8 @@
             addDishToCurrentOrder: addDishToCurrentOrder,
             deleteItemInOrder: deleteItemInOrder,
             findOrdersByUser: findOrdersByUser,
-            findOrderByOrderId: findOrderByOrderId
+            findOrderByOrderId: findOrderByOrderId,
+            findOrderByPaymentType: findOrderByPaymentType
         };
         return api;
 
@@ -65,6 +66,10 @@
 
         function findOrderByOrderId(orderId) {
             return $http.get("/api/project/order/detail/" + orderId);
+        }
+
+        function findOrderByPaymentType(paymentType) {
+            return $http.get("/api/project/order/payment/" + paymentType);
         }
 
     }

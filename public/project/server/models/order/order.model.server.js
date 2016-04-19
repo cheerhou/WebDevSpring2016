@@ -12,7 +12,8 @@ module.exports = function (db) {
         deleteOrder: deleteOrder,
         findOrdersByUser: findOrdersByUser,
         findOrderByOrderId: findOrderByOrderId,
-        findAllOrders: findAllOrders
+        findAllOrders: findAllOrders,
+        findOrderByPaymentType: findOrderByPaymentType
     };
     return api;
 
@@ -95,7 +96,7 @@ module.exports = function (db) {
 
     function findAllOrders() {
         var deferred = q.defer();
-        DishModel.find(
+        OrderModel.find(
             function (err, orders) {
                 if (!err) {
                     deferred.resolve(orders);
@@ -105,6 +106,23 @@ module.exports = function (db) {
             }
         );
         return deferred.promise;
+    }
+
+    function findOrderByPaymentType(paymentType) {
+        var deferred = q.defer();
+        OrderModel.find(
+            {paymentType: paymentType},
+            function (err, orders) {
+                if (!err) {
+                    deferred.resolve(orders);
+                } else {
+                    deferred.reject(err);
+                }
+            }
+        );
+
+        return deferred.promise;
+
     }
 
 

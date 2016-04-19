@@ -66,6 +66,7 @@
             })
             .when("/manage/review", {
                 templateUrl: "views/manager/manager-review.view.html",
+                controller: "ManagerReviewController",
                 controllerAs: "model",
                 //resolve: {loggedin: checkAdmin}
             })

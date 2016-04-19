@@ -8,19 +8,30 @@
                 <th>Payment Method</th>
                 <th>Amount</th>
                 <th>No. of Order</th>
+                <th>Action</th>
             </tr>
             </thead>
 
             <tbody>
             <tr>
                 <td>Cash</td>
-                <td>$500.00</td>
-                <td><a href="#/manage/review">4</a></td>
+                <td>${{model.cashTotal}}</td>
+                <td><a href="#">{{model.cashCounter}}</a></td>
+                <td>
+                    <button class="btn btn-primary" ng-click="model.selectRow('cash')">
+                        <span class="glyphicon glyphicon-th-list"></span>
+                    </button>
+                </td>
             </tr>
             <tr>
                 <td>Credit Card</td>
-                <td>$400.00</td>
-                <td><a href="#/manage/review">10</a></td>
+                <td>${{model.creditTotal}}</td>
+                <td><a href="#">{{model.creditCounter}}</a></td>
+                <td>
+                    <button class="btn btn-primary" ng-click="model.selectRow('credit')">
+                        <span class="glyphicon glyphicon-th-list"></span>
+                    </button>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -28,4 +39,4 @@
 
 </div>
 
-<!--<div ng-include="'views/order/order-list.view.html'"></div>-->
+<div ng-include="'views/order/order-list.view.html'"></div>
