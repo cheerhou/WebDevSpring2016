@@ -14,7 +14,7 @@ module.exports = function (app, assignmentUserModel, projectUserModel) {
     app.post('/api/assignment/login', passport.authenticate('assignment'), login);
     app.get("/api/assignment/loggedin", auth, loggedin);
     app.post("/api/assignment/logout", auth, logout);
-    app.post("/api/assignment/register", auth, assignmentRegister);
+    app.post("/api/assignment/register", assignmentRegister);
     app.post("/api/assignment/user", auth, assignmentCreateUser);
 
     app.get("/api/assignment/user", auth, asFindAllUsers);
@@ -28,7 +28,7 @@ module.exports = function (app, assignmentUserModel, projectUserModel) {
     app.post('/api/project/login', passport.authenticate('project'), login);
     app.post('/api/project/logout', auth, logout);
     app.get('/api/project/loggedin', auth, loggedin);
-    app.post('/api/project/register', auth, projectRegister);
+    app.post('/api/project/register', projectRegister);
 
     app.post("/api/project/user", auth, proCreateUser);
     app.get("/api/project/user", auth, proFindAllUsers);
