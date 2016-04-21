@@ -4,6 +4,8 @@ module.exports = function (app, orderModel) {
     app.get("/api/project/order/:userId", findOrdersByUser);
     app.get("/api/project/order/detail/:orderId", findOrderByOrderId);
     app.get("/api/project/order/payment/:paymentType", findOrderByPaymentType);
+    app.get("/api/project/order/delivery/:devMethod", findOrderByDeliveryMethod);
+
 
 
     function createOrder(req, res) {
@@ -53,6 +55,19 @@ module.exports = function (app, orderModel) {
     function findOrderByPaymentType(req, res) {
         var paymentType = req.params.paymentType;
         orderModel.findOrderByPaymentType(paymentType)
+            .then(
+                function (orders) {
+                    res.json(orders);
+                }, function (err) {
+                    res.status(400).send(err);
+
+                }
+            );
+    }
+
+    function findOrderByDeliveryMethod(req, res) {
+        var devMethod = req.params.devMethod;
+        orderModel.findOrderByDeliveryMethod(devMethod)
             .then(
                 function (orders) {
                     res.json(orders);

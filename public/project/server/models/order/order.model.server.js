@@ -13,7 +13,9 @@ module.exports = function (db) {
         findOrdersByUser: findOrdersByUser,
         findOrderByOrderId: findOrderByOrderId,
         findAllOrders: findAllOrders,
-        findOrderByPaymentType: findOrderByPaymentType
+        findOrderByPaymentType: findOrderByPaymentType,
+        findOrderByDeliveryMethod: findOrderByDeliveryMethod
+
     };
     return api;
 
@@ -35,7 +37,21 @@ module.exports = function (db) {
     function updateOrder(orderId, newOrder) {
         var deferred = q.defer();
         OrderModel
-            .update({_id: orderId}, {$set: newOrder},
+            .update(
+                {_id: orderId},
+                {
+                    $set: {
+                        userId: newOrder.userId,
+                        waiter: newOrder.waiter,
+                        items: newOrder.items,
+                        total: newOrder.total,
+                        tableNum: newOrder.tableNum,
+                        paymentType: newOrder.paymentType,
+                        delivery: newOrder.delivery,
+                        address: newOrder.address,
+                        created: newOrder.created
+                    }
+                },
                 function (err, stats) {
                     if (!err) {
                         deferred.resolve(stats);
@@ -122,7 +138,22 @@ module.exports = function (db) {
         );
 
         return deferred.promise;
+    }
 
+    function findOrderByDeliveryMethod(devMethod) {
+        var deferred = q.defer();
+        OrderModel.find(
+            {delivery: devMethod},
+            function (err, orders) {
+                if (!err) {
+                    deferred.resolve(orders);
+                } else {
+                    deferred.reject(err);
+                }
+            }
+        );
+
+        return deferred.promise;
     }
 
 

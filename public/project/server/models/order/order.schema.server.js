@@ -16,6 +16,7 @@ module.exports = function () {
             tableNum: String,
             paymentType: String,
             delivery: String,
+            address: String,
             created: {type: Date, default: Date.now}
 
         }, {collection: 'project.order'}

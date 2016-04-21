@@ -98,6 +98,12 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/task/delivery", {
+                templateUrl: "views/task/task-list.view.html",
+                controller: "ListTaskController",
+                controllerAs: "model",
+                resolve: {loggedin: checkLoggedin}
+            })
             .otherwise("/menu", {
                 redirectTo: "/menu"
             })

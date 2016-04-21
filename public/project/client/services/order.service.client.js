@@ -14,7 +14,8 @@
             deleteItemInOrder: deleteItemInOrder,
             findOrdersByUser: findOrdersByUser,
             findOrderByOrderId: findOrderByOrderId,
-            findOrderByPaymentType: findOrderByPaymentType
+            findOrderByPaymentType: findOrderByPaymentType,
+            findOrderByDeliveryMethod: findOrderByDeliveryMethod
         };
         return api;
 
@@ -70,6 +71,10 @@
 
         function findOrderByPaymentType(paymentType) {
             return $http.get("/api/project/order/payment/" + paymentType);
+        }
+
+        function findOrderByDeliveryMethod(devMethod) {
+            return $http.get("/api/project/order/delivery/" + devMethod);
         }
 
     }
