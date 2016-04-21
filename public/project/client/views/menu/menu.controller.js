@@ -9,6 +9,8 @@
         vm.closeError = closeError;
         vm.closeMessage = closeMessage;
 
+        vm.hoveringOver = hoveringOver;
+
         vm.order = order;
         vm.addDish = addDish;
         vm.updateDish = updateDish;
@@ -22,11 +24,19 @@
                 OrderService.emptyCurrentOrder();
             }
 
-            MenuService
-                .findAllDishes()
-                .then(function (respond) {
-                    vm.dishes = respond.data;
-                });
+            MenuService.findAllDishes()
+                .then(
+                    function (respond) {
+                        vm.dishes = respond.data;
+                        //var dishes = respond.data;
+                        //for(var i in dishes) {
+                        //    if(dishes[i].userRate) {
+                        //        console.log(dishes[i].userRate);
+                        //    }
+                        //}
+
+                    }
+                );
         }
 
         init();
@@ -37,6 +47,10 @@
 
         function closeMessage() {
             vm.message = null;
+        }
+
+        function hoveringOver(value) {
+            vm.overStar = value;
         }
 
         function order(dish) {
@@ -101,8 +115,6 @@
                     }
                 );
         }
-
-
 
 
     }
