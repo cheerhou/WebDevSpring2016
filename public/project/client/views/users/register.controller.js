@@ -5,6 +5,10 @@
 
     function RegisterController(UserService, $location) {
         var vm = this;
+
+        vm.closeError = closeError;
+        vm.closeMessage = closeMessage;
+
         vm.register = register;
 
         function register(user) {
@@ -55,6 +59,14 @@
                     }
                 );
 
+        }
+
+        function closeError() {
+            vm.error = null;
+        }
+
+        function closeMessage() {
+            vm.message = null;
         }
     }
 

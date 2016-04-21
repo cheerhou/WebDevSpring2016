@@ -6,6 +6,9 @@
     function MenuController($scope, $location, MenuService, OrderService) {
         var vm = this;
 
+        vm.closeError = closeError;
+        vm.closeMessage = closeMessage;
+
         vm.order = order;
         vm.addDish = addDish;
         vm.updateDish = updateDish;
@@ -27,6 +30,14 @@
         }
 
         init();
+
+        function closeError() {
+            vm.error = null;
+        }
+
+        function closeMessage() {
+            vm.message = null;
+        }
 
         function order(dish) {
             var newDish = {
@@ -90,6 +101,8 @@
                     }
                 );
         }
+
+
 
 
     }

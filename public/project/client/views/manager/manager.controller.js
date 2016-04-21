@@ -6,6 +6,10 @@
 
     function ManagerController(UserService) {
         var vm = this;
+
+        vm.closeError = closeError;
+        vm.closeMessage = closeMessage;
+
         vm.addUser = addUser;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
@@ -20,6 +24,14 @@
         }
 
         init();
+
+        function closeError() {
+            vm.error = null;
+        }
+
+        function closeMessage() {
+            vm.message = null;
+        }
 
         function updateUser(user) {
             if (!user.username) {

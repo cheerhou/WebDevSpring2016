@@ -7,6 +7,10 @@
 
     function ReservationController(ReservationService, UserService) {
         var vm = this;
+
+        vm.closeError = closeError;
+        vm.closeMessage = closeMessage;
+
         vm.createReservation = createReservation;
         var currentUser;
 
@@ -15,6 +19,14 @@
             vm.user = currentUser;
         }
         init();
+
+        function closeError() {
+            vm.error = null;
+        }
+
+        function closeMessage() {
+            vm.message = null;
+        }
 
         function createReservation(userId, rev) {
             if (!userId) {

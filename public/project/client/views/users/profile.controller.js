@@ -7,6 +7,8 @@
         var vm = this;
         var username = $routeParams.username;
 
+        vm.closeError = closeError;
+        vm.closeMessage = closeMessage;
         vm.update = update;
 
         function init() {
@@ -40,6 +42,14 @@
                         vm.error = "fail to update profile. " + error;
                     }
                 );
+        }
+
+        function closeError() {
+            vm.error = null;
+        }
+
+        function closeMessage() {
+            vm.message = null;
         }
     }
 

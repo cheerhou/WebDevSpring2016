@@ -8,6 +8,9 @@
     function OrderController(OrderService, UserService) {
         var vm = this;
 
+        vm.closeError = closeError;
+        vm.closeMessage = closeMessage;
+
         vm.updateItemTotal = updateItemTotal;
         vm.deleteItemInOrder = deleteItemInOrder;
         vm.createOrder = createOrder;
@@ -29,6 +32,14 @@
         }
 
         init();
+
+        function closeError() {
+            vm.error = null;
+        }
+
+        function closeMessage() {
+            vm.message = null;
+        }
 
 
         function deleteItemInOrder(dish) {

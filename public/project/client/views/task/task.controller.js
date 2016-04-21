@@ -17,8 +17,6 @@
                                 vm.orders = respond.data;
                             }
 
-                        }, function (err) {
-                            vm.error = "Can't load tasks.";
                         }
                     );
 

@@ -6,6 +6,9 @@
     function MenuSearchController($location, MenuService) {
         var vm = this;
 
+        vm.closeError = closeError;
+        vm.closeMessage = closeMessage;
+
         vm.search = search;
         vm.addDishToMenu = addDishToMenu;
 
@@ -24,6 +27,13 @@
 
         }
 
+        function closeError() {
+            vm.error = null;
+        }
+
+        function closeMessage() {
+            vm.message = null;
+        }
 
         function addDishToMenu(dish) {
             var newDish = {
