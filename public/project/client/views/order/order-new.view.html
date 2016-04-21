@@ -19,7 +19,7 @@
         <tr ng-repeat="item in model.order.items">
             <td>{{item.title}}</td>
             <td>
-                <select class="form-control" ng-model="item.quantity" ng-change="model.updateItemTotal(item)" >
+                <select class="form-control" ng-model="item.quantity" ng-change="model.updateItemTotal(item)">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -74,6 +74,18 @@
             <div ng-include="'views/order/order-payment.view.html'"></div>
         </div>
     </div>
+    <!--------end payment------------------->
+
+    <!--address----------------------------->
+    <div class="panel panel-default" ng-show="model.order.delivery === 'deliver'">
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="payment">Address:</label><br>
+                <input class="col-sm-10" type="text" ng-model="model.order.address">
+            </div>
+        </div>
+    </div>
+
 
     <button class="btn btn-primary btn-block" ng-click="model.createOrder(model.order)">Order</button>
 
